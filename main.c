@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-
+void sobre(void);
 
 int main(void)
 {
