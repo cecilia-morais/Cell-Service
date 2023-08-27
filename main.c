@@ -7,7 +7,7 @@ void sobre(void);
 int main(void)
 {
     menu_principal();
-    
+
 	sobre();	
 	   return 0;
 }
@@ -33,4 +33,5 @@ void menu_principal(){
     printf("4 - Relatórios\n");
     printf("5 - Sobre o programa\n");
     printf("6 - Encerrar o programa\n");
+    
 }
