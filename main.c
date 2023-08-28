@@ -33,5 +33,7 @@ void menu_principal(){
     printf("4 - Relatórios\n");
     printf("5 - Sobre o programa\n");
     printf("6 - Encerrar o programa\n");
+    printf("*********************************************************************\n");
+
     
 }
