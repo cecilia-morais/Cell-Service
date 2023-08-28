@@ -7,6 +7,7 @@ void sobre(void);
 void equipe(void);
 void cad_cell(void);
 void novo_cell(void);
+void busca_cell(void);
 
 int main(void)
 {
@@ -14,6 +15,7 @@ int main(void)
     menu_principal();
     cad_cell();
     novo_cell();
+    busca_cell();
 	sobre();
     equipe();
 
@@ -112,3 +114,25 @@ system("clear || cls");
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
+
+void busca_cell(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                 BUSCAR CELULAR CADASTRADO POR CLIENTE               \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite o modelo do aparelho: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+
+
+}
+
