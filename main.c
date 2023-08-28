@@ -1,39 +1,87 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 void menu_principal(void);
 void sobre(void);
+void equipe(void);
+void cad_cell(void);
+
 
 int main(void)
 {
+    setlocale (LC_ALL , "Portuguese");
     menu_principal();
+    cad_cell();
+	sobre();
+    equipe();
 
-	sobre();	
 	   return 0;
 }
 
 void sobre(){
+    system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do SeridÃ³\n  "            );
-    printf("                Disciplina DCT1106 -- ProgramaÃ§Ã£o\n"                );
+    printf("                Centro de Ensino Superior do Seridó\n  "            );
+    printf("                Disciplina DCT1106 -- Programação\n"                );
     printf("                      Projeto Cell Service\n  "                     );
-    printf("           Esse projeto estÃ¡ sendo desenvolvido para simular \n "   );
+    printf("           Esse projeto está sendo desenvolvido para simular \n "   );
     printf("                uma loja para conserto de celular.\n"               );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );
+    getchar();
+}
+
+void equipe(){
+    system("clear || cls");
+    printf("            Universidade Federal do Rio Grande do Norte\n          ");
+    printf("                Centro de Ensino Superior do Seridó\n  "            );
+    printf("                Disciplina DCT1106 -- Programação\n"                );
+    printf("                      Projeto Cell Service\n  "                     );
+    printf("                 Desenvolvido por: Cecilia Morais\n"                );   
+    printf("                      GitHub: @cecília-morais         \n"           );  
+    getchar();
 }
 
 void menu_principal(){
     system("clear || cls");
+    char op;
     printf("*********************************************************************\n");
     printf("                           MENU PRINCIPAL                            \n");
     printf("*********************************************************************\n");
     printf("1 - Cadastro de celular \n");
     printf("2 - Clientes \n");
-    printf("3 - Estoques de peÃ§as\n");
-    printf("4 - RelatÃ³rios\n");
+    printf("3 - Estoques de peças\n");
+    printf("4 - Relatórios\n");
     printf("5 - Sobre o programa\n");
-    printf("6 - Encerrar o programa\n");
+    printf("6 - Sobre a equipe\n");
+    printf("7 - Encerrar o programa\n");
     printf("*********************************************************************\n");
+    printf("\n");
+    printf("Digite o número desejado: ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar ");
+    getchar();
+}
 
-    
+void cad_cell(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                          CADASTRO DE CELULAR                        \n");
+    printf("*********************************************************************\n");
+    printf("1 - Cadastrar um novo celular\n");
+    printf("2 - Buscar um celular \n");
+    printf("3 - Atualizar um celular\n");
+    printf("4 - Deletar um celular\n");
+    printf("5 - Sair \n");
+    printf("*********************************************************************\n");
+    printf("\n");
+    printf("Digite o número desejado: ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar ");
+    getchar();
+
+
 }
