@@ -1,52 +1,77 @@
-# Prerequisites
+# Criado por https://www.toptal.com/developers/gitignore/api/c,visualstudiocode
+# Edite em https://www.toptal.com/developers/gitignore?templates=c,visualstudiocode
+
+###C###
+# Pré-requisitos
 *.d
 
-# Object files
+# Arquivos de objetos
 *.o
 *.ko
 *.obj
-*.elf
+*.duende
 
-# Linker output
+# Saída do vinculador
 *.ilk
-*.map
+*.mapa
 *.exp
 
-# Precompiled Headers
+# Cabeçalhos pré-compilados
 *.gch
 *.pch
 
-# Libraries
+# Bibliotecas
 *.lib
 *.a
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
+# Objetos compartilhados (incluindo DLLs do Windows)
 *.dll
-*.so
-*.so.*
+*.então
+*.então.*
 *.dylib
 
-# Executables
+# Executáveis
 *.exe
-*.out
-*.app
+*.fora
+*.aplicativo
 *.i*86
 *.x86_64
-*.hex
+*.hex.
 
-# Debug files
+#Depurar arquivos
 *.dSYM/
 *.su
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
+# Resultados da compilação do módulo Kernel
 *.mod*
 *.cmd
 .tmp_versions/
-modules.order
-Module.symvers
+módulos.pedido
+Módulo.symvers
 Mkfile.old
 dkms.conf
+
+###VisualStudioCode###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensões.json
+!.vscode/*.code-snippets
+
+# Histórico local para código do Visual Studio
+.história/
+
+# Construídas extensões de código do Visual Studio
+*.vsix
+
+###Patch do VisualStudioCode###
+# Ignora todo o histórico local de arquivos
+.história
+.ionido
+
+# Fim de https://www.toptal.com/developers/gitignore/api/c,visualstudiocode

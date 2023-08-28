@@ -6,13 +6,14 @@ void menu_principal(void);
 void sobre(void);
 void equipe(void);
 void cad_cell(void);
-
+void novo_cell(void);
 
 int main(void)
 {
     setlocale (LC_ALL , "Portuguese");
     menu_principal();
     cad_cell();
+    novo_cell();
 	sobre();
     equipe();
 
@@ -50,17 +51,18 @@ void menu_principal(){
     printf("*********************************************************************\n");
     printf("1 - Cadastro de celular \n");
     printf("2 - Clientes \n");
-    printf("3 - Estoques de peças\n");
-    printf("4 - Relatórios\n");
-    printf("5 - Sobre o programa\n");
-    printf("6 - Sobre a equipe\n");
-    printf("7 - Encerrar o programa\n");
+    printf("3 - Controle de aparelhos: \n");
+    printf("4 - Estoques de peças\n");
+    printf("5 - Relatórios\n");
+    printf("6 - Sobre o programa\n");
+    printf("7 - Sobre a equipe\n");
+    printf("0 - Encerrar o programa\n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o número desejado: ");
+    printf("Digite o número desejado:\n ");
     scanf("%c", &op);
     getchar();
-    printf("Tecle ENTER para continuar ");
+    printf("Tecle ENTER para continuar\n ");
     getchar();
 }
 
@@ -77,11 +79,36 @@ void cad_cell(){
     printf("5 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o número desejado: ");
+    printf("Digite o número desejado: \n");
     scanf("%c", &op);
     getchar();
-    printf("Tecle ENTER para continuar ");
+    printf("Tecle ENTER para continuar \n");
     getchar();
 
 
+}
+
+void novo_cell(){
+system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                       CADASTRAR UM NOVO CELULAR                     \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite o modelo do aparelho: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite o problema do aparelho: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite a data de entrada do aparelho:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
 }
