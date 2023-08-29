@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <locale.h>
 
+// Assinaturas de funções:
+
 void menu_principal(void);
 void sobre(void);
 void equipe(void);
@@ -10,16 +12,25 @@ void novo_cell(void);
 void busca_cell(void);
 void atual_cell(void);
 void excl_cell(void);
+void cad_clien(void);
+void novo_clien(void);
+void busca_clien(void);
+void atual_clien(void);
+void excl_clien(void);
 
-int main(void)
-{
-    setlocale (LC_ALL , "Portuguese");
+int main(void){
+    setlocale (LC_ALL, "Portuguese");
     menu_principal();
     cad_cell();
     novo_cell();
     busca_cell();
     atual_cell();
     excl_cell();
+    cad_clien();
+    novo_clien();
+    busca_clien();
+    atual_clien();
+    excl_clien();
 	sobre();
     equipe();
 
@@ -29,10 +40,10 @@ int main(void)
 void sobre(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do Seridó\n  "            );
-    printf("                Disciplina DCT1106 -- Programação\n"                );
+    printf("                Centro de Ensino Superior do Serid?\n  "            );
+    printf("                Disciplina DCT1106 -- Programa??o\n"                );
     printf("                      Projeto Cell Service\n  "                     );
-    printf("           Esse projeto está sendo desenvolvido para simular \n "   );
+    printf("           Esse projeto est? sendo desenvolvido para simular \n "   );
     printf("                uma loja para conserto de celular.\n"               );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );
     getchar();
@@ -41,11 +52,11 @@ void sobre(){
 void equipe(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do Seridó\n  "            );
-    printf("                Disciplina DCT1106 -- Programação\n"                );
+    printf("                Centro de Ensino Superior do Serid?\n  "            );
+    printf("                Disciplina DCT1106 -- Programa??o\n"                );
     printf("                      Projeto Cell Service\n  "                     );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );   
-    printf("                      GitHub: @cecília-morais         \n"           );  
+    printf("                      GitHub: @cec?lia-morais         \n"           );  
     getchar();
 }
 
@@ -58,19 +69,21 @@ void menu_principal(){
     printf("1 - Cadastro de celular \n");
     printf("2 - Clientes \n");
     printf("3 - Controle de aparelhos: \n");
-    printf("4 - Estoques de peças\n");
-    printf("5 - Relatórios\n");
+    printf("4 - Estoques de pe?as\n");
+    printf("5 - Relat?rios\n");
     printf("6 - Sobre o programa\n");
     printf("7 - Sobre a equipe\n");
     printf("0 - Encerrar o programa\n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o número desejado:\n ");
+    printf("Digite o n?mero desejado:\n ");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar\n ");
     getchar();
 }
+
+// Funções do módulo 1:
 
 void cad_cell(){
     system("clear || cls");
@@ -85,7 +98,7 @@ void cad_cell(){
     printf("5 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o número desejado: \n");
+    printf("Digite o n?mero desejado: \n");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
@@ -162,9 +175,94 @@ void excl_cell(){
     system("clear || cls");
     char op;
     printf("*********************************************************************\n");
-    printf("                         ATUALIZAR UM CELULAR                        \n");
+    printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+// Funções do módulo 2:
+void cad_clien(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                          ÁREA DE CLIENTES                           \n");
+    printf("*********************************************************************\n");
+    printf("1 - Cadastrar um novo cliente\n");
+    printf("2 - Buscar um cliente \n");
+    printf("3 - Atualizar um cliente\n");
+    printf("4 - Deletar um cliente\n");
+    printf("5 - Sair \n");
+    printf("*********************************************************************\n");
+    printf("\n");
+    printf("Digite o n?mero desejado: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+void novo_clien(){
+system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite o nome completo do cliente: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite a data de nascimento do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+void busca_clien(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                           BUSCAR POR CLIENTE                        \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+void atual_clien(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                         ATUALIZAR UM CLIENTE                        \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite '1' se deseja alterar o nome do cliente ou '2' se deseja alterar a data de nascimento do cliente: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+void excl_clien(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                         DELETAR UM CLIENTE                          \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tem certeza que quer continuar a operação? ");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");

@@ -1,77 +1,77 @@
-# Criado por https://www.toptal.com/developers/gitignore/api/c,visualstudiocode
-# Edite em https://www.toptal.com/developers/gitignore?templates=c,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,c
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,c
 
-###C###
-# Pré-requisitos
+### C ###
+# Prerequisites
 *.d
 
-# Arquivos de objetos
+# Object files
 *.o
 *.ko
 *.obj
-*.duende
+*.elf
 
-# Saída do vinculador
+# Linker output
 *.ilk
-*.mapa
+*.map
 *.exp
 
-# Cabeçalhos pré-compilados
+# Precompiled Headers
 *.gch
 *.pch
 
-# Bibliotecas
+# Libraries
 *.lib
 *.a
 *.la
 *.lo
 
-# Objetos compartilhados (incluindo DLLs do Windows)
+# Shared objects (inc. Windows DLLs)
 *.dll
-*.então
-*.então.*
+*.so
+*.so.*
 *.dylib
 
-# Executáveis
+# Executables
 *.exe
-*.fora
-*.aplicativo
+*.out
+*.app
 *.i*86
 *.x86_64
-*.hex.
+*.hex
 
-#Depurar arquivos
+# Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
 
-# Resultados da compilação do módulo Kernel
+# Kernel Module Compile Results
 *.mod*
 *.cmd
 .tmp_versions/
-módulos.pedido
-Módulo.symvers
+modules.order
+Module.symvers
 Mkfile.old
 dkms.conf
 
-###VisualStudioCode###
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensões.json
+!.vscode/extensions.json
 !.vscode/*.code-snippets
 
-# Histórico local para código do Visual Studio
-.história/
+# Local History for Visual Studio Code
+.history/
 
-# Construídas extensões de código do Visual Studio
+# Built Visual Studio Code Extensions
 *.vsix
 
-###Patch do VisualStudioCode###
-# Ignora todo o histórico local de arquivos
-.história
-.ionido
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
-# Fim de https://www.toptal.com/developers/gitignore/api/c,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,c
