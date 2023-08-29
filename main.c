@@ -8,6 +8,8 @@ void equipe(void);
 void cad_cell(void);
 void novo_cell(void);
 void busca_cell(void);
+void atual_cell(void);
+void excl_cell(void);
 
 int main(void)
 {
@@ -16,6 +18,8 @@ int main(void)
     cad_cell();
     novo_cell();
     busca_cell();
+    atual_cell();
+    excl_cell();
 	sobre();
     equipe();
 
@@ -136,3 +140,33 @@ void busca_cell(){
 
 }
 
+void atual_cell(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                         ATUALIZAR UM CELULAR                        \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite o modelo do aparelho: \n");
+    scanf("%c", &op);
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
+    scanf("%c", &op);
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
+
+void excl_cell(){
+    system("clear || cls");
+    char op;
+    printf("*********************************************************************\n");
+    printf("                         ATUALIZAR UM CELULAR                        \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    scanf("%c", &op);
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+}
