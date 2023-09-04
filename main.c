@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
-// Assinaturas de funÁıes:
+
+// Assinaturas de funÔøΩÔøΩes:
 
 void menu_principal(void);
 void sobre(void);
@@ -19,7 +19,6 @@ void atual_clien(void);
 void excl_clien(void);
 
 int main(void){
-    setlocale (LC_ALL, "Portuguese");
     menu_principal();
     cad_cell();
     novo_cell();
@@ -40,23 +39,23 @@ int main(void){
 void sobre(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do Serid?\n  "            );
-    printf("                Disciplina DCT1106 -- Programa??o\n"                );
+    printf("                Centro de Ensino Superior do Serid√≥\n  "            );
+    printf("                Disciplina DCT1106 -- Programa√ß√£o\n"                );
     printf("                      Projeto Cell Service\n  "                     );
-    printf("           Esse projeto est? sendo desenvolvido para simular \n "   );
+    printf("           Esse projeto est√° sendo desenvolvido para simular \n "   );
     printf("                uma loja para conserto de celular.\n"               );
-    printf("                 Desenvolvido por: Cecilia Morais\n"                );
+    printf("                 Desenvolvido por: Cec√≠lia Morais\n"                );
     getchar();
 }
 
 void equipe(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do Serid?\n  "            );
-    printf("                Disciplina DCT1106 -- Programa??o\n"                );
+    printf("                Centro de Ensino Superior do Serid√≥\n  "            );
+    printf("                Disciplina DCT1106 -- Programa√ß√£o\n"                );
     printf("                      Projeto Cell Service\n  "                     );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );   
-    printf("                      GitHub: @cec?lia-morais         \n"           );  
+    printf("                      GitHub: @cec√≠lia-morais         \n"           );  
     getchar();
 }
 
@@ -69,21 +68,21 @@ void menu_principal(){
     printf("1 - Cadastro de celular \n");
     printf("2 - Clientes \n");
     printf("3 - Controle de aparelhos: \n");
-    printf("4 - Estoques de pe?as\n");
-    printf("5 - Relat?rios\n");
+    printf("4 - Estoques de pe√ßas\n");
+    printf("5 - Relat√≥rios\n");
     printf("6 - Sobre o programa\n");
     printf("7 - Sobre a equipe\n");
     printf("0 - Encerrar o programa\n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o n?mero desejado:\n ");
+    printf("Digite o n√∫mero desejado:\n ");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar\n ");
     getchar();
 }
 
-// FunÁıes do mÛdulo 1:
+// FunÔøΩÔøΩes do mÔøΩdulo 1:
 
 void cad_cell(){
     system("clear || cls");
@@ -98,7 +97,7 @@ void cad_cell(){
     printf("5 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o n?mero desejado: \n");
+    printf("Digite o n√∫mero desejado: \n");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
@@ -184,12 +183,12 @@ void excl_cell(){
     getchar();
 }
 
-// FunÁıes do mÛdulo 2:
+// FunÔøΩÔøΩes do mÔøΩdulo 2:
 void cad_clien(){
     system("clear || cls");
     char op;
     printf("*********************************************************************\n");
-    printf("                          ¡REA DE CLIENTES                           \n");
+    printf("                          √ÅREA DE CLIENTES                           \n");
     printf("*********************************************************************\n");
     printf("1 - Cadastrar um novo cliente\n");
     printf("2 - Buscar um cliente \n");
@@ -198,7 +197,7 @@ void cad_clien(){
     printf("5 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o n?mero desejado: \n");
+    printf("Digite o n√∫mero desejado: \n");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
@@ -262,7 +261,7 @@ void excl_clien(){
     printf("Digite o CPF do cliente:\n ");
     scanf("%c", &op);
     getchar();
-    printf("Tem certeza que quer continuar a operaÁ„o? ");
+    printf("Tem certeza que quer continuar a opera√ß√£o? ");
     scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
