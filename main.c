@@ -1,17 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "modulos/clientes.h"
+#include "modulos/celular.h"
+#include "modulos/pecas.h"
+#include "modulos/relatorios.h"
 
 // Assinaturas de fun��es:
 
-void menu_principal(void);
+char menu_principal(void);
 void sobre(void);
 void equipe(void);
 
-
 int main(void){
-    menu_principal();
+char op;
+        do{
+            op = menu_principal(); 
+
+            switch (op){
+                case '1': 
+                    cad_cell();
+                    break; 
+
+                case '2':
+                    cad_clien();
+                    break;
+
+                case '3':
+                    estoque();
+                    break;
+
+                case '4':
+                    relatorios();
+                    break;
+
+
+                default: 
+                    printf("Opção inválida");
+                    break; 
+
+            }
+
+        } while (op != 0); 
 	   return 0;
+}
+
+char menu_principal(){
+    system("clear || cls");
+    char menu;
+    printf("*********************************************************************\n");
+    printf("                           MENU PRINCIPAL                            \n");
+    printf("*********************************************************************\n");
+    printf("1 - Cadastro de celular \n");
+    printf("2 - Clientes \n");
+    printf("3 - Estoques de peças\n");
+    printf("4 - Relatórios\n");
+    printf("5 - Sobre\n");
+    printf("0 - Encerrar o programa\n");
+    printf("*********************************************************************\n");
+    printf("\n");
+    printf("Digite o número desejado:\n ");
+    scanf("%c", &menu);
+    getchar();
+    printf("Tecle ENTER para continuar\n ");
+    getchar();
+
+    return menu;
 }
 
 void sobre(){
@@ -34,26 +87,5 @@ void equipe(){
     printf("                      Projeto Cell Service\n  "                     );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );   
     printf("                      GitHub: @cecília-morais         \n"           );  
-    getchar();
-}
-
-void menu_principal(){
-    system("clear || cls");
-    char op;
-    printf("*********************************************************************\n");
-    printf("                           MENU PRINCIPAL                            \n");
-    printf("*********************************************************************\n");
-    printf("1 - Cadastro de celular \n");
-    printf("2 - Clientes \n");
-    printf("3 - Estoques de peças\n");
-    printf("4 - Relatórios\n");
-    printf("5 - Sobre\n");
-    printf("0 - Encerrar o programa\n");
-    printf("*********************************************************************\n");
-    printf("\n");
-    printf("Digite o número desejado:\n ");
-    scanf("%c", &op);
-    getchar();
-    printf("Tecle ENTER para continuar\n ");
     getchar();
 }

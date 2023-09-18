@@ -1,6 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pecas.h"
+
 void estoque(){
     system("clear || cls");
-    char op;
+    char opest;
     printf("*********************************************************************\n");
     printf("                          ESTOQUE DE PEÇAS                           \n");
     printf("*********************************************************************\n");
@@ -12,7 +16,7 @@ void estoque(){
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");
-    scanf("%c", &op);
+    scanf("%c", &opest);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
@@ -20,21 +24,16 @@ void estoque(){
 
 void nova_peca(){
 system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
     printf("                        CADASTRAR UMA NOVA PEÇA                      \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça a ser cadastrada:\n ");
-    scanf("%c", &op);
     getchar();
     printf("Digite a marca do aparelho que recebe a peça(EM CASO DE PEÇA UNIVERSAL, COLOCAR 'TODAS'): \n");
-    scanf("%c", &op);
     getchar();
     printf("Digite o número de série da peça:\n ");
-    scanf("%c", &op);
     getchar();
     printf("Digite o estoque de peças:\n ");
-    scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
@@ -42,12 +41,10 @@ system("clear || cls");
 
 void buscar_peca(){
     system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR PEÇA                           \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça: \n ");
-    scanf("%s", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
@@ -55,15 +52,12 @@ void buscar_peca(){
 }
 void atual_peca(){
  system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UMA PEÇA                          \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça:\n ");
-    scanf("%s", &op);
     getchar();
     printf("Digite a quantidade de peças a serem adicionadas ao estoque: \n");
-    scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
@@ -71,15 +65,12 @@ void atual_peca(){
 
 void excl_peca(){
     system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
     printf("                         DELETAR UMA PEÇA                            \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça:\n ");
-    scanf("%c", &op);
     getchar();
     printf("Tem certeza que quer continuar a operação? ");
-    scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();

@@ -1,82 +1,88 @@
-void cad_clien(){
+#include <stdio.h>
+#include <stdlib.h>
+#include "celular.h"
+
+void cad_cell(){
     system("clear || cls");
-    char op;
+    char opcell;
     printf("*********************************************************************\n");
-    printf("                          ÁREA DE CLIENTES                           \n");
+    printf("                          CADASTRO DE CELULAR                        \n");
     printf("*********************************************************************\n");
-    printf("1 - Cadastrar um novo cliente\n");
-    printf("2 - Buscar um cliente \n");
-    printf("3 - Atualizar um cliente\n");
-    printf("4 - Deletar um cliente\n");
+    printf("1 - Cadastrar um novo celular\n");
+    printf("2 - Buscar um celular \n");
+    printf("3 - Atualizar um celular\n");
+    printf("4 - Deletar um celular\n");
     printf("5 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");
-    scanf("%c", &op);
+    scanf("%c", &opcell);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
+
+
 }
 
-void novo_clien(){
+void novo_cell(){
 system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
-    printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
+    printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    scanf("%c", &op);
     getchar();
-    printf("Digite o nome completo do cliente: \n");
-    scanf("%c", &op);
+    printf("Digite o modelo do aparelho: \n");
     getchar();
-    printf("Digite a data de nascimento do cliente:\n ");
-    scanf("%c", &op);
+    printf("Digite a marca do aparelho:\n ");
+    getchar();
+    printf("Digite o problema do aparelho: \n");
+    getchar();
+    printf("Digite a data de entrada do aparelho:\n ");
+    getchar();
+    printf("Digite a previsão de entrega do aparelho\n");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-void busca_clien(){
+void busca_cell(){
+    system("clear || cls");
+    printf("*********************************************************************\n");
+    printf("                 BUSCAR CELULAR CADASTRADO POR CLIENTE               \n");
+    printf("*********************************************************************\n");
+    printf("Digite o CPF do cliente:\n ");
+    getchar();
+    printf("Digite o modelo do aparelho: \n");
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+
+
+}
+
+void atual_cell(){
     system("clear || cls");
     char op;
     printf("*********************************************************************\n");
-    printf("                           BUSCAR POR CLIENTE                        \n");
+    printf("                         ATUALIZAR UM CELULAR                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    scanf("%c", &op);
     getchar();
+    printf("Digite o modelo do aparelho: \n");
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-void atual_clien(){
+void excl_cell(){
     system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
-    printf("                         ATUALIZAR UM CLIENTE                        \n");
+    printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    scanf("%c", &op);
-    getchar();
-    printf("Digite '1' se deseja alterar o nome do cliente ou '2' se deseja alterar a data de nascimento do cliente: \n");
-    scanf("%c", &op);
-    getchar();
-    printf("Tecle ENTER para continuar \n");
-    getchar();
-}
-
-void excl_clien(){
-    system("clear || cls");
-    char op;
-    printf("*********************************************************************\n");
-    printf("                         DELETAR UM CLIENTE                          \n");
-    printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
-    scanf("%c", &op);
-    getchar();
-    printf("Tem certeza que quer continuar a operação? ");
-    scanf("%c", &op);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
