@@ -12,7 +12,7 @@ char cad_cell(){
     printf("2 - Buscar um celular \n");
     printf("3 - Atualizar um celular\n");
     printf("4 - Deletar um celular\n");
-    printf("5 - Sair \n");
+    printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");

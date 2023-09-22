@@ -12,7 +12,7 @@ char estoque(){
     printf("2 - Buscar uma peça \n");
     printf("3 - Atualizar uma peça \n");
     printf("4 - Deletar uma peça \n");
-    printf("5 - Sair \n");
+    printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");
