@@ -4,6 +4,7 @@
 #include "modulos/celular.h"
 #include "modulos/pecas.h"
 #include "modulos/relatorios.h"
+#include "modulos/switchs.h"
 
 // Assinaturas de fun��es:
 
@@ -13,26 +14,26 @@ void equipe(void);
 
 int main(void){
 char op;
+
         do{
             op = menu_principal(); 
 
             switch (op){
                 case '1': 
-                    cad_cell();
-                    break; 
-
+                    sw_cell();
+                    break;
+                                
                 case '2':
-                    cad_clien();
+                    sw_clien();
                     break;
 
                 case '3':
-                    estoque();
+                    sw_estoque();
                     break;
 
                 case '4':
                     relatorios();
                     break;
-
 
                 default: 
                     printf("Opção inválida");

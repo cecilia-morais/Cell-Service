@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "clientes.h"
 
-void cad_clien(){
+char cad_clien(){
     system("clear || cls");
     char opcli;
     printf("*********************************************************************\n");
@@ -20,9 +20,11 @@ void cad_clien(){
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
+
+    return opcli;
 }
 
-void novo_clien(){
+char novo_clien(){
 system("clear || cls");
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
@@ -37,7 +39,7 @@ system("clear || cls");
     getchar();
 }
 
-void busca_clien(){
+char busca_clien(){
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR CLIENTE                        \n");
@@ -48,7 +50,7 @@ void busca_clien(){
     getchar();
 }
 
-void atual_clien(){
+char atual_clien(){
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM CLIENTE                        \n");
@@ -61,7 +63,7 @@ void atual_clien(){
     getchar();
 }
 
-void excl_clien(){
+char excl_clien(){
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CLIENTE                          \n");

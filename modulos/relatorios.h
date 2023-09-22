@@ -1,2 +1,2 @@
 ///Assinatura das funções  
-void relatorios(void);
+char relatorios(void);

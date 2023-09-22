@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "pecas.h"
 
-void estoque(){
+char estoque(){
     system("clear || cls");
     char opest;
     printf("*********************************************************************\n");
@@ -20,9 +20,11 @@ void estoque(){
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
+
+    return opest;
 }
 
-void nova_peca(){
+char nova_peca(){
 system("clear || cls");
     printf("*********************************************************************\n");
     printf("                        CADASTRAR UMA NOVA PEÇA                      \n");
@@ -39,7 +41,7 @@ system("clear || cls");
     getchar();
 }
 
-void buscar_peca(){
+char buscar_peca(){
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR PEÇA                           \n");
@@ -50,7 +52,7 @@ void buscar_peca(){
     getchar();
 
 }
-void atual_peca(){
+char atual_peca(){
  system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UMA PEÇA                          \n");
@@ -63,7 +65,7 @@ void atual_peca(){
     getchar();
 }
 
-void excl_peca(){
+char excl_peca(){
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UMA PEÇA                            \n");

@@ -1,6 +1,6 @@
 ///Assinatura das funações
-void estoque(void);
-void nova_peca(void);
-void buscar_peca(void);
-void atual_peca(void);
-void excl_peca(void);
+char estoque(void);
+char nova_peca(void);
+char buscar_peca(void);
+char atual_peca(void);
+char excl_peca(void);
