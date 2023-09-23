@@ -104,7 +104,7 @@ char op;
 void invalida(){
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                             OP√á√ÉO INV√ÅLIDA                          \n");
+    printf("                             OP«√O INV¡LIDA                          \n");
     printf("*********************************************************************\n");
     printf("Tecle ENTER para continuar \n");
     getchar();

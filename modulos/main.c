@@ -6,7 +6,7 @@
 #include "modulos/relatorios.h"
 #include "modulos/switchs.h"
 
-// Assinaturas de funï¿½ï¿½es:
+// Assinaturas de fun??es:
 
 char menu_principal(void);
 void sobre(void);
@@ -36,7 +36,7 @@ char op;
                     break;
 
                 default: 
-                    printf("OpÃ§Ã£o invÃ¡lida");
+                    printf("Opção inválida");
                     break; 
 
             }
@@ -54,13 +54,13 @@ char menu_principal(){
     printf("*********************************************************************\n");
     printf("1 - Cadastro de celular \n");
     printf("2 - Clientes \n");
-    printf("3 - Estoques de peÃ§as\n");
-    printf("4 - RelatÃ³rios\n");
+    printf("3 - Estoques de peças\n");
+    printf("4 - Relatórios\n");
     printf("5 - Sobre\n");
     printf("0 - Encerrar o programa\n");
     printf("*********************************************************************\n");
     printf("\n");
-    printf("Digite o nÃºmero desejado:\n ");
+    printf("Digite o número desejado:\n ");
     scanf("%c", &menu);
     getchar();
     printf("Tecle ENTER para continuar\n ");
@@ -72,22 +72,22 @@ char menu_principal(){
 void sobre(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do SeridÃ³\n  "            );
-    printf("                Disciplina DCT1106 -- ProgramaÃ§Ã£o\n"                );
+    printf("                Centro de Ensino Superior do Seridó\n  "            );
+    printf("                Disciplina DCT1106 -- Programação\n"                );
     printf("                      Projeto Cell Service\n  "                     );
-    printf("           Esse projeto estÃ¡ sendo desenvolvido para simular \n "   );
+    printf("           Esse projeto está sendo desenvolvido para simular \n "   );
     printf("                uma loja para conserto de celular.\n"               );
-    printf("                 Desenvolvido por: CecÃ­lia Morais\n"                );
+    printf("                 Desenvolvido por: Cecília Morais\n"                );
     getchar();
 }
 
 void equipe(){
     system("clear || cls");
     printf("            Universidade Federal do Rio Grande do Norte\n          ");
-    printf("                Centro de Ensino Superior do SeridÃ³\n  "            );
-    printf("                Disciplina DCT1106 -- ProgramaÃ§Ã£o\n"                );
+    printf("                Centro de Ensino Superior do Seridó\n  "            );
+    printf("                Disciplina DCT1106 -- Programação\n"                );
     printf("                      Projeto Cell Service\n  "                     );
     printf("                 Desenvolvido por: Cecilia Morais\n"                );   
-    printf("                      GitHub: @cecÃ­lia-morais         \n"           );  
+    printf("                      GitHub: @cecília-morais         \n"           );  
     getchar();
 }
