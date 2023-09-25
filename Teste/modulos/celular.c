@@ -1,78 +1,89 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "pecas.h"
+#include "celular.h"
 
-char estoque(){
+char cad_cell(){
     system("clear || cls");
-    char opest;
+    char opcel;
     printf("*********************************************************************\n");
-    printf("                          ESTOQUE DE PEÇAS                           \n");
+    printf("                          ÁREA DE CELULAR                             \n");
     printf("*********************************************************************\n");
-    printf("1 - Cadastrar uma nova peça\n");
-    printf("2 - Buscar uma peça \n");
-    printf("3 - Atualizar uma peça \n");
-    printf("4 - Deletar uma peça \n");
-    printf("5 - Sair \n");
+    printf("1 - Cadastrar um novo celular\n");
+    printf("2 - Buscar um celular \n");
+    printf("3 - Atualizar um celular\n");
+    printf("4 - Deletar um celular\n");
+    printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");
-    scanf("%c", &opest);
+    scanf("%c", &opcel);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 
-    return opest;
+    return opcel;
+
 }
 
-char nova_peca(){
+char novo_cell(){
 system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                        CADASTRAR UMA NOVA PEÇA                      \n");
+    printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
-    printf("Digite o nome da peça a ser cadastrada:\n ");
+    printf("Digite o CPF do cliente:\n ");
     getchar();
-    printf("Digite a marca do aparelho que recebe a peça(EM CASO DE PEÇA UNIVERSAL, COLOCAR 'TODAS'): \n");
+    printf("Digite o modelo do aparelho: \n");
     getchar();
-    printf("Digite o número de série da peça:\n ");
+    printf("Digite a marca do aparelho:\n ");
     getchar();
-    printf("Digite o estoque de peças:\n ");
+    printf("Digite o problema do aparelho: \n");
+    getchar();
+    printf("Digite a data de entrada do aparelho:\n ");
+    getchar();
+    printf("Digite a previsão de entrega do aparelho\n");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-char buscar_peca(){
+char busca_cell(){
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                           BUSCAR POR PEÇA                           \n");
+    printf("                 BUSCAR CELULAR CADASTRADO POR CLIENTE               \n");
     printf("*********************************************************************\n");
-    printf("Digite o nome da peça: \n ");
+    printf("Digite o CPF do cliente:\n ");
+    getchar();
+    printf("Digite o modelo do aparelho: \n");
+    getchar();
+    printf("Digite a marca do aparelho:\n ");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 
+
 }
-char atual_peca(){
- system("clear || cls");
+
+char atual_cell(){
+    system("clear || cls");
+    char op;
     printf("*********************************************************************\n");
-    printf("                         ATUALIZAR UMA PEÇA                          \n");
+    printf("                         ATUALIZAR UM CELULAR                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o nome da peça:\n ");
+    printf("Digite o CPF do cliente:\n ");
     getchar();
-    printf("Digite a quantidade de peças a serem adicionadas ao estoque: \n");
+    printf("Digite o modelo do aparelho: \n");
     getchar();
+    printf("Digite a marca do aparelho:\n ");
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-char excl_peca(){
+char excl_cell(){
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                         DELETAR UMA PEÇA                            \n");
+    printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
-    printf("Digite o nome da peça:\n ");
-    getchar();
-    printf("Tem certeza que quer continuar a operação? ");
+    printf("Digite o CPF do cliente:\n ");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();

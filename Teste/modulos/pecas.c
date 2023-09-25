@@ -1,74 +1,76 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "clientes.h"
+#include "pecas.h"
 
-char cad_clien(){
+char estoque(){
     system("clear || cls");
-    char opcli;
+    char opest;
     printf("*********************************************************************\n");
-    printf("                          ÁREA DE CLIENTES                           \n");
+    printf("                          ESTOQUE DE PEÇAS                           \n");
     printf("*********************************************************************\n");
-    printf("1 - Cadastrar um novo cliente\n");
-    printf("2 - Buscar um cliente \n");
-    printf("3 - Atualizar um cliente\n");
-    printf("4 - Deletar um cliente\n");
-    printf("5 - Sair \n");
+    printf("1 - Cadastrar uma nova peça\n");
+    printf("2 - Buscar uma peça \n");
+    printf("3 - Atualizar uma peça \n");
+    printf("4 - Deletar uma peça \n");
+    printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
     printf("Digite o número desejado: \n");
-    scanf("%c", &opcli);
+    scanf("%c", &opest);
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 
-    return opcli;
+    return opest;
 }
 
-char novo_clien(){
+char nova_peca(){
 system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
+    printf("                        CADASTRAR UMA NOVA PEÇA                      \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
+    printf("Digite o nome da peça a ser cadastrada:\n ");
     getchar();
-    printf("Digite o nome completo do cliente: \n");
+    printf("Digite a marca do aparelho que recebe a peça(EM CASO DE PEÇA UNIVERSAL, COLOCAR 'TODAS'): \n");
     getchar();
-    printf("Digite a data de nascimento do cliente:\n ");
+    printf("Digite o número de série da peça:\n ");
+    getchar();
+    printf("Digite o estoque de peças:\n ");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-char busca_clien(){
+char buscar_peca(){
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                           BUSCAR POR CLIENTE                        \n");
+    printf("                           BUSCAR POR PEÇA                           \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
+    printf("Digite o nome da peça: \n ");
+    getchar();
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+
+}
+char atual_peca(){
+ system("clear || cls");
+    printf("*********************************************************************\n");
+    printf("                         ATUALIZAR UMA PEÇA                          \n");
+    printf("*********************************************************************\n");
+    printf("Digite o nome da peça:\n ");
+    getchar();
+    printf("Digite a quantidade de peças a serem adicionadas ao estoque: \n");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-char atual_clien(){
+char excl_peca(){
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                         ATUALIZAR UM CLIENTE                        \n");
+    printf("                         DELETAR UMA PEÇA                            \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
-    getchar();
-    printf("Digite '1' se deseja alterar o nome do cliente ou '2' se deseja alterar a data de nascimento do cliente: \n");
-    getchar();
-    printf("Tecle ENTER para continuar \n");
-    getchar();
-}
-
-char excl_clien(){
-    system("clear || cls");
-    printf("*********************************************************************\n");
-    printf("                         DELETAR UM CLIENTE                          \n");
-    printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
+    printf("Digite o nome da peça:\n ");
     getchar();
     printf("Tem certeza que quer continuar a operação? ");
     getchar();
