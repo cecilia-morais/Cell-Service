@@ -6,7 +6,7 @@ char cad_cell(){
     system("clear || cls");
     char opcel;
     printf("*********************************************************************\n");
-    printf("                          CADASTRO DE CELULAR                        \n");
+    printf("                          ÁREA DE CELULAR                            \n");
     printf("*********************************************************************\n");
     printf("1 - Cadastrar um novo celular\n");
     printf("2 - Buscar um celular \n");
