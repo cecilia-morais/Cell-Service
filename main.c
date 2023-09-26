@@ -3,6 +3,7 @@
 #include "modulos/clientes.h"
 #include "modulos/pecas.h"
 #include "modulos/relatorios.h"
+#include "modulos/atendimentos.h"
 #include <stdio.h>
 #include <stdlib.h>
 

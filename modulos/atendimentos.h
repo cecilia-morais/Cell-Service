@@ -1,0 +1,1 @@
+char area_atendimento(void);

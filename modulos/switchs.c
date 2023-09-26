@@ -3,6 +3,7 @@
 #include "clientes.h"
 #include "pecas.h"
 #include "relatorios.h"
+#include "atendimentos.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -15,6 +15,7 @@ char relatorios() {
   printf("1 - Celular\n ");
   printf("2 - Cliente\n");
   printf(" 3 - Estoque de peças\n");
+  printf(" 4 - Atendimentos por dia\n");
   printf(" 0 - Sair\n");
   scanf("%c", &oprel);
   getchar();
