@@ -1,13 +1,12 @@
-#include "modulos/celular.h"
-#include "modulos/clientes.h"
-#include "modulos/pecas.h"
-#include "modulos/relatorios.h"
-#include "modulos/switchs.h"
+#include "switchs.h"
+#include "celular.h"
+#include "clientes.h"
+#include "pecas.h"
+#include "relatorios.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 // Assinaturas de fun��es:
-
 char menu_principal(void);
 
 

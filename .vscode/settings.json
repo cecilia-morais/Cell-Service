@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "switchs.h": "c",
+        "celular.h": "c",
+        "clientes.h": "c"
+    }
+}
