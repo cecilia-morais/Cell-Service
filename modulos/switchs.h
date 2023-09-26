@@ -7,3 +7,4 @@ void invalida(void);
 void sobre(void);
 void equipe(void);
 char tela_sobre(void);
+void voltando(void);

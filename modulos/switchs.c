@@ -29,6 +29,10 @@ char sw_cell() {
       excl_cell();
       break;
 
+    case '0':
+      voltando();  
+      break;    
+
     default:
       invalida();
       break;
@@ -59,6 +63,10 @@ char sw_clien() {
       excl_clien();
       break;
 
+    case '0':
+      voltando();  
+      break;    
+
     default:
       invalida();
       break;
@@ -87,6 +95,10 @@ char sw_estoque() {
     case '4':
       excl_peca();
       break;
+
+    case '0':
+      voltando();  
+      break;    
 
     default:
       invalida();
@@ -126,7 +138,6 @@ void invalida() {
   printf("*********************************************************************"
          "\n");
   printf("Tecle ENTER para continuar \n");
-  getchar();
 }
 
 void sobre() {
@@ -138,7 +149,6 @@ void sobre() {
   printf("           Esse projeto está sendo desenvolvido para simular \n ");
   printf("                uma loja para conserto de celular.\n");
   printf("                 Desenvolvido por: Cecília Morais\n");
-  getchar();
 }
 
 void equipe() {
@@ -149,7 +159,6 @@ void equipe() {
   printf("                      Projeto Cell Service\n  ");
   printf("                 Desenvolvido por: Cecilia Morais\n");
   printf("                      GitHub: @cecília-morais         \n");
-  getchar();
 }
 
 char tela_sobre() {
@@ -168,4 +177,15 @@ char tela_sobre() {
   getchar();
 
   return optela;
+}
+
+void voltando() {
+  system("clear || cls");
+  printf("*********************************************************************"
+         "\n");
+  printf("                             Voltando...                          "
+         "\n");
+  printf("                    Tecle ENTER para continuar \n");
+  printf("*********************************************************************"
+         "\n");
 }
