@@ -37,7 +37,11 @@ int main(void) {
       break;
 
     default:
-      printf("Opção inválida");
+      if (op = '0'){
+        printf("Encerrando...\n");
+      }else{
+        printf("Opção inválida\n");
+      }
       break;
     }
 

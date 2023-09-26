@@ -29,12 +29,12 @@ char sw_cell() {
       excl_cell();
       break;
 
-    case '0':
-      voltando();  
-      break;    
-
     default:
-      invalida();
+      if (op = '0'){
+        printf("Voltando...\n");
+      }else{
+        printf("Opção inválida\n");
+      }
       break;
     }
   }
@@ -63,12 +63,12 @@ char sw_clien() {
       excl_clien();
       break;
 
-    case '0':
-      voltando();  
-      break;    
-
     default:
-      invalida();
+    if (op = '0'){
+        printf("Voltando...\n");
+      }else{
+        printf("Opção inválida\n");
+      }
       break;
     }
   }
@@ -96,12 +96,12 @@ char sw_estoque() {
       excl_peca();
       break;
 
-    case '0':
-      voltando();  
-      break;    
-
-    default:
-      invalida();
+default:
+    if (op = '0'){
+        printf("Voltando...\n");
+      }else{
+        printf("Opção inválida\n");
+      }
       break;
     }
   }
@@ -122,22 +122,15 @@ char sw_sobre() {
       break;
 
     default:
-      invalida();
+    if (op = '0'){
+        printf("Voltando...\n");
+      }else{
+        printf("Opção inválida\n");
+      }
       break;
     }
   }
   return op;
-}
-
-void invalida() {
-  system("clear || cls");
-  printf("*********************************************************************"
-         "\n");
-  printf("                             OPÇÃO INVÁLIDA                          "
-         "\n");
-  printf("*********************************************************************"
-         "\n");
-  printf("Tecle ENTER para continuar \n");
 }
 
 void sobre() {
@@ -177,15 +170,4 @@ char tela_sobre() {
   getchar();
 
   return optela;
-}
-
-void voltando() {
-  system("clear || cls");
-  printf("*********************************************************************"
-         "\n");
-  printf("                             Voltando...                          "
-         "\n");
-  printf("                    Tecle ENTER para continuar \n");
-  printf("*********************************************************************"
-         "\n");
 }
