@@ -35,6 +35,8 @@ system("clear || cls");
     getchar();
     printf("Digite a data de nascimento do cliente:\n ");
     getchar();
+    printf("Digite um telefone para contato:\n ");
+    getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
