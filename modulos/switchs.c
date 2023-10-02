@@ -109,6 +109,35 @@ default:
   return op;
 }
 
+char sw_atendimentos() {
+  char op;
+  while (op != '0') {
+    op = area_atendimento();
+    switch (op) {
+      case '1':
+        novo_atendimento();
+        break;
+
+      case '2':
+        busca_atendimento();
+        break;
+
+      case '3':
+        atual_atendimento();
+        break;
+
+      default:
+        if (op = '0'){
+            printf("Voltando...\n");
+          }else{
+            printf("Opção inválida\n");
+          }
+          break;
+    }
+  }
+  return op;
+}
+
 char sw_sobre() {
   char op;
   while (op != '0') {

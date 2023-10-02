@@ -31,9 +31,14 @@ int main(void) {
       break;
 
     case '4':
+      sw_atendimentos();
+      break;
+
+    case '5':
       relatorios();
       break;
-    case '5':
+
+    case '6':
       sw_sobre();
       break;
 
@@ -63,8 +68,9 @@ char menu_principal() {
   printf("1 - Cadastro de celular \n");
   printf("2 - Clientes \n");
   printf("3 - Estoques de peças\n");
-  printf("4 - Relatórios\n");
-  printf("5 - Sobre\n");
+  printf("4 - Atendimentos\n");
+  printf("5 - Relatórios\n");
+  printf("6 - Sobre\n");
   printf("0 - Encerrar o programa\n");
   printf("*********************************************************************"
          "\n");
