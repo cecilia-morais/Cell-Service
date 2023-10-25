@@ -26,37 +26,46 @@ char cad_cell(){
 }
 
 char novo_cell(){
-system("clear || cls");
+    int nCPF[12];
+    char modelo[20];
+    char marca[15];
+    char problema[100];
+    char dataent[9];
+    char previsao[9];
+    system("clear || cls");
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o modelo do aparelho: \n");
-    getchar();
+    fgets(modelo, sizeof(modelo), stdin);
     printf("Digite a marca do aparelho:\n ");
-    getchar();
+    fgets(marca, sizeof(marca), stdin);
     printf("Digite o problema do aparelho: \n");
-    getchar();
+    fgets(problema, sizeof(problema), stdin);
     printf("Digite a data de entrada do aparelho:\n ");
-    getchar();
+    fgets(dataent, sizeof(dataent), stdin);
     printf("Digite a previsão de entrega do aparelho\n");
-    getchar();
+    fgets(previsao, sizeof(previsao), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
 char busca_cell(){
+    int nCPF[12];
+    char modelo[20];
+    char marca[15];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                 BUSCAR CELULAR CADASTRADO POR CLIENTE               \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o modelo do aparelho: \n");
-    getchar();
+    fgets(modelo, sizeof(modelo), stdin);
     printf("Digite a marca do aparelho:\n ");
-    getchar();
+    fgets(marca, sizeof(marca), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 
@@ -64,27 +73,31 @@ char busca_cell(){
 }
 
 char atual_cell(){
+    int nCPF[12];
+    char modelo[20];
+    char marca[15];
     system("clear || cls");
-    char op;
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM CELULAR                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o modelo do aparelho: \n");
-    getchar();
+    fgets(modelo, sizeof(modelo), stdin);
     printf("Digite a marca do aparelho:\n ");
+    fgets(marca, sizeof(marca), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
 char excl_cell(){
+    int nCPF[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }

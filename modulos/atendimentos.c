@@ -26,14 +26,15 @@ char area_atendimento(){
 }
 
 char novo_atendimento(){
-system("clear || cls");
+    int nCPF[12];
+    system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           NOVO ATENDIMENTO                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");//aqui será mostrada uma lista de celulares disponiveis para aquele cpf
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o ID do celular para atendimento\n");
-    getchar();
+    getchar();// quando fizer o if e elseif será feito o crud de atendimentos
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
@@ -59,13 +60,14 @@ char busca_atendimento(){
 }
 
 char atual_atendimento(){
+    int nCPF[12];
     system("clear || cls");
     char op;
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM ATENDIMENTO                    \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o ID do aparelho que deseja atualizar: \n");
     getchar();
     printf(" 1- Deseja finalizar o atendimento ou 2 -alterar alguma informação no atendimento?\n ");

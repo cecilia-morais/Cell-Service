@@ -25,40 +25,46 @@ char cad_clien(){
 }
 
 char novo_clien(){
-system("clear || cls");
+    int nCPF[12];
+    char nNome[70];
+    int datanasc[9];
+    int telefone[15];
+    system("clear || cls");
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite o nome completo do cliente: \n");
-    getchar();
+    fgets(nNome, sizeof(nNome), stdin);
     printf("Digite a data de nascimento do cliente:\n ");
-    getchar();
+    fgets(datanasc, sizeof(datanasc), stdin);
     printf("Digite um telefone para contato:\n ");
-    getchar();
+    fgets(telefone, sizeof(telefone), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
-}
+}e
 
 char busca_clien(){
+    int nCPF[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR CLIENTE                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
 char atual_clien(){
+    int nCPF[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM CLIENTE                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Digite '1' se deseja alterar o nome do cliente ou '2' se deseja alterar a data de nascimento do cliente: \n");
     getchar();
     printf("Tecle ENTER para continuar \n");
@@ -66,12 +72,13 @@ char atual_clien(){
 }
 
 char excl_clien(){
+    int nCPF[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CLIENTE                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    getchar();
+    fgets(nCPF, sizeof(nCPF), stdin);
     printf("Tem certeza que quer continuar a operação? ");
     getchar();
     printf("Tecle ENTER para continuar \n");
