@@ -4,9 +4,66 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include "validacoes.h"
+#include "celular.h"
+
+
+bool anobissexto(int ano) { //VALIDAÇÃO FEITA COM AJUDA DO CHATGPT
+    if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool valida_data(int dia, int mes, int ano) {
+    if (ano < 1 || mes < 1 || mes > 12) {
+        return false; // Ano, mês ou dia fora dos limites válidos
+    }
+
+    int diasdomes[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (anobissexto(ano)) {
+        diasdomes[2] = 29; // Fevereiro tem 29 dias em anos bissextos
+    }
+
+    if (dia < 1 || dia > diasdomes[mes]) {
+        return false; // Dia fora dos limites válidos para o mês
+    }
+
+    return true;
+}
+
+int data_entrada(int *dia, int *mes, int *ano) {
+    system("cls || clear");
+    printf("Digite a data de entrada do aparelho (DD MM AAAA): ");
+    scanf("%d %d %d", dia, mes, ano);
+
+    if (valida_data(*dia, *mes, *ano)) {
+        printf("Data de entrada válida!\n");
+        return 1; // Retorna 1 se a data for válida
+    } else {
+        printf("Data de entrada inválida!\n");
+        return 0; // Retorna 0 se a data for inválida
+    }
+}
+
+
+void data_saida(int dia_entrada, int mes_entrada, int ano_entrada) {
+    int dia_s, mes_s, ano_s;
+    printf("Digite a previsão de entrega (DD MM AAAA): ");
+    scanf("%d %d %d", &dia_s, &mes_s, &ano_s);
+
+    if (!valida_data(dia_s, mes_s, ano_s)) {
+        printf("Data de saída inválida!\n");
+    } else if (ano_s < ano_entrada || (ano_s == ano_entrada && (mes_s < mes_entrada || (mes_s == mes_entrada && dia_s < dia_entrada))) {
+        printf("A data de saída não pode ser anterior à data de entrada.\n");
+    } else {
+        printf("Data de saída válida\n");
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-//VALIDAÇÕES FEITAS POR MATHEUS DINIZ FERNANDES. GITHUB: @matheusdnf                               //
+//AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS POR MATHEUS DINIZ FERNANDES. GITHUB: @matheusdnf           //
 //Disponível em <https://github.com/Matheusdnf/projeto_horarios_de_aula.git> acesso em 11/10/2023  //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,7 +74,7 @@ void ler_telefone(char *telefone) {
     int t;
     bool v=true,f=false;
     while (v) {
-        printf("Digite seu telefone com DDD (apenas números):");
+        printf("Digite o telefone do cliente com DDD (apenas números):"); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         fgets(telefone, 15, stdin);
         t = valida_telefone(telefone);
         if (t == 1) {
@@ -87,7 +144,7 @@ void ler_nome(char *nome) {
     int n;
     bool v=true,f=false;
     while (v) {
-        printf("Digite o nome:");
+        printf("Digite o nome do cliente:"); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         fgets(nome, 100, stdin);
         n = valida_nome(nome);
         if (n == 1) {
@@ -189,7 +246,7 @@ void ler_cpf(char cpf[]) {
     int c;
     bool v=true,f=false;
     while (v) {
-        printf("Digite o seu CPF: ");
+        printf("Digite o CPF do cliente: "); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         scanf("%s", cpf);
         limpar_buffer();
         c = validarCPF(cpf);
@@ -216,7 +273,7 @@ void ler_email(char email[]) {
     int e;
     bool v=true,f=false;
     while (v) {
-        printf("Digite seu Email:");
+        printf("Digite o Email do cliente:"); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         scanf("%[-._@A-Za-z0-9]", email);
         limpar_buffer();
         e = validate_email(email);

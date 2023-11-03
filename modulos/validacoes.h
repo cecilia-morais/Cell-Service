@@ -1,4 +1,20 @@
 #include <stdbool.h>
+
+
+typedef struct {
+    int dia_entrada;
+    int mes_entrada;
+    int ano_entrada;
+    int dia_saida;
+    int mes_saida;
+    int ano_saida;
+} Datas;
+//VALIDA DATA
+bool anobissexto(int ano);
+bool valida_data(int dia, int mes, int ano);
+int data_entrada(Datas *datas_entrada);
+int data_saida(Datas *datas_saida);
+
 //assinatura de funções que validão o número do telefone
 void ler_telefone(char *telefone);
 int valida_telefone(char *telefone);
