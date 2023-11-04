@@ -33,34 +33,41 @@ bool valida_data(int dia, int mes, int ano) {
     return true;
 }
 
-int data_entrada(int *dia, int *mes, int *ano) {
+// myfunctions.c
+
+
+int data_entrada(Datas *datas_entrada) {
     system("cls || clear");
     printf("Digite a data de entrada do aparelho (DD MM AAAA): ");
-    scanf("%d %d %d", dia, mes, ano);
+    scanf("%d %d %d", &datas_entrada->dia_entrada, &datas_entrada->mes_entrada, &datas_entrada->ano_entrada);
 
-    if (valida_data(*dia, *mes, *ano)) {
+    if (valida_data(datas_entrada->dia_entrada, datas_entrada->mes_entrada, datas_entrada->ano_entrada)) {
         printf("Data de entrada válida!\n");
-        return 1; // Retorna 1 se a data for válida
+        return 1;
     } else {
         printf("Data de entrada inválida!\n");
-        return 0; // Retorna 0 se a data for inválida
+        return 0; 
     }
 }
 
-
-void data_saida(int dia_entrada, int mes_entrada, int ano_entrada) {
+int data_saida(Datas *datas_saida) {
     int dia_s, mes_s, ano_s;
     printf("Digite a previsão de entrega (DD MM AAAA): ");
     scanf("%d %d %d", &dia_s, &mes_s, &ano_s);
+    datas_saida->dia_saida = dia_s;
+    datas_saida->mes_saida = mes_s;
+    datas_saida->ano_saida = ano_s;
 
     if (!valida_data(dia_s, mes_s, ano_s)) {
         printf("Data de saída inválida!\n");
-    } else if (ano_s < ano_entrada || (ano_s == ano_entrada && (mes_s < mes_entrada || (mes_s == mes_entrada && dia_s < dia_entrada))) {
+    } else if (ano_s < datas_saida->ano_entrada || (ano_s == datas_saida->ano_entrada && (mes_s < datas_saida->mes_entrada || (mes_s == datas_saida->mes_entrada && dia_s < datas_saida->dia_entrada)))) {
         printf("A data de saída não pode ser anterior à data de entrada.\n");
     } else {
         printf("Data de saída válida\n");
     }
 }
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS POR MATHEUS DINIZ FERNANDES. GITHUB: @matheusdnf           //

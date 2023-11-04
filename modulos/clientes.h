@@ -1,3 +1,5 @@
+#include "validacoes.h"
+
 typedef struct clientes
 {
     int cpf[12];

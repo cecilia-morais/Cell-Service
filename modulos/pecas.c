@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include "pecas.h"
 
-char estoque(){
+Pecas* estoque;
+
+char pecas_estoque(){
     system("clear || cls");
     char opest;
     printf("*********************************************************************\n");
@@ -24,20 +26,18 @@ char estoque(){
     return opest;
 }
 
-char nova_peca(){
-    char peca[30];
-    char marca[20];
-    int estoque[5];
+Pecas* nova_peca(){
     system("clear || cls");
+    estoque = (Pecas*)malloc(sizeof(Pecas));
     printf("*********************************************************************\n");
     printf("                        CADASTRAR UMA NOVA PEÇA                      \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça a ser cadastrada:\n ");
-    fgets(peca, sizeof(peca), stdin);
+    fgets(estoque->peca, sizeof(estoque->peca), stdin);
     printf("Digite a marca do aparelho que recebe a peça(EM CASO DE PEÇA UNIVERSAL, COLOCAR 'TODAS'): \n");
-    fgets(marca, sizeof(marca), stdin);
+    fgets(estoque->marca, sizeof(estoque->marca), stdin);
     printf("Digite o estoque de peças:\n ");
-    fgets(estoque, sizeof(estoque), stdin);
+    fgets(estoque->quantidade, sizeof(estoque->quantidade), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
