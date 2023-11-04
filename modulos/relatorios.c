@@ -22,3 +22,4 @@ char relatorios() {
   printf("Tecle ENTER para continuar \n");
   getchar();
 }
+
