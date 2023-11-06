@@ -79,7 +79,7 @@ char sw_clien() {
 char sw_estoque() {
   char op;
   while (op != '0') {
-    op = estoque();
+    op = pecas_estoque();
     switch (op) {
     case '1':
       nova_peca();

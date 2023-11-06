@@ -26,7 +26,7 @@ char area_atendimento(){
 }
 
 char novo_atendimento(){
-    int nCPF[12];
+    char nCPF[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           NOVO ATENDIMENTO                          \n");
