@@ -54,17 +54,16 @@ char buscar_peca(){
     getchar();
 
 }
-char atual_peca(){
-    char peca[30];
-    int estoque[5];
+Pecas* atual_peca(){
+    estoque = (Pecas*)malloc(sizeof(Pecas));
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UMA PEÇA                          \n");
     printf("*********************************************************************\n");
     printf("Digite o nome da peça:\n ");
-    fgets(peca, sizeof(peca), stdin);
+    fgets(estoque->peca, sizeof(estoque->peca), stdin);
     printf("Digite a quantidade de peças a serem adicionadas ao estoque: \n");
-    fgets(estoque, sizeof(estoque), stdin);
+    fgets(estoque->quantidade, sizeof(estoque->quantidade), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
