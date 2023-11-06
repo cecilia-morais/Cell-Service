@@ -6,67 +6,76 @@
 #include "validacoes.h"
 #include "celular.h"
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS COM AJUDA DO CHATGPT                                       //
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool anobissexto(int ano) { //VALIDAÇÃO FEITA COM AJUDA DO CHATGPT
-    if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0) {
-        return true;
-    } else {
-        return false;
+// Função para validar uma data
+int validarData(int dia, int mes, int ano) {
+    // Verifica o ano bissexto
+    int bissexto = (ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0));
+    
+    // Verifica se o mês está dentro do intervalo válido (1 a 12)
+    if (mes < 1 || mes > 12) {
+        return 0; // Mês inválido
     }
+    
+    // Verifica se o dia está dentro do intervalo válido
+    int diasNoMes[] = {0, 31, 28 + bissexto, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (dia < 1 || dia > diasNoMes[mes]) {
+        return 0; // Dia inválido
+    }
+    
+    return 1; // Data válida
 }
 
-bool valida_data(int dia, int mes, int ano) {
-    if (ano < 1 || mes < 1 || mes > 12) {
-        return false; // Ano, mês ou dia fora dos limites válidos
+// Função para verificar se a data de saída não é anterior à data de entrada
+int dataSaidaValida(int diaEntrada, int mesEntrada, int anoEntrada, int diaSaida, int mesSaida, int anoSaida) {
+    if (anoSaida < anoEntrada) {
+        return 0; // Ano de saída é anterior ao ano de entrada
     }
-
-    int diasdomes[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if (anobissexto(ano)) {
-        diasdomes[2] = 29; // Fevereiro tem 29 dias em anos bissextos
+    if (anoSaida == anoEntrada && mesSaida < mesEntrada) {
+        return 0; // Mês de saída é anterior ao mês de entrada no mesmo ano
     }
-
-    if (dia < 1 || dia > diasdomes[mes]) {
-        return false; // Dia fora dos limites válidos para o mês
+    if (anoSaida == anoEntrada && mesSaida == mesEntrada && diaSaida < diaEntrada) {
+        return 0; // Dia de saída é anterior ao dia de entrada na mesma data
     }
-
-    return true;
+    return 1; // Data de saída é válida
 }
 
-// myfunctions.c
-
-
-int data_entrada(Datas *datas_entrada) {
-    system("cls || clear");
-    printf("Digite a data de entrada do aparelho (DD MM AAAA): ");
-    scanf("%d %d %d", &datas_entrada->dia_entrada, &datas_entrada->mes_entrada, &datas_entrada->ano_entrada);
-
-    if (valida_data(datas_entrada->dia_entrada, datas_entrada->mes_entrada, datas_entrada->ano_entrada)) {
-        printf("Data de entrada válida!\n");
+int ler_data_entrada() {
+    int diaEntrada, mesEntrada, anoEntrada;
+    
+    printf("Informe a data de entrada (dia mes ano): ");
+    scanf("%d %d %d", &diaEntrada, &mesEntrada, &anoEntrada);
+    
+    if (!validarData(diaEntrada, mesEntrada, anoEntrada)) {
+        printf("Data de entrada inválida.\n");
         return 1;
-    } else {
-        printf("Data de entrada inválida!\n");
-        return 0; 
     }
+    
+    
+    printf("Data válida.\n");
+
+    
+    return 0;
 }
 
-int data_saida(Datas *datas_saida) {
-    int dia_s, mes_s, ano_s;
-    printf("Digite a previsão de entrega (DD MM AAAA): ");
-    scanf("%d %d %d", &dia_s, &mes_s, &ano_s);
-    datas_saida->dia_saida = dia_s;
-    datas_saida->mes_saida = mes_s;
-    datas_saida->ano_saida = ano_s;
-
-    if (!valida_data(dia_s, mes_s, ano_s)) {
-        printf("Data de saída inválida!\n");
-    } else if (ano_s < datas_saida->ano_entrada || (ano_s == datas_saida->ano_entrada && (mes_s < datas_saida->mes_entrada || (mes_s == datas_saida->mes_entrada && dia_s < datas_saida->dia_entrada)))) {
-        printf("A data de saída não pode ser anterior à data de entrada.\n");
-    } else {
-        printf("Data de saída válida\n");
+int ler_data_saida(){
+    int diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida;
+    printf("Informe a data de saída (dia mes ano): ");
+    scanf("%d %d %d", &diaSaida, &mesSaida, &anoSaida);
+    
+    if (!validarData(diaSaida, mesSaida, anoSaida)) {
+        printf("Data de saída inválida.\n");
+        return 1;
+    }
+    
+    if (!dataSaidaValida(diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida)) {
+        printf("Data de saída anterior à data de entrada.\n");
+        return 1;
     }
 }
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

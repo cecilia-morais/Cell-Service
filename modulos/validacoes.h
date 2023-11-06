@@ -1,19 +1,17 @@
 #include <stdbool.h>
+#ifndef DATA_VALIDATION_H
+#define DATA_VALIDATION_H
 
+// Função para validar uma data
+int validarData(int dia, int mes, int ano);
 
-typedef struct {
-    int dia_entrada;
-    int mes_entrada;
-    int ano_entrada;
-    int dia_saida;
-    int mes_saida;
-    int ano_saida;
-} Datas;
-//VALIDA DATA
-bool anobissexto(int ano);
-bool valida_data(int dia, int mes, int ano);
-int data_entrada(Datas *datas_entrada);
-int data_saida(Datas *datas_saida);
+// Função para verificar se a data de saída não é anterior à data de entrada
+int dataSaidaValida(int diaEntrada, int mesEntrada, int anoEntrada, int diaSaida, int mesSaida, int anoSaida);
+
+int ler_data_entrada();
+int ler_data_saida();
+#endif
+
 
 //assinatura de funções que validão o número do telefone
 void ler_telefone(char *telefone);

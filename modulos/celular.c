@@ -41,15 +41,13 @@ Celulares* novo_cell(){
     fgets(cell->marca, sizeof(cell->marca), stdin);
     printf("Digite o problema do aparelho: \n");
     fgets(cell->problema, sizeof(cell->problema), stdin);
-    data_entrada(cell->datas_entradas);
-    data_saida(cell->datas_saidas);
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
 
-char busca_cell(){
-    int cpf[12];
+void busca_cell(){
+    char cpf[12];
     char modelo[20];
     char marca[15];
     system("clear || cls");
@@ -64,12 +62,11 @@ char busca_cell(){
     fgets(marca, sizeof(marca), stdin);
     printf("Tecle ENTER para continuar \n");
     getchar();
-
-
 }
 
-char atual_cell(){
-    int cpf[12];
+
+void atual_cell(){
+    char cpf[12];
     char modelo[20];
     char marca[15];
     system("clear || cls");
@@ -86,8 +83,8 @@ char atual_cell(){
     getchar();
 }
 
-char excl_cell(){
-    int cpf[12];
+void excl_cell(){
+    char cpf[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CELULAR                          \n");
