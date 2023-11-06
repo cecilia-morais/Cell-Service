@@ -60,7 +60,7 @@ char busca_atendimento(){
 }
 
 char atual_atendimento(){
-    int cpf[12];
+    char cpf[12];
     system("clear || cls");
     char op;
     printf("*********************************************************************\n");
