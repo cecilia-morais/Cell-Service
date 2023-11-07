@@ -83,7 +83,7 @@ void atual_cell(){
     getchar();
 }
 
-void excl_cell(){
+ excl_cell(){
     char cpf[12];
     system("clear || cls");
     printf("*********************************************************************\n");
