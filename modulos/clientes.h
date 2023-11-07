@@ -7,13 +7,14 @@ typedef struct clientes
     char nome[70];
     char email[100];
     char telefone[15];
+    int status;
 }Clientes;
 
 #endif
 char cad_clien(void);
 void novo_clien(void);
 void busca_clien(void);
-char atual_clien(void);
+void atual_clien(void);
 // char excl_clien(void);
 
 

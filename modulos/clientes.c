@@ -74,7 +74,7 @@ void busca_clien(){
     getchar();
 }
 
-char atual_clien(){
+void atual_clien(){
     char cpf[12];
     system("clear || cls");
     printf("*********************************************************************\n");
