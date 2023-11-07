@@ -31,14 +31,19 @@ char cad_clien(){
 
  void novo_clien(){
     system("clear || cls");
-    clien = (Clientes*)malloc(sizeof(Clientes));
+    char cpf[12];
+    char nome[70];
+    char email[100];
+    char telefone[15];
+    int status;
+
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
-    ler_cpf(clien->cpf);
-    ler_nome(clien->nome);
-    ler_email(clien->email);
-    ler_telefone(clien->telefone);
+    ler_cpf(cpf);
+    ler_nome(nome);
+    ler_email(email);
+    ler_telefone(telefone);
     printf("Tecle ENTER para continuar \n");
     getchar();
     return;
