@@ -1,2 +1,2 @@
 # Cell-Service
-Sistema de gestão de uma loja de conserto de celular
+Sistema de gestão para uma loja de concerto de celulares

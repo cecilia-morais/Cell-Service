@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "clientes.h"
 #include "validacoes.h"
+
 
 Clientes* clien;
 
@@ -27,7 +29,7 @@ char cad_clien(){
     return opcli;
 }
 
- Clientes* novo_clien(){
+ void novo_clien(){
     system("clear || cls");
     clien = (Clientes*)malloc(sizeof(Clientes));
     printf("*********************************************************************\n");
@@ -39,44 +41,64 @@ char cad_clien(){
     ler_telefone(clien->telefone);
     printf("Tecle ENTER para continuar \n");
     getchar();
+    return;
 }
 
-int busca_clien(){
-    int cpf[12];
+void busca_clien(){
+    char cpf[12];
+    int numClientes = 0;
+    int clienteEncontrado = 0;
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR CLIENTE                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    fgets(cpf, sizeof(cpf), stdin);
+    scanf("%s", cpf);
+
+    for (int i = 0; i < numClientes; i++) {
+        if (strcmp(clien[i].cpf, cpf) == 0) {
+            printf("Cliente encontrado:\n");
+            printf("Nome: %s\n", clien[i].nome);
+            printf("CPF: %s\n", clien[i].cpf);
+            printf("Email: %s\n", clien[i].email);
+            printf("Telefone: %s\n", clien[i].telefone);
+            clienteEncontrado = 1; 
+            break;
+        }
+    }
+
+    if (!clienteEncontrado) {
+        printf("Cliente não encontrado.\n");
+    }
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
 char atual_clien(){
-    int cpf[12];
+    char cpf[12];
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM CLIENTE                        \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    fgets(cpf, sizeof(cpf), stdin);
-    printf("Digite '1' se deseja alterar o nome do cliente ou '2' se deseja alterar a data de nascimento do cliente: \n");
+    scanf("%c", cpf);
+    printf("Digite:\n '1' se deseja alterar o nome do cliente\n '2' se deseja alterar a data de nascimento do cliente\n '3' se deseja alterar o telefone: \n");
     getchar();
     printf("Tecle ENTER para continuar \n");
     getchar();
 }
 
-char excl_clien(){
-    int cpf[12];
-    system("clear || cls");
-    printf("*********************************************************************\n");
-    printf("                         DELETAR UM CLIENTE                          \n");
-    printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
-    fgets(cpf, sizeof(cpf), stdin);
-    printf("Tem certeza que quer continuar a operação? ");
-    getchar();
-    printf("Tecle ENTER para continuar \n");
-    getchar();
-}
+// char excl_clien(){
+//     char cpf[12];
+//     system("clear || cls");
+//     printf("*********************************************************************\n");
+//     printf("                         DELETAR UM CLIENTE                          \n");
+//     printf("*********************************************************************\n");
+//     printf("Digite o CPF do cliente:\n ");
+//     scanf("%c", cpf);
+//     printf("Tem certeza que quer continuar a operação? ");
+//     getchar();
+//     printf("Tecle ENTER para continuar \n");
+//     getchar();
+
+// }

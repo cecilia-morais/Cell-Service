@@ -3,7 +3,6 @@
 #include "modulos/clientes.h"
 #include "modulos/pecas.h"
 #include "modulos/relatorios.h"
-#include "modulos/atendimentos.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,6 +11,14 @@ char menu_principal(void);
 
 
 int main(void) {
+  Clientes clientes[1000];
+  int qnt_clientes = 0;
+  Celulares celulares[2000];
+  int qnt_celulares = 0;
+  Pecas pecas[1000];
+  int qnt_pecas = 0;
+  Atendimentos atendimentos[2000];
+  qnt_atendimentos = 0;
   char op;
 
   do {
