@@ -43,40 +43,31 @@ int dataSaidaValida(int diaEntrada, int mesEntrada, int anoEntrada, int diaSaida
     return 1; // Data de saída é válida
 }
 
-int ler_data_entrada() {
-    int diaEntrada, mesEntrada, anoEntrada;
+int ler_data_saida() {
+    int diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida;
     
-    printf("Informe a data de entrada (dia mes ano): ");
-    scanf("%d %d %d", &diaEntrada, &mesEntrada, &anoEntrada);
-    
-    if (!validarData(diaEntrada, mesEntrada, anoEntrada)) {
-        printf("Data de entrada inválida.\n");
-        return 1;
-    }
-    
-    
-    printf("Data válida.\n");
+    do {
+        printf("Informe a data de entrada (dia mes ano): ");
+        scanf("%d %d %d", &diaEntrada, &mesEntrada, &anoEntrada);
+        
+        if (!validarData(diaEntrada, mesEntrada, anoEntrada)) {
+            printf("Data de entrada inválida.\n");
+        }
+    } while (!validarData(diaEntrada, mesEntrada, anoEntrada));
 
-    
+    do {
+        printf("Informe a data de saída (dia mes ano): ");
+        scanf("%d %d %d", &diaSaida, &mesSaida, &anoSaida);
+        
+        if (!validarData(diaSaida, mesSaida, anoSaida)) {
+            printf("Data de saída inválida.\n");
+        } else if (!dataSaidaValida(diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida)) {
+            printf("Data de saída anterior à data de entrada.\n");
+        }
+    } while (!validarData(diaSaida, mesSaida, anoSaida) || !dataSaidaValida(diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida));
+
     return 0;
 }
-
-int ler_data_saida(){
-    int diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida;
-    printf("Informe a data de saída (dia mes ano): ");
-    scanf("%d %d %d", &diaSaida, &mesSaida, &anoSaida);
-    
-    if (!validarData(diaSaida, mesSaida, anoSaida)) {
-        printf("Data de saída inválida.\n");
-        return 1;
-    }
-    
-    if (!dataSaidaValida(diaEntrada, mesEntrada, anoEntrada, diaSaida, mesSaida, anoSaida)) {
-        printf("Data de saída anterior à data de entrada.\n");
-        return 1;
-    }
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS OU RETIRADAS DO PROJETO DE MATHEUS DINIZ FERNANDES. GITHUB: @matheusdnf           //

@@ -3,7 +3,8 @@
 #include "celular.h"
 #include "validacoes.h"
 
-Celulares* cell;
+Celulares celulares[2000];
+int qnt_celulares = 0;
 
 char cad_cell(){
     system("clear || cls");
@@ -28,21 +29,45 @@ char cad_cell(){
 
 }
 
-Celulares* novo_cell(){
+void  novo_cell(){
     system("clear || cls");
-    cell = (Celulares*)malloc(sizeof(Celulares));
+    char cpf[12];
+    char modelo[20];
+    char marca[15];
+    char problema[100];
+    char datas_entradas[9];
+    char datas_saidas[9];
+    int status;
+    Celulares novo_celular;
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
-    ler_cpf(cell->cpf);
+    ler_cpf(cpf);
     printf("Digite o modelo do aparelho: \n");
-    fgets(cell->modelo, sizeof(cell->modelo), stdin);
+    fgets(modelo, sizeof(modelo), stdin);
     printf("Digite a marca do aparelho:\n ");
-    fgets(cell->marca, sizeof(cell->marca), stdin);
+    fgets(marca, sizeof(marca), stdin);
     printf("Digite o problema do aparelho: \n");
-    fgets(cell->problema, sizeof(cell->problema), stdin);
+    ler_data_saida(datas_entradas, datas_saidas);
+    fgets(problema, sizeof(problema), stdin);
+    
     printf("Tecle ENTER para continuar \n");
+    strncpy(novo_celular.cpf, cpf, sizeof(novo_celular.cpf));
+    strncpy(novo_celular.modelo, modelo, sizeof(novo_celular.modelo));
+    strncpy(novo_celular.marca, marca, sizeof(novo_celular.marca));
+    strncpy(novo_celular.problema, problema, sizeof(novo_celular.problema));
+    strncpy(novo_celular.datas_entradas, datas_entradas, sizeof(novo_celular.datas_entradas));
+    strncpy(novo_celular.datas_saidas, datas_saidas, sizeof(novo_celular.datas_saidas));
+    novo_celular.status = 1;
+
+    celulares[qnt_celulares] = novo_celular;
+
+    qnt_celulares++;
+
+    printf("Celular cadastrado com sucesso!\n");
     getchar();
+
+
 }
 
 
@@ -83,7 +108,7 @@ void atual_cell(){
     getchar();
 }
 
- excl_cell(){
+ void excl_cell(){
     char cpf[12];
     system("clear || cls");
     printf("*********************************************************************\n");
