@@ -15,6 +15,6 @@ char cad_clien(void);
 void novo_clien(void);
 void busca_clien(void);
 void atual_clien(void);
-// char excl_clien(void);
+void excl_clien(void);
 
 
