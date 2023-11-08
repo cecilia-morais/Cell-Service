@@ -11,7 +11,7 @@
 
 
 Clientes clientes[1000];
-int quantidade_clientes = 0;
+int qnt_clientes = 0;
 
 char cad_clien(){
     system("clear || cls");
@@ -58,9 +58,9 @@ char cad_clien(){
     strncpy(novo_cliente.telefone, telefone, sizeof(novo_cliente.telefone));
     novo_cliente.status = 1;
 
-    clientes[quantidade_clientes] = novo_cliente;
+    clientes[qnt_clientes] = novo_cliente;
 
-    quantidade_clientes++;
+    qnt_clientes++;
 
     printf("Cliente cadastrado com sucesso!\n");
 
@@ -81,7 +81,7 @@ void busca_clien() {
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < quantidade_clientes; i++) {
+    for (int i = 0; i < qnt_clientes; i++) {
         if (strcmp(clientes[i].cpf, cpf) == 0) {
             printf("Cliente encontrado!\n");
             printf("Nome: %s\n", clientes[i].nome);
@@ -113,7 +113,7 @@ void atual_clien() {
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < quantidade_clientes; i++) {
+    for (int i = 0; i < qnt_clientes; i++) {
         if (strcmp(clientes[i].cpf, cpf) == 0) {
             encontrado = 1;
 
@@ -146,7 +146,7 @@ void excl_clien(){
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < quantidade_clientes; i++){
+    for (int i = 0; i < qnt_clientes; i++){
         if (strcmp(clientes[i].cpf, cpf) == 0){
             clientes[i].status = 0;
             printf("Cliente excluído com sucesso!\n");

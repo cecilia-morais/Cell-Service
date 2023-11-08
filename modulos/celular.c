@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> 
 #include "celular.h"
 #include "validacoes.h"
 
@@ -37,7 +38,7 @@ void  novo_cell(){
     char problema[100];
     char datas_entradas[9];
     char datas_saidas[9];
-    int status;
+    
     Celulares novo_celular;
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CELULAR                     \n");
@@ -58,7 +59,7 @@ void  novo_cell(){
     strncpy(novo_celular.problema, problema, sizeof(novo_celular.problema));
     strncpy(novo_celular.datas_entradas, datas_entradas, sizeof(novo_celular.datas_entradas));
     strncpy(novo_celular.datas_saidas, datas_saidas, sizeof(novo_celular.datas_saidas));
-    novo_celular.status = 1;
+    
 
     celulares[qnt_celulares] = novo_celular;
 
