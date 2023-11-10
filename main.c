@@ -1,7 +1,6 @@
 #include "modulos/switchs.h"
 #include "modulos/celular.h"
 #include "modulos/clientes.h"
-#include "modulos/pecas.h"
 #include "modulos/relatorios.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,8 +15,8 @@ int main(void) {
   int qnt_clientes = 0;
   Celulares celulares[2000];
   int qnt_celulares = 0;
-  Pecas pecas[1000];
-  int qnt_pecas = 0;
+  // Pecas pecas[1000];
+  // int qnt_pecas = 0;
   char op;
 
   do {
@@ -34,18 +33,14 @@ int main(void) {
       break;
 
     case '3':
-      sw_estoque();
-      break;
-
-    case '4':
       sw_atendimentos();
       break;
 
-    case '5':
+    case '4':
       relatorios();
       break;
 
-    case '6':
+    case '5':
       sw_sobre();
       break;
 
@@ -74,10 +69,9 @@ char menu_principal() {
          "\n");
   printf("1 - Cadastro de celular \n");
   printf("2 - Clientes \n");
-  printf("3 - Estoques de peças\n");
-  printf("4 - Atendimentos\n");
-  printf("5 - Relatórios\n");
-  printf("6 - Sobre\n");
+  printf("3 - Atendimentos\n");
+  printf("4 - Relatórios\n");
+  printf("5 - Sobre\n");
   printf("0 - Encerrar o programa\n");
   printf("*********************************************************************"
          "\n");

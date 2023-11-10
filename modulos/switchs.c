@@ -1,7 +1,7 @@
 #include "switchs.h"
 #include "celular.h"
 #include "clientes.h"
-#include "pecas.h"
+#include "atendimentos.h"
 #include "relatorios.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,7 +16,6 @@ char sw_cell() {
     case '1':
       novo_cell();
       break;
-
     case '2':
       busca_cell();
       break;
@@ -28,7 +27,8 @@ char sw_cell() {
     case '4':
       excl_cell();
       break;
-
+    case '5':
+      todos_clientes();
     default:
       if (op = '0'){
         printf("Voltando...\n");
@@ -44,13 +44,13 @@ char sw_cell() {
 char sw_clien() {
   char op;
   while (op != '0') {
-
+    Clientes* cli;
     op = cad_clien();
     switch (op) {
     case '1':
-      novo_clien();
+      cli=novo_clien();
+      grava_cliente(cli);
       break;
-
     case '2':
       busca_clien();
       break;
@@ -75,28 +75,25 @@ char sw_clien() {
   return op;
 }
 
-char sw_estoque() {
+char sw_atendimentos() {
   char op;
   while (op != '0') {
-    op = pecas_estoque();
+
+    op = area_atendimento();
     switch (op) {
     case '1':
-      nova_peca();
+      novo_atendimento();
       break;
 
     case '2':
-      buscar_peca();
+      busca_atendimento();
       break;
 
     case '3':
-      atual_peca();
+      atual_atendimento();
       break;
 
-    case '4':
-      excl_peca();
-      break;
-
-default:
+    default:
     if (op = '0'){
         printf("Voltando...\n");
       }else{
