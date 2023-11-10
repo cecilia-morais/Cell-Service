@@ -7,11 +7,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // OS CODIGOS DESSE MÓDULO FOI FEITO COM AJUDA DE MAXSUEL GADELHA- GitHub: @Lleusxam //
+// E MATHEUS DINIZ - GitHub: @matheusdnf                                             //
 ///////////////////////////////////////////////////////////////////////////////////////
-
-
-Clientes clientes[1000];
-int qnt_clientes = 0;
 
 char cad_clien(){
     system("clear || cls");
@@ -35,62 +32,72 @@ char cad_clien(){
     return opcli;
 }
 
- void novo_clien(){
+void grava_cliente(Clientes* clientes){
+    FILE* fc;
+    fc=fopen("Clientes.dat","ab");
+    if (fc==NULL){
+        printf("Arquivo não existe!");
+        return;
+    }
+    fwrite(clientes,sizeof(Clientes),1,fc);
+    fclose(fc);
+    free(clientes);
+}
+ Clientes* novo_clien(void){
     system("clear || cls");
-    char cpf[12];
-    char nome[70];
-    char email[100];
-    char telefone[15];
-    int status;
+    Clientes* cli;
+    cli=(Clientes*)malloc(sizeof(Clientes));       
     Clientes novo_cliente;
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
-    ler_cpf(cpf);
-    ler_nome(nome);
-    ler_email(email);
-    ler_telefone(telefone);
-    printf("Tecle ENTER para continuar \n");
-
-    strncpy(novo_cliente.cpf, cpf, sizeof(novo_cliente.cpf));
-    strncpy(novo_cliente.nome, nome, sizeof(novo_cliente.nome));
-    strncpy(novo_cliente.email, email, sizeof(novo_cliente.email));
-    strncpy(novo_cliente.telefone, telefone, sizeof(novo_cliente.telefone));
-    novo_cliente.status = 1;
-
-    clientes[qnt_clientes] = novo_cliente;
-
-    qnt_clientes++;
-
-    printf("Cliente cadastrado com sucesso!\n");
-
+    ler_cpf(cli->cpf);
+    ler_nome(cli->nome);
+    ler_email(cli->email);
+    ler_telefone(cli->telefone);
     getchar();
-    return;
+    printf("Cadastro realizado com sucesso!\n");
+    getchar();
+    return cli;
+    free(cli);
 }
 
-void busca_clien() {
-    char cpf[12];
-    int numClientes = 0;
-    int clienteEncontrado = 0;
 
+void busca_clien(void) {
+    char cpf[12];
+    int clienteEncontrado = 0;
+    
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR CLIENTE                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n ");
+    printf("Digite o CPF do cliente:\n");
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < qnt_clientes; i++) {
-        if (strcmp(clientes[i].cpf, cpf) == 0) {
+    FILE* fc = fopen("Clientes.dat", "rb");
+    if (fc == NULL) {
+        printf("Arquivo de clientes não encontrado.\n");
+        printf("Pressione ENTER para continuar...");
+        getchar();
+        return;
+    }
+
+    Clientes cli;
+
+    while (fread(&cli, sizeof(Clientes), 1, fc)) {
+        if (strcmp(cli.cpf, cpf) == 0) {
             printf("Cliente encontrado!\n");
-            printf("Nome: %s\n", clientes[i].nome);
-            printf("Email: %s\n", clientes[i].email);
-            printf("Telefone: %s\n", clientes[i].telefone);
-            printf("Status: %d\n", clientes[i].status);
+            printf("Nome: %s\n", cli.nome);
+            printf("Email: %s\n", cli.email);
+            printf("Telefone: %s\n", cli.telefone);
+            printf("Status: %d\n", cli.status);
             clienteEncontrado = 1;
+            break; 
         }
     }
+
+    fclose(fc);
 
     if (!clienteEncontrado) {
         printf("Cliente com CPF %s não encontrado.\n", cpf);
@@ -99,6 +106,7 @@ void busca_clien() {
     printf("Pressione ENTER para continuar...");
     getchar();
 }
+
 
 
 void atual_clien() {
@@ -113,20 +121,35 @@ void atual_clien() {
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < qnt_clientes; i++) {
-        if (strcmp(clientes[i].cpf, cpf) == 0) {
+    FILE* fc = fopen("Clientes.dat", "r+b");  
+    if (fc == NULL) {
+        printf("Arquivo de clientes não encontrado.\n");
+        printf("Tecle ENTER para continuar\n");
+        getchar();
+        return;
+    }
+
+    Clientes cli;
+
+    while (fread(&cli, sizeof(Clientes), 1, fc)) {
+        if (strcmp(cli.cpf, cpf) == 0) {
             encontrado = 1;
 
             printf("Atualizando as informações do cliente:\n");
-            ler_nome(clientes[i].nome);
-            ler_email(clientes[i].email);
-            ler_telefone(clientes[i].telefone);
-            clientes[i].status = 1;
+            ler_nome(cli.nome);
+            ler_email(cli.email);
+            ler_telefone(cli.telefone);
+            cli.status = 1;
+
+            fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR);
+            fwrite(&cli, sizeof(Clientes), 1, fc);   
 
             printf("Cliente atualizado com sucesso.\n");
             break;
         }
     }
+
+    fclose(fc);
 
     if (!encontrado) {
         printf("Cliente com CPF %s não encontrado.\n", cpf);
@@ -136,21 +159,95 @@ void atual_clien() {
     getchar();
 }
 
-void excl_clien(){
+
+void excl_clien() {
     char cpf[12];
+    int encontrado = 0;
+
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                         DELETAR UM CLIENTE                          \n");
+    printf("                        DESATIVAR UM CLIENTE                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente que deseja excluir:\n ");
+    printf("Digite o CPF do cliente que deseja desativar: ");
     scanf("%s", cpf);
     getchar();
 
-    for (int i = 0; i < qnt_clientes; i++){
-        if (strcmp(clientes[i].cpf, cpf) == 0){
-            clientes[i].status = 0;
-            printf("Cliente excluído com sucesso!\n");
+    FILE* fc = fopen("Clientes.dat", "r+b");  
+    if (fc == NULL) {
+        printf("Arquivo de clientes não encontrado.\n");
+        printf("Tecle ENTER para continuar\n");
+        getchar();
+        return;
+    }
+
+    Clientes cli;
+
+    while (fread(&cli, sizeof(Clientes), 1, fc)) {
+        if (strcmp(cli.cpf, cpf) == 0) {
+            encontrado = 1;
+
+            cli.status = 0;
+
+            fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
+            fwrite(&cli, sizeof(Clientes), 1, fc);   
+
+            printf("Cliente desativado com sucesso.\n");
             break;
         }
     }
+
+    fclose(fc);
+
+    if (!encontrado) {
+        printf("Cliente com CPF %s não encontrado.\n", cpf);
+    }
+
+    printf("Tecle ENTER para continuar\n");
+    getchar();
+}
+
+
+void todos_clientes(void){
+    printf("CLientes");
+    listar_cliente();
+    getchar();
+    getchar();
+}
+
+void exibindo_clientes(Clientes* clientes){
+    char situ[17];
+    if((clientes==NULL) || (clientes->status==0)){
+        printf("Esse cliente não existe no sistema");
+    }
+    else{
+        printf("\nDados dos clientes\n");
+        printf("Nome:%s\n",clientes->nome);
+        printf("CPF:%s\n",clientes->cpf);
+        printf(":Email:%s\n",clientes->email);
+        printf("Telefone:%s\n",clientes->telefone);
+            if (clientes->status == '1'){
+                strcpy(situ, "cadastrados");
+            }
+            else if (clientes->status == '0'){
+                strcpy(situ, "Fechado");
+        }
+    }
+}
+
+void listar_cliente(void){
+    FILE* fc;
+    Clientes* cli;
+    cli=(Clientes*)malloc(sizeof(Clientes));
+    fc=fopen("Clientes.dat","rb");
+    if (fc==NULL){
+        printf("Arquivo não existente");
+        return;
+    }
+    while(fread(cli,sizeof(Clientes),1,fc)){
+        if(cli->status!=0){
+            exibindo_clientes(cli);
+        }
+    }
+    fclose(fc);
+    free(cli);
 }

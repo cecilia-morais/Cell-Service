@@ -12,9 +12,12 @@ typedef struct clientes
 
 #endif
 char cad_clien(void);
-void novo_clien(void);
+Clientes* novo_clien(void);
 void busca_clien(void);
 void atual_clien(void);
 void excl_clien(void);
-
+void grava_cliente(Clientes* clientes);
+void todos_clientes(void);
+void exibindo_clientes(Clientes* clientes);
+void listar_cliente(void);
 
