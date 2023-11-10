@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <string.h> 
 #include "celular.h"
+#include "clientes.h"
 #include "validacoes.h"
 
 Celulares celulares[2000];
 int qnt_celulares = 0;
+
+
+
 
 char cad_cell(){
     system("clear || cls");
@@ -30,62 +34,68 @@ char cad_cell(){
 
 }
 
-void  novo_cell(){
+void grava_celulares(Celulares* celular){
+    FILE* fc;
+    fc=fopen("Celulares.dat","ab");
+    if (fc==NULL){
+        printf("Arquivo não existe!");
+        return;
+    }
+    fwrite(celular,sizeof(Celulares),1,fc);
+    fclose(fc);
+    free(celular);
+}
+
+Celulares*  novo_cell(void){
     system("clear || cls");
-    char cpf[12];
-    char modelo[20];
-    char marca[15];
-    char problema[100];
-    char datas_entradas[9];
-    char datas_saidas[9];
-    
+    Celulares* cel;
+    cel=(Celulares*)malloc(sizeof(Celulares));
+    char cpf_cliente;
     Celulares novo_celular;
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
-    ler_cpf(cpf);
-    printf("Digite o modelo do aparelho: \n");
-    fgets(modelo, sizeof(modelo), stdin);
+    printf("Digite o CPF do cliente: \n");
+    scanf("%c", cpf_cliente);  
     printf("Digite a marca do aparelho:\n ");
-    fgets(marca, sizeof(marca), stdin);
+    fgets(cel->marca, sizeof(cel->marca), stdin);
     printf("Digite o problema do aparelho: \n");
-    ler_data_saida(datas_entradas, datas_saidas);
-    fgets(problema, sizeof(problema), stdin);
-    
-    printf("Tecle ENTER para continuar \n");
-    strncpy(novo_celular.cpf, cpf, sizeof(novo_celular.cpf));
-    strncpy(novo_celular.modelo, modelo, sizeof(novo_celular.modelo));
-    strncpy(novo_celular.marca, marca, sizeof(novo_celular.marca));
-    strncpy(novo_celular.problema, problema, sizeof(novo_celular.problema));
-    strncpy(novo_celular.datas_entradas, datas_entradas, sizeof(novo_celular.datas_entradas));
-    strncpy(novo_celular.datas_saidas, datas_saidas, sizeof(novo_celular.datas_saidas));
-    
-
-    celulares[qnt_celulares] = novo_celular;
-
-    qnt_celulares++;
-
-    printf("Celular cadastrado com sucesso!\n");
+    ler_data_saida(cel->datas_entradas, cel->datas_saidas);
+    fgets(cel->problema, sizeof(cel->problema), stdin);
     getchar();
+    printf("Cadastro realizado com sucesso!\n");
+    getchar();
+    return cel;
+    free(cel);
 
 
 }
 
 
 void busca_cell(){
-    char cpf[12];
-    char modelo[20];
-    char marca[15];
+    char cpf_cliente[12];
+    
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                 BUSCAR CELULAR CADASTRADO POR CLIENTE               \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    fgets(cpf, sizeof(cpf), stdin);
-    printf("Digite o modelo do aparelho: \n");
-    fgets(modelo, sizeof(modelo), stdin);
-    printf("Digite a marca do aparelho:\n ");
-    fgets(marca, sizeof(marca), stdin);
+    fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
+    printf("Celulares cadastrados para o CPF %s:\n", cpf_cliente);
+    
+    for (int i = 0; i < qnt_celulares; i++) {
+        if (strcmp(celulares[i].cpf_cliente, cpf_cliente) == 0) {
+            printf("Nome do cliente: %s");
+            printf("Modelo: %s", celulares[i].modelo);
+            printf("Marca: %s", celulares[i].marca);
+            printf("Problema do aparelho: %s", celulares[i].problema);
+            printf("Data de entrada: %s", celulares [i].datas_entradas);
+
+
+        }
+
+    }
+    
     printf("Tecle ENTER para continuar \n");
     getchar();
 }

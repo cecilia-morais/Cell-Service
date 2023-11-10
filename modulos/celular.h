@@ -3,7 +3,7 @@
 
 typedef struct celular
 {
-    char cpf[12];
+    char cpf_cliente[12];
     char modelo[20];
     char marca[15];
     char problema[100];
@@ -14,7 +14,7 @@ typedef struct celular
 }Celulares;
 
 char cad_cell(void);
-void novo_cell(void);
+Celulares* novo_cell(void);
 void busca_cell(void);
 void atual_cell(void);
 void excl_cell(void);
