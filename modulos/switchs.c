@@ -28,7 +28,9 @@ char sw_cell() {
       excl_cell();
       break;
     case '5':
-      todos_clientes();
+       listar_celulares();
+       break;
+       
     default:
       if (op = '0'){
         printf("Voltando...\n");
