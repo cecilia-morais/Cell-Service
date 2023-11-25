@@ -43,6 +43,7 @@ void grava_cliente(Clientes* clientes){
     fclose(fc);
     free(clientes);
 }
+
  Clientes* novo_clien(void){
     system("clear || cls");
     Clientes* cli;

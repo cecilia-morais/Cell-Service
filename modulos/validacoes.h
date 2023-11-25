@@ -8,7 +8,7 @@ int validarData(int dia, int mes, int ano);
 // Função para verificar se a data de saída não é anterior à data de entrada
 int dataSaidaValida(int dai_entrada, int mes_entrada, int ano_entrada, int dia_saida, int mes_saida, int ano_saida);
 
-int ler_data_saida(char data_entrada, char data_saida);
+bool ler_data_saida(int dia_entrada, int mes_entrada, int ano_entrada, int *dia_saida, int *mes_saida, int *ano_saida) ;
 #endif
 
 

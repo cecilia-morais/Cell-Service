@@ -11,7 +11,7 @@ char sw_cell() {
   while (op != '0') {
 
     op = cad_cell();
-
+    Celulares* cel;
     switch (op) {
     case '1':
       novo_cell();

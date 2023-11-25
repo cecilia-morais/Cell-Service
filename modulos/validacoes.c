@@ -10,6 +10,12 @@
 //AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS COM AJUDA DO CHATGPT                                       //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+struct Data {
+    int dia;
+    int mes;
+    int ano;
+};
+
 // Função para validar uma data
 int validarData(int dia, int mes, int ano) {
     // Verifica o ano bissexto
@@ -43,31 +49,21 @@ int dataSaidaValida(int dia_entrada, int mes_entrada, int ano_entrada, int dia_s
     return 1; // Data de saída é válida
 }
 
-int ler_data_saida(char data_entrada, char data_saida) {
-    int dia_entrada, mes_entrada, ano_entrada, dia_saida, mes_saida, ano_saida;
-    
-    do {
-        printf("Informe a data de entrada (dia mes ano): ");
-        scanf("%d %d %d", &dia_entrada, &mes_entrada, &ano_entrada);
-        
-        if (!validarData(dia_entrada, mes_entrada, ano_entrada)) {
-            printf("Data de entrada inválida.\n");
-        }
-    } while (!validarData(dia_entrada, mes_entrada, ano_entrada));
 
+bool ler_data_saida(int dia_entrada, int mes_entrada, int ano_entrada, int *dia_saida, int *mes_saida, int *ano_saida) {
     do {
-        printf("Informe a data de saída (dia mes ano): ");
-        scanf("%d %d %d", &dia_saida, &mes_saida, &ano_saida);
-        
-        if (!validarData(dia_saida, mes_saida, ano_saida)) {
+        printf("Informe a data de saída (dd/mm/aaaa): ");
+        scanf("%d/%d/%d", dia_saida, mes_saida, ano_saida);
+
+        if (!validarData(*dia_saida, *mes_saida, *ano_saida)) {
             printf("Data de saída inválida.\n");
-        } else if (!dataSaidaValida(dia_entrada, mes_entrada, ano_entrada, dia_saida, mes_saida, ano_saida)) {
+        } else if (!dataSaidaValida(dia_entrada, mes_entrada, ano_entrada, *dia_saida, *mes_saida, *ano_saida)) {
             printf("Data de saída anterior à data de entrada.\n");
         }
-    } while (!validarData(dia_saida, mes_saida, ano_saida) || !dataSaidaValida(dia_entrada, mes_entrada, ano_entrada, dia_saida, mes_saida, ano_saida));
-
-    return 0;
+    } while (!validarData(*dia_saida, *mes_saida, *ano_saida) || !dataSaidaValida(dia_entrada, mes_entrada, ano_entrada, *dia_saida, *mes_saida, *ano_saida));
+    return true;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //AS VAVALIDAÇÕES A SEGUIR FORAM FEITAS OU RETIRADAS DO PROJETO DE MATHEUS DINIZ FERNANDES. GITHUB: @matheusdnf           //
