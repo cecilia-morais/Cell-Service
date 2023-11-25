@@ -49,7 +49,6 @@ char sw_clien() {
     switch (op) {
     case '1':
       cli=novo_clien();
-      grava_cliente(cli);
       break;
     case '2':
       busca_clien();

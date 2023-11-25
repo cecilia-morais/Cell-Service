@@ -131,8 +131,9 @@ void atual_cell(){
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
     scanf("%s", cpf_cliente);
+    getchar();
 
-    FILE* fc = fopen("Celulares.dat", "r+b");  
+    FILE* fc = fopen("./Celulares.dat", "r+b");  
     if (fc == NULL) {
         printf("Arquivo de celulares não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -141,6 +142,7 @@ void atual_cell(){
     }
 
     Celulares cel;
+
     while (fread(&cel, sizeof(Celulares), 1, fc)) {
         if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
             celular_encontrado  = 1;
@@ -173,14 +175,48 @@ void atual_cell(){
 }
 
  void excl_cell(){
-    char cpf[12];
+    char cpf_cliente[12];
+    int celular_encontrado = 0;
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    fgets(cpf, sizeof(cpf), stdin);
+    fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
     printf("Tecle ENTER para continuar \n");
+    getchar();
+
+    FILE* fc = fopen("./Clientes.dat", "r+b");  
+    if (fc == NULL) {
+        printf("Arquivo de clientes não encontrado.\n");
+        printf("Tecle ENTER para continuar\n");
+        getchar();
+        return;
+    }
+
+    Clientes cel;
+
+    // while (fread(&cel, sizeof(Clientes), 1, fc)) {
+    //     if (strcmp(cel.cpf_cliente, cpf) == 0) {
+    //         celular_encontrado = 1;
+
+    //         cli.status = 0;
+
+    //         fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
+    //         fwrite(&cli, sizeof(Clientes), 1, fc);   
+
+    //         printf("Cliente desativado com sucesso.\n");
+    //         break;
+    //     }
+    // }
+
+    fclose(fc);
+
+    if (!celular_encontrado) {
+        printf("Cliente com CPF %s não encontrado.\n", cpf_cliente);
+    }
+
+    printf("Tecle ENTER para continuar\n");
     getchar();
 }
 

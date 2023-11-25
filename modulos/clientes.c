@@ -20,6 +20,7 @@ char cad_clien(){
     printf("2 - Buscar um cliente \n");
     printf("3 - Atualizar um cliente\n");
     printf("4 - Deletar um cliente\n");
+    printf("5 - Listar clientes");
     printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
@@ -56,11 +57,14 @@ void grava_cliente(Clientes* clientes){
     ler_nome(cli->nome);
     ler_email(cli->email);
     ler_telefone(cli->telefone);
+    cli->status = 1;
+    grava_cliente(cli);
     getchar();
     printf("Cadastro realizado com sucesso!\n");
     getchar();
     return cli;
     free(cli);
+
 }
 
 
@@ -76,7 +80,7 @@ void busca_clien(void) {
     scanf("%s", cpf);
     getchar();
 
-    FILE* fc = fopen("Clientes.dat", "rb");
+    FILE* fc = fopen("./Clientes.dat", "rb");
     if (fc == NULL) {
         printf("Arquivo de clientes não encontrado.\n");
         printf("Pressione ENTER para continuar...");
@@ -122,7 +126,7 @@ void atual_clien() {
     scanf("%s", cpf);
     getchar();
 
-    FILE* fc = fopen("Clientes.dat", "r+b");  
+    FILE* fc = fopen("./Clientes.dat", "r+b");  
     if (fc == NULL) {
         printf("Arquivo de clientes não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -173,7 +177,7 @@ void excl_clien() {
     scanf("%s", cpf);
     getchar();
 
-    FILE* fc = fopen("Clientes.dat", "r+b");  
+    FILE* fc = fopen("./Clientes.dat", "r+b");  
     if (fc == NULL) {
         printf("Arquivo de clientes não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -239,7 +243,7 @@ void listar_cliente(void){
     FILE* fc;
     Clientes* cli;
     cli=(Clientes*)malloc(sizeof(Clientes));
-    fc=fopen("Clientes.dat","rb");
+    fc=fopen("./Clientes.dat","rb");
     if (fc==NULL){
         printf("Arquivo não existente");
         return;
