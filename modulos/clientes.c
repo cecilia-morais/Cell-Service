@@ -20,10 +20,11 @@ char cad_clien(){
     printf("2 - Buscar um cliente \n");
     printf("3 - Atualizar um cliente\n");
     printf("4 - Deletar um cliente\n");
-    printf("5 - Listar clientes");
+    printf("5 - Listar clientes\n");
     printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
+
     printf("Digite o número desejado: \n");
     scanf("%c", &opcli);
     getchar();
@@ -168,7 +169,6 @@ void atual_clien() {
 void excl_clien() {
     char cpf[12];
     int encontrado = 0;
-
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                        DESATIVAR UM CLIENTE                        \n");
@@ -176,6 +176,7 @@ void excl_clien() {
     printf("Digite o CPF do cliente que deseja desativar: ");
     scanf("%s", cpf);
     getchar();
+
 
     FILE* fc = fopen("./Clientes.dat", "r+b");  
     if (fc == NULL) {
@@ -191,13 +192,16 @@ void excl_clien() {
         if (strcmp(cli.cpf, cpf) == 0) {
             encontrado = 1;
 
-            cli.status = 0;
+                cli.status = 0;
 
             fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
             fwrite(&cli, sizeof(Clientes), 1, fc);   
 
             printf("Cliente desativado com sucesso.\n");
             break;
+            
+            
+              
         }
     }
 
@@ -213,23 +217,25 @@ void excl_clien() {
 
 
 void todos_clientes(void){
-    printf("CLientes");
+    system("clear || cls");
+    printf("\nCLientes\n");
     listar_cliente();
-    getchar();
     getchar();
 }
 
 void exibindo_clientes(Clientes* clientes){
     char situ[17];
     if((clientes==NULL) || (clientes->status==0)){
-        printf("Esse cliente não existe no sistema");
+        printf("\nEsse cliente não existe no sistema\n");
     }
     else{
-        printf("\nDados dos clientes\n");
-        printf("Nome:%s\n",clientes->nome);
-        printf("CPF:%s\n",clientes->cpf);
-        printf(":Email:%s\n",clientes->email);
-        printf("Telefone:%s\n",clientes->telefone);
+        printf("************************");
+        printf("\nDADOS DOS CLIENTES\n");
+        printf("\n");
+        printf("Nome: %s",clientes->nome);
+        printf("CPF: %s\n",clientes->cpf);
+        printf("Email: %s\n",clientes->email);
+        printf("Telefone: %s\n",clientes->telefone);
             if (clientes->status == '1'){
                 strcpy(situ, "cadastrados");
             }
@@ -245,7 +251,7 @@ void listar_cliente(void){
     cli=(Clientes*)malloc(sizeof(Clientes));
     fc=fopen("./Clientes.dat","rb");
     if (fc==NULL){
-        printf("Arquivo não existente");
+        printf("Arquivo não existente\n");
         return;
     }
     while(fread(cli,sizeof(Clientes),1,fc)){
