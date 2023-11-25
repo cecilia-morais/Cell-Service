@@ -62,6 +62,10 @@ char sw_clien() {
       excl_clien();
       break;
 
+    case '5':
+      todos_clientes();
+      break;
+
     default:
     if (op = '0'){
         printf("Voltando...\n");
@@ -139,6 +143,9 @@ void sobre() {
   printf("           Esse projeto está sendo desenvolvido para simular \n ");
   printf("                uma loja para conserto de celular.\n");
   printf("                 Desenvolvido por: Cecília Morais\n");
+  getchar();
+
+
 }
 
 void equipe() {
@@ -149,22 +156,20 @@ void equipe() {
   printf("                      Projeto Cell Service\n  ");
   printf("                 Desenvolvido por: Cecilia Morais\n");
   printf("                      GitHub: @cecília-morais         \n");
+  getchar();
 }
 
 char tela_sobre() {
   system("clear || cls");
-  char optela;
-  printf("*********************************************************************"
-         "\n");
-  printf("                             SOBRE                                   "
-         "\n");
-  printf("*********************************************************************"
-         "\n");
+  char op;
+  printf("*********************************************************************""\n");
+  printf("                             SOBRE                                     \n");
+  printf("***********************************************************************\n");
   printf("1 - Tela sobre o projeto\n");
   printf("2 - Tela sobre a equipe\n");
   printf("Tecle ENTER para continuar \n");
-  scanf("%c", &optela);
+  scanf("%c", &op);
   getchar();
 
-  return optela;
+  return op;
 }

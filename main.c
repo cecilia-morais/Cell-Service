@@ -18,9 +18,9 @@ int main(void) {
   // Pecas pecas[1000];
   // int qnt_pecas = 0;
   char op;
-
+  importante();
   do {
-    importante();
+    system("clear || cls");
     op = menu_principal();
 
     switch (op) {
