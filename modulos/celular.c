@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h> 
 #include <stdbool.h>
+#include <ctype.h>
 #include <time.h>
 #include "celular.h"
 #include "clientes.h"
@@ -60,14 +61,19 @@ void novo_cell(void){
     printf("Digite o CPF do cliente: \n");
     fgets(cel->cpf_cliente, sizeof(cel->cpf_cliente), stdin);
     limpar_buffer();
+
+   cel->id_celular = criar_id_d();
+
     printf("Digite a marca do aparelho: \n");
     fgets(cel->marca, sizeof(cel->marca), stdin);
     limpar_buffer();
+
     printf("Digite o problema do aparelho: \n");
     fgets(cel->problema, sizeof(cel->problema), stdin);
+
     snprintf(cel->data_cadastro, sizeof(cel->data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
     limpar_buffer();
-
+    
     cel->status = 1;
 
     grava_celulares(cel);
@@ -99,6 +105,7 @@ void busca_cell(){
     while (fread(&cel, sizeof(Celulares), 1, fc)) {
         if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
             printf("Celulares cadastrados para o CPF %s:\n", cpf_cliente);
+            printf("ID do aparelho: %s\n", cel.id_celular);
             printf("modelo: %s\n", cel.modelo);
             printf("marca: %s\n", cel.marca);
             printf("problema: %s\n", cel.problema);
@@ -106,6 +113,7 @@ void busca_cell(){
             // quando fizer a verificação de que o celular ja foi atendido, aparecera a data de saída
             printf("Status: %d\n", cel.status);
             celular_encontrado = 1;
+            getchar();
             break; 
         }
     }
@@ -236,7 +244,7 @@ void exibindo_celulares(Celulares* celular){
     else{
         FILE* fc;
         Clientes* cli;
-        fc=fopen("Clientes.dat","rb");
+        fc=fopen("./Clientes.dat","rb");
         printf("\nCelulares cadastrado por clientes\n");
 
         printf("Nome:%s\n",cli->nome);
@@ -249,6 +257,8 @@ void exibindo_celulares(Celulares* celular){
         printf("Marca:%s\n",celular->marca);
         printf("Problema:%s\n",celular->problema);
         printf("Data de entrada:%s\n",celular->data_cadastro);
+        getchar();
+        getchar();
 
             if (celular->status == '1'){
                 strcpy(situ, "cadastrados");
@@ -263,7 +273,7 @@ void listar_celulares(void){
     FILE* fc;
     Celulares* cel;
     cel=(Celulares*)malloc(sizeof(Celulares));
-    fc=fopen("celentes.dat","rb");
+    fc=fopen("./Celulares.dat","rb");
     if (fc==NULL){
         printf("Arquivo não existente");
         return;
@@ -275,6 +285,43 @@ void listar_celulares(void){
     }
     fclose(fc);
     free(cel);
+}
+
+// Criar Id de forma nativa
+// Feito com a ajuda do Chat Gpt e com Consultas no site StackOverflow
+// Adapatado por Maria Eloisa e Matheus Diniz
+int criar_id_d(void){
+    // Abrir o arquivo
+    FILE *fc = fopen("Celulares.dat", "rb");
+    if (fc == NULL){
+        // caso o arquivo não exista começe com 1
+        return 1;
+        // Percorre o arquivo inteiro
+        fseek(fc, 0, SEEK_END);
+        // Para verificiar o tamanho do arquivo
+        if ((long)ftell(fc) == 0){
+            // caso o arquivo esteja vázio
+            fclose(fc);
+            return 1;
+        }
+    }
+    else{
+        // Posicione o ponteiro no início do último registro
+        // Ver a última estrutura Adicionada
+
+        // long adicionada para evitar problemas de conversão pelo sizeof, para um valor negativo, causando um estouro no fseek
+        fseek(fc, -((long)sizeof(Celulares)), SEEK_END);
+        // Agora você pode ler o último registro usando fread
+
+        Celulares ultstruct;
+        fread(&ultstruct, sizeof(Celulares), 1, fc);
+
+        // Obtenha o ID do último registro e incremente
+        int id = ultstruct.id_celular + 1;
+
+        fclose(fc); // Feche o arquivo aqui
+        return id;
+    }
 }
 
 

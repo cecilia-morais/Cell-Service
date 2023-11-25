@@ -6,6 +6,7 @@
 typedef struct celular
 {
     char cpf_cliente[12];
+    int id_celular;
     char modelo[20];
     char marca[15];
     char problema[100];
@@ -25,7 +26,7 @@ void grava_celulares(Celulares* celular);
 void todos_celulares(void);
 void exibindo_celulares(Celulares* celular);
 void listar_celulares(void);
-
+int criar_id_d(void);
 
  
 
