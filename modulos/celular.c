@@ -35,7 +35,7 @@ char cad_cell(){
 
 void grava_celulares(Celulares* celular){
     FILE* fc;
-    fc=fopen("Celulares.dat","ab");
+    fc=fopen("./Celulares.dat","ab");
     if (fc==NULL){
         printf("Arquivo não existe!");
         return;
@@ -45,7 +45,7 @@ void grava_celulares(Celulares* celular){
     free(celular);
 }
 
-void novo_cell(void){
+Celulares* novo_cell(void){
     system("clear || cls");
     Celulares* cel;
     time_t rawtime;
@@ -53,33 +53,29 @@ void novo_cell(void){
     time(&rawtime);
     info = localtime(&rawtime);
     cel=(Celulares*)malloc(sizeof(Celulares));
+    
     // Celulares novo_celular;
 
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CELULAR                     \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente: \n");
-    fgets(cel->cpf_cliente, sizeof(cel->cpf_cliente), stdin);
-    limpar_buffer();
+    ler_cpf(cel->cpf_cliente);
 
-   cel->id_celular = criar_id_d();
-
-    printf("Digite a marca do aparelho: \n");
-    fgets(cel->marca, sizeof(cel->marca), stdin);
-    limpar_buffer();
-
-    printf("Digite o problema do aparelho: \n");
-    fgets(cel->problema, sizeof(cel->problema), stdin);
-
+    cel->id_celular = criar_id_d();
+    printf("Digite a marca do celular: \n");
+    ler_nome(cel->marca);
+    printf("Digite o problema do celular: \n");
+    ler_nome(cel->problema);
+    printf("Digite o modelo do aparelho: \n");
+    fgets(cel->modelo, sizeof(cel->modelo), stdin);
     snprintf(cel->data_cadastro, sizeof(cel->data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
     limpar_buffer();
-    
     cel->status = 1;
-
     grava_celulares(cel);
-
     printf("Cadastro realizado com sucesso!\n");
     getchar();
+    return cel;
+    free(cel);
 }
 
 
@@ -105,16 +101,17 @@ void busca_cell(){
     while (fread(&cel, sizeof(Celulares), 1, fc)) {
         if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
             printf("Celulares cadastrados para o CPF %s:\n", cpf_cliente);
-            printf("ID do aparelho: %s\n", cel.id_celular);
+            printf("ID do aparelho: %d\n", cel.id_celular);
             printf("modelo: %s\n", cel.modelo);
             printf("marca: %s\n", cel.marca);
             printf("problema: %s\n", cel.problema);
             printf("Data de entrada: %s\n", cel.data_cadastro);
-            // quando fizer a verificação de que o celular ja foi atendido, aparecera a data de saída
+            //quando fizer a verificação de que o celular ja foi atendido, aparecera a data de saída
             printf("Status: %d\n", cel.status);
             celular_encontrado = 1;
             getchar();
             break; 
+
         }
     }
 
@@ -237,34 +234,24 @@ void todos_celulares(void){
 
 void exibindo_celulares(Celulares* celular){
     char situ[17];
-    char cpf_cliente[12];
     if((celular==NULL) || (celular->status==0)){
         printf("Esse celular não existe no sistema");
     }
     else{
-        FILE* fc;
-        Clientes* cli;
-        fc=fopen("./Clientes.dat","rb");
         printf("\nCelulares cadastrado por clientes\n");
-
-        printf("Nome:%s\n",cli->nome);
-
-        fclose(fc);
-        free(cli);
-
-        printf("CPF:%s\n",celular->cpf_cliente);
-        printf("Modelo:%s\n",celular->modelo);
-        printf("Marca:%s\n",celular->marca);
-        printf("Problema:%s\n",celular->problema);
-        printf("Data de entrada:%s\n",celular->data_cadastro);
+        printf("ID do aparelho: %d\n", celular->id_celular);
+        printf("CPF: %s\n",celular->cpf_cliente);
+        printf("Modelo: %s\n",celular->modelo);
+        printf("Marca: %s\n",celular->marca);
+        printf("Problema: %s\n",celular->problema);
+        printf("Data de entrada: %s\n",celular->data_cadastro);
         getchar();
-        getchar();
-
-            if (celular->status == '1'){
-                strcpy(situ, "cadastrados");
-            }
-            else if (celular->status == '0'){
-                strcpy(situ, "Fechado");
+        
+        if (celular->status == '1'){
+            strcpy(situ, "cadastrados");
+        }
+        else if (celular->status == '0'){
+            strcpy(situ, "Fechado");
         }
     }
 }
@@ -290,9 +277,10 @@ void listar_celulares(void){
 // Criar Id de forma nativa
 // Feito com a ajuda do Chat Gpt e com Consultas no site StackOverflow
 // Adapatado por Maria Eloisa e Matheus Diniz
+//Adaptado por cecilia morais para ser usado no projeto
 int criar_id_d(void){
     // Abrir o arquivo
-    FILE *fc = fopen("Celulares.dat", "rb");
+    FILE *fc = fopen("./Celulares.dat", "rb");
     if (fc == NULL){
         // caso o arquivo não exista começe com 1
         return 1;

@@ -36,7 +36,7 @@ char cad_clien(){
 
 void grava_cliente(Clientes* clientes){
     FILE* fc;
-    fc=fopen("Clientes.dat","ab");
+    fc=fopen("./Clientes.dat","ab");
     if (fc==NULL){
         printf("Arquivo não existe!");
         return;
@@ -55,6 +55,7 @@ void grava_cliente(Clientes* clientes){
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
     ler_cpf(cli->cpf);
+    printf("Digite o nome do cliente\n");
     ler_nome(cli->nome);
     ler_email(cli->email);
     ler_telefone(cli->telefone);

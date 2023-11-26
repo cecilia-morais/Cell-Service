@@ -8,13 +8,12 @@
 
 char sw_cell() {
   char op;
+  Celulares*cel;
   while (op != '0') {
-
     op = cad_cell();
-    Celulares* cel;
     switch (op) {
     case '1':
-      novo_cell();
+      cel=novo_cell();
       break;
     case '2':
       busca_cell();
@@ -29,6 +28,8 @@ char sw_cell() {
       break;
     case '5':
        listar_celulares();
+       getchar();
+       getchar();
        break;
        
     default:
