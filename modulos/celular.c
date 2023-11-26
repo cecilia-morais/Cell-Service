@@ -164,7 +164,7 @@ void atual_cell(){
             fseek(fc, - (long int)sizeof(Celulares), SEEK_CUR);
             fwrite(&cel, sizeof(Celulares), 1, fc);   
 
-            printf("celente atualizado com sucesso.\n");
+            printf("Celular atualizado com sucesso.\n");
             break;
         }
     }
@@ -191,7 +191,7 @@ void atual_cell(){
     printf("Tecle ENTER para continuar \n");
     getchar();
 
-    FILE* fc = fopen("./Clientes.dat", "r+b");  
+    FILE* fc = fopen("./Celulares.dat", "r+b");  
     if (fc == NULL) {
         printf("Arquivo de clientes não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -199,21 +199,21 @@ void atual_cell(){
         return;
     }
 
-    Clientes cel;
+    Celulares cel;
 
-    // while (fread(&cel, sizeof(Clientes), 1, fc)) {
-    //     if (strcmp(cel.cpf_cliente, cpf) == 0) {
-    //         celular_encontrado = 1;
+    while (fread(&cel, sizeof(Celulares), 1, fc)) {
+        if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
+            celular_encontrado = 1;
 
-    //         cli.status = 0;
+            cel.status = 0;
 
-    //         fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
-    //         fwrite(&cli, sizeof(Clientes), 1, fc);   
+            fseek(fc, - (long int)sizeof(Celulares), SEEK_CUR); 
+            fwrite(&cel, sizeof(Celulares), 1, fc);   
 
-    //         printf("Cliente desativado com sucesso.\n");
-    //         break;
-    //     }
-    // }
+            printf("Celular desativado com sucesso.\n");
+            break;
+        }
+    }
 
     fclose(fc);
 
