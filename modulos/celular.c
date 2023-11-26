@@ -179,21 +179,27 @@ void atual_cell(){
     getchar();
 }
 
- void excl_cell(){
+ void excl_cell() {
+    int id_celular;
     char cpf_cliente[12];
     int celular_encontrado = 0;
+
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                         DELETAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
     fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
-    printf("Tecle ENTER para continuar \n");
-    getchar();
+    limpar_buffer();
 
-    FILE* fc = fopen("./Celulares.dat", "r+b");  
+    printf("Digite o ID do celular a ser excluído:\n ");
+    scanf("%d", &id_celular);
+    limpar_buffer();
+
+    FILE* fc = fopen("./Celulares.dat", "r+b");
+
     if (fc == NULL) {
-        printf("Arquivo de clientes não encontrado.\n");
+        printf("Arquivo de celulares não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
         getchar();
         return;
@@ -202,7 +208,7 @@ void atual_cell(){
     Celulares cel;
 
     while (fread(&cel, sizeof(Celulares), 1, fc)) {
-        if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
+        if (strcmp(cel.cpf_cliente, cpf_cliente) == 0 && cel.id_celular == id_celular) {
             celular_encontrado = 1;
 
             cel.status = 0;
@@ -210,7 +216,7 @@ void atual_cell(){
             fseek(fc, - (long int)sizeof(Celulares), SEEK_CUR); 
             fwrite(&cel, sizeof(Celulares), 1, fc);   
 
-            printf("Celular desativado com sucesso.\n");
+            printf("Celular com ID %d desativado com sucesso.\n", id_celular);
             break;
         }
     }
@@ -218,7 +224,7 @@ void atual_cell(){
     fclose(fc);
 
     if (!celular_encontrado) {
-        printf("Cliente com CPF %s não encontrado.\n", cpf_cliente);
+        printf("Celular com ID %d para o CPF %s não encontrado.\n", id_celular, cpf_cliente);
     }
 
     printf("Tecle ENTER para continuar\n");
