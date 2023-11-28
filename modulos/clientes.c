@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "clientes.h"
 #include "validacoes.h"
 
@@ -37,36 +38,45 @@ char cad_clien(){
 void grava_cliente(Clientes* clientes){
     FILE* fc;
     fc=fopen("./Clientes.dat","ab");
-    if (fc==NULL){
-        printf("Arquivo não existe!");
-        return;
-    }
     fwrite(clientes,sizeof(Clientes),1,fc);
     fclose(fc);
-    free(clientes);
 }
 
- Clientes* novo_clien(void){
+ void novo_clien(void){
     system("clear || cls");
-    Clientes* cli;
-    cli=(Clientes*)malloc(sizeof(Clientes));       
-    Clientes novo_cliente;
+    Clientes novo_cliente;   
+    
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
-    ler_cpf(cli->cpf);
-    printf("Digite o nome do cliente\n");
-    ler_nome(cli->nome);
-    ler_email(cli->email);
-    ler_telefone(cli->telefone);
-    cli->status = 1;
-    grava_cliente(cli);
-    getchar();
+    
+    char cpf[12];
+    char nome[70];
+    char email[100];
+    char telefone[15];
+    int status;
+
+    ler_cpf(cpf);
+    printf("Digite o nome do cliente ");
+    ler_nome(nome);
+    
+    ler_email(email);
+ 
+    ler_telefone(telefone);
+    status = 1;
+ 
+    strncpy(novo_cliente.cpf, cpf, sizeof(novo_cliente.cpf));
+    strncpy(novo_cliente.nome, nome, sizeof(novo_cliente.nome));
+    strncpy(novo_cliente.email, email, sizeof(novo_cliente.email));
+    strncpy(novo_cliente.telefone, telefone, sizeof(novo_cliente.telefone));
+    novo_cliente.status = status;
+
+
+    grava_cliente(&novo_cliente);
+
     printf("Cadastro realizado com sucesso!\n");
     getchar();
-    return cli;
-    free(cli);
-
+    
 }
 
 

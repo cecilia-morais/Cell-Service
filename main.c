@@ -7,7 +7,7 @@
 
 // Assinaturas de fun��es:
 char menu_principal(void);
-void importante(void);
+
 
 
 int main(void) {
@@ -18,7 +18,6 @@ int main(void) {
   // Pecas pecas[1000];
   // int qnt_pecas = 0;
   char op;
-  importante();
   do {
     system("clear || cls");
     op = menu_principal();
@@ -83,11 +82,4 @@ char menu_principal() {
   getchar();
 
   return menu;
-}
-
-void importante(){
-  printf("*********************************************************************\n");
-  printf("                    ESSE É UM CÓDIGO INCOMPLETO                      \n");
-  printf("*********************************************************************\n");
-  getchar();
 }

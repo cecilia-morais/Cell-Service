@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+  //Esse módulo está todas as chamadas de funções para que o menu principal dê certo
 char sw_cell() {
   char op;
   
@@ -27,10 +28,8 @@ char sw_cell() {
       excl_cell();
       break;
     case '5':
-       listar_celulares();
-       getchar();
-       getchar();
-       break;
+      todos_celulares();  
+      break;
        
     default:
       if (op = '0'){
@@ -47,11 +46,10 @@ char sw_cell() {
 char sw_clien() {
   char op;
   while (op != '0') {
-    Clientes* cli;
     op = cad_clien();
     switch (op) {
     case '1':
-      cli=novo_clien();
+      novo_clien();
       break;
     case '2':
       busca_clien();
