@@ -74,8 +74,8 @@ Celulares* novo_cell(void){
     grava_celulares(cel);
     printf("Cadastro realizado com sucesso!\n");
     getchar();
-    return cel;
     free(cel);
+    return cel;
 }
 
 
@@ -127,18 +127,25 @@ void busca_cell(){
     
 
 
-void atual_cell(){
+void atual_cell() {
+    int id_celular;
     char cpf_cliente[12];
     int celular_encontrado = 0;
+
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                         ATUALIZAR UM CELULAR                        \n");
+    printf("                       ATUALIZAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     printf("Digite o CPF do cliente:\n ");
-    scanf("%s", cpf_cliente);
-    getchar();
+    fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
+    limpar_buffer();
 
-    FILE* fc = fopen("./Celulares.dat", "r+b");  
+    printf("Digite o ID do celular a ser atualizado:\n ");
+    scanf("%d", &id_celular);
+    limpar_buffer();
+
+    FILE* fc = fopen("./Celulares.dat", "r+b");
+
     if (fc == NULL) {
         printf("Arquivo de celulares não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -149,22 +156,21 @@ void atual_cell(){
     Celulares cel;
 
     while (fread(&cel, sizeof(Celulares), 1, fc)) {
-        if (strcmp(cel.cpf_cliente, cpf_cliente) == 0) {
-            celular_encontrado  = 1;
-
+        if (strcmp(cel.cpf_cliente, cpf_cliente) == 0 && cel.id_celular == id_celular) {
+            celular_encontrado = 1;
             printf("Digite a marca do aparelho:\n ");
             fgets(cel.marca, sizeof(cel.marca), stdin);
             printf("Digite o problema do aparelho: \n");
             fgets(cel.problema, sizeof(cel.problema), stdin);
+            printf("Digite o modelo do aparelho:\n ");
+            fgets(cel.modelo, sizeof(cel.modelo), stdin);
 
             printf("Atualizando as informações do aparelho:\n");
-            
-            cel.status = 1;
 
             fseek(fc, - (long int)sizeof(Celulares), SEEK_CUR);
             fwrite(&cel, sizeof(Celulares), 1, fc);   
 
-            printf("Celular atualizado com sucesso.\n");
+            printf("Celular com ID %d atualizado com sucesso.\n", id_celular);
             break;
         }
     }
@@ -172,12 +178,13 @@ void atual_cell(){
     fclose(fc);
 
     if (!celular_encontrado) {
-        printf("Celulares para o CPF %s não encontrado.\n", cpf_cliente);
+        printf("Celular com ID %d para o CPF %s não encontrado.\n", id_celular, cpf_cliente);
     }
 
     printf("Tecle ENTER para continuar\n");
     getchar();
 }
+
 
  void excl_cell() {
     int id_celular;
