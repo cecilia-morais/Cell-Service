@@ -147,7 +147,7 @@ void ler_nome(char *nome) {
     int n;
     bool v=true,f=false;
     while (v) {
-        printf("->\n "); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
+        printf("-> "); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         fgets(nome, 100, stdin);
         n = valida_nome(nome);
         if (n == 1) {

@@ -33,51 +33,62 @@ char cad_cell(){
 
 }
 
-void grava_celulares(Celulares* celular){
-    FILE* fc;
-    fc=fopen("./Celulares.dat","ab");
-    if (fc==NULL){
-        printf("Arquivo não existe!");
-        return;
-    }
-    fwrite(celular,sizeof(Celulares),1,fc);
+void grava_celulares(Celulares *celular){
+    FILE *fc = fopen("./Celulares.dat", "ab");
+    fwrite(celular , sizeof(Celulares), 1, fc);
     fclose(fc);
-    free(celular);
 }
 
-Celulares* novo_cell(void){
+
+void novo_cell(void){
     system("clear || cls");
-    Celulares* cel;
+    printf("*********************************************************************\n");
+    printf("                       CADASTRAR UM NOVO CELULAR                     \n");
+    printf("*********************************************************************\n");
+    printf("\n");
+    char cpf_cliente[12];
+    int id_celular;
+    char modelo[20];
+    char marca[15];
+    char problema[100];
+    char data_cadastro[11];
+    int status;
+
     time_t rawtime;
     struct tm *info;
     time(&rawtime);
     info = localtime(&rawtime);
-    cel=(Celulares*)malloc(sizeof(Celulares));
+    Celulares novo_celular;
+
+    ler_cpf(cpf_cliente);    
+
+    printf("Digite a marca do aparelho: ");
+    ler_nome(marca);
+
+    printf("Digite o modelo do aparelho: ");
+    fgets(modelo, sizeof(modelo), stdin);
+    modelo[strlen(modelo) - 1] = 0;
+
+    printf("Digite o problema do aparelho: ");
+    ler_nome(problema);
+
+    snprintf(data_cadastro, sizeof(novo_celular.data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
+
+    status = 1;
+
+    id_celular = criar_id_d();
+    novo_celular.id_celular = id_celular;
+    strncpy(novo_celular.cpf_cliente, cpf_cliente, sizeof(novo_celular.cpf_cliente));
+    strncpy(novo_celular.modelo, modelo, sizeof(novo_celular.modelo));
+    strncpy(novo_celular.marca, marca, sizeof(novo_celular.marca));
+    strncpy(novo_celular.problema, problema, sizeof(novo_celular.problema));
+    strncpy(novo_celular.data_cadastro, data_cadastro, sizeof(novo_celular.data_cadastro));
+    novo_celular.status = status;
     
-    // Celulares novo_celular;
+    grava_celulares(&novo_celular);
 
-    printf("*********************************************************************\n");
-    printf("                       CADASTRAR UM NOVO CELULAR                     \n");
-    printf("*********************************************************************\n");
-    ler_cpf(cel->cpf_cliente);
-
-    cel->id_celular = criar_id_d();
-    printf("Digite a marca do celular: \n");
-    ler_nome(cel->marca);
-    printf("Digite o problema do celular: \n");
-    ler_nome(cel->problema);
-    printf("Digite o modelo do aparelho: \n");
-    fgets(cel->modelo, sizeof(cel->modelo), stdin);
-    snprintf(cel->data_cadastro, sizeof(cel->data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
-    limpar_buffer();
-    cel->status = 1;
-    grava_celulares(cel);
-    printf("Cadastro realizado com sucesso!\n");
-    getchar();
-    free(cel);
-    return cel;
+    printf("Celular cadastrado com sucesso.\n");
 }
-
 
 void busca_cell(){
     char cpf_cliente[12];
