@@ -13,7 +13,7 @@ typedef struct atendimentos{
 
 char area_atendimento(void);
 void novo_atendimento(void);
-char busca_atendimento(void);
+void busca_atendimento(void);
 char atual_atendimento(void);
 void grava_atendimentos(Atendimentos *atendimentos);
 void listar_atendimentos(void);
