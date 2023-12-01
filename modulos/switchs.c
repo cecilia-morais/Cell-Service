@@ -97,6 +97,10 @@ char sw_atendimentos() {
       atual_atendimento();
       break;
 
+    case '4':
+      listar_atendimentos();
+      break;
+      
     default:
     if (op = '0'){
         printf("Voltando...\n");

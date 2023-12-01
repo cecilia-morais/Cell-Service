@@ -56,12 +56,10 @@ void grava_cliente(Clientes* clientes){
     char telefone[15];
     int status;
 
-    ler_cpf(cpf);
     printf("Digite o nome do cliente ");
     ler_nome(nome);
-    
+    ler_cpf(cpf);
     ler_email(email);
- 
     ler_telefone(telefone);
     status = 1;
  
@@ -104,8 +102,9 @@ void busca_clien(void) {
 
     while (fread(&cli, sizeof(Clientes), 1, fc)) {
         if (strcmp(cli.cpf, cpf) == 0) {
+            system("clear || cls");
             printf("Cliente encontrado!\n");
-            printf("Nome: %s\n", cli.nome);
+            printf("\nNome: %s", cli.nome);
             printf("Email: %s\n", cli.email);
             printf("Telefone: %s\n", cli.telefone);
             printf("Status: %d\n", cli.status);
@@ -153,9 +152,30 @@ void atual_clien() {
             encontrado = 1;
 
             printf("Atualizando as informações do cliente:\n");
-            ler_nome(cli.nome);
-            ler_email(cli.email);
-            ler_telefone(cli.telefone);
+            printf("1. Nome\n");
+            printf("2. Email\n");
+            printf("3. Telefone\n");
+            printf("Escolha o número correspondente ao campo que deseja atualizar: ");
+            int opcao;
+            scanf("%d", &opcao);
+            getchar();
+
+            switch (opcao) {
+                case 1:
+                    printf("Digite o novo nome do cliente: ");
+                    ler_nome(cli.nome);
+                    break;
+                case 2:
+                    ler_email(cli.email);
+                    break;
+                case 3:
+                    ler_telefone(cli.telefone);
+                    break;
+                default:
+                    printf("Opção inválida.\n");
+                    break;
+            }
+
             cli.status = 1;
 
             fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR);
