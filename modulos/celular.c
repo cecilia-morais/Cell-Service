@@ -121,7 +121,6 @@ void novo_cell(void)
     getchar();
 }
 
-
 void busca_cell()
 {
     int id_celular;
@@ -150,7 +149,7 @@ void busca_cell()
 
     Clientes cliente;
 
-    while(fread(&cliente, sizeof(Clientes), 1, fc_clientes))
+    while (fread(&cliente, sizeof(Clientes), 1, fc_clientes))
     {
         if (strcmp(cliente.cpf, cpf_cliente) == 0)
         {
@@ -160,7 +159,7 @@ void busca_cell()
         }
     }
 
-    if(!cliente_encontrado)
+    if (!cliente_encontrado)
     {
         printf("Cliente não encontrado.\n");
         printf("Tecle ENTER para continuar\n");
@@ -169,10 +168,7 @@ void busca_cell()
         return;
     }
 
-
-
     fclose(fc_clientes);
-
 
     FILE *fc = fopen("./Celulares.dat", "rb");
 

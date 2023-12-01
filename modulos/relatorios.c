@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char relatorios() {
+void relatorios(){
   system("clear || cls");
-  char oprel;
   printf("*********************************************************************"
          "\n");
   printf("                            RELATÓRIOS                               "
@@ -14,10 +13,8 @@ char relatorios() {
   printf("Pressione o número desejado para imprimir o relátorio de: \n ");
   printf("1 - Celular\n ");
   printf("2 - Cliente\n");
-  printf(" 3 - Estoque de peças\n");
-  printf(" 4 - Atendimentos por dia\n");
+  printf(" 3- Atendimentos por dia\n");
   printf(" 0 - Sair\n");
-  scanf("%c", &oprel);
   getchar();
   printf("Tecle ENTER para continuar \n");
   getchar();
