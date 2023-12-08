@@ -104,10 +104,11 @@ void busca_clien(void) {
         if (strcmp(cli.cpf, cpf) == 0) {
             system("clear || cls");
             printf("Cliente encontrado!\n");
+            printf("***********************************\n");
             printf("\nNome: %s", cli.nome);
             printf("Email: %s\n", cli.email);
             printf("Telefone: %s\n", cli.telefone);
-            printf("Status: %d\n", cli.status);
+            printf("***********************************\n");
             clienteEncontrado = 1;
             break; 
         }
@@ -208,7 +209,6 @@ void excl_clien() {
     scanf("%s", cpf);
     getchar();
 
-
     FILE* fc = fopen("./Clientes.dat", "r+b");  
     if (fc == NULL) {
         printf("Arquivo de clientes não encontrado.\n");
@@ -223,16 +223,19 @@ void excl_clien() {
         if (strcmp(cli.cpf, cpf) == 0) {
             encontrado = 1;
 
+            printf("Deseja realmente desativar %s? \n 1- Sim \n 2-Não \n ", cli.nome);
+            char resposta;
+            scanf(" %c", &resposta);
+            getchar();
+
+            if (resposta == 'S' || resposta == 's') {
                 cli.status = 0;
-
-            fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
-            fwrite(&cli, sizeof(Clientes), 1, fc);   
-
-            printf("Cliente desativado com sucesso.\n");
-            break;
-            
-            
-              
+                fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
+                fwrite(&cli, sizeof(Clientes), 1, fc);   
+                printf("Cliente desativado com sucesso.\n");
+            } else {
+                break;
+            }
         }
     }
 
