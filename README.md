@@ -1,6 +1,9 @@
 # Cell-Service
 Sistema de gestão para simular uma loja de conserto de celulares
 
+ESSE É UM PROJETO PENSADO PARA LINUX, CASO EXECUTE EM UM WINDOWS, TERÁ PROBLEMAS COM ALGUNS CARACTERES
+
+
 Passos para executar o código em Windows (NÃO INDICADO):
 
 1- Com o terminal, abra uma pasta em algum lugar da máquina e clone o link do repositório.
