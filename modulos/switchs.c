@@ -27,9 +27,6 @@ char sw_cell() {
     case '4':
       excl_cell();
       break;
-    case '5':
-      todos_celulares();  
-      break;
        
     default:
       if (op = '0'){
@@ -63,10 +60,6 @@ char sw_clien() {
       excl_clien();
       break;
 
-    case '5':
-      todos_clientes();
-      break;
-
     default:
     if (op = '0'){
         printf("Voltando...\n");
@@ -95,10 +88,6 @@ char sw_atendimentos() {
 
     case '3':
       atual_atendimento();
-      break;
-
-    case '4':
-      listar_atendimentos();
       break;
       
     default:
@@ -138,6 +127,7 @@ char sw_sobre() {
   }
   return op;
 }
+
 
 void sobre() {
   system("clear || cls");

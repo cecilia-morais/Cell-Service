@@ -23,9 +23,6 @@ void busca_cell(void);
 void atual_cell(void);
 void excl_cell(void);
 void grava_celulares(Celulares* celular);
-void todos_celulares(void);
-void exibindo_celulares(Celulares* celular);
-void listar_celulares(void);
 int criar_id_d(void);
 
  

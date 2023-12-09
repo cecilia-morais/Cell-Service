@@ -21,7 +21,6 @@ char cad_clien(){
     printf("2 - Buscar um cliente \n");
     printf("3 - Atualizar um cliente\n");
     printf("4 - Deletar um cliente\n");
-    printf("5 - Listar clientes\n");
     printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
@@ -250,49 +249,3 @@ void excl_clien() {
 }
 
 
-void todos_clientes(void){
-    system("clear || cls");
-    printf("\nCLientes\n");
-    listar_cliente();
-    getchar();
-}
-
-void exibindo_clientes(Clientes* clientes){
-    char situ[17];
-    if((clientes==NULL) || (clientes->status==0)){
-        printf("\nEsse cliente não existe no sistema\n");
-    }
-    else{
-        printf("************************");
-        printf("\nDADOS DOS CLIENTES\n");
-        printf("\n");
-        printf("Nome: %s",clientes->nome);
-        printf("CPF: %s\n",clientes->cpf);
-        printf("Email: %s\n",clientes->email);
-        printf("Telefone: %s\n",clientes->telefone);
-            if (clientes->status == '1'){
-                strcpy(situ, "cadastrados");
-            }
-            else if (clientes->status == '0'){
-                strcpy(situ, "Fechado");
-        }
-    }
-}
-
-void listar_cliente(void){
-    FILE* fc;
-    Clientes* cli;
-    cli=(Clientes*)malloc(sizeof(Clientes));
-    fc=fopen("./Clientes.dat","rb");
-    if (fc==NULL){
-        printf("Arquivo não existente\n");
-        return;
-    }
-    while(fread(cli,sizeof(Clientes),1,fc)){
-        if(cli->status!=0){
-            exibindo_clientes(cli);
-        }
-    }
-    fclose(fc);
-    free(cli);
-}

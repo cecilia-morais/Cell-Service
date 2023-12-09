@@ -17,7 +17,4 @@ void novo_atendimento(void);
 void busca_atendimento(void);
 void atual_atendimento(void);
 void grava_atendimentos(Atendimentos *atendimentos);
-void listar_atendimentos(void);
-void todos_atendimentos(void);
-void exibindo_atendimentos(Atendimentos *atendimentos);
 int criar_id_a(void);

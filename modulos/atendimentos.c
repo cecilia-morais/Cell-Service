@@ -24,7 +24,6 @@ char area_atendimento()
     printf("1 - Cadastrar um novo atendimento\n");
     printf("2 - Buscar um atendimento \n");
     printf("3 - Atualizar um atendimento\n");
-    printf("4 - Listar todos os atendimentos\n");
     printf("0 - Sair \n");
     printf("*********************************************************************\n");
     printf("\n");
@@ -527,64 +526,4 @@ int criar_id_a(void)
     }
 }
 
-void todos_atendimentos(void)
-{
-    printf("Atendimentos:\n");
-    listar_atendimentos();
-    getchar();
-    getchar();
-}
 
-void exibindo_atendimentos(Atendimentos *atendimento)
-{
-    FILE *fa = fopen("./Atendimentos.dat", "rb");
-    if (fa == NULL)
-    {
-        printf("Arquivo Atendimentos.dat não encontrado.\n");
-        return;
-    }
-
-    Atendimentos ate;
-    while (fread(&ate, sizeof(Atendimentos), 1, fa))
-    {
-        if (ate.status == 1)
-        {
-            printf("\nAtendimento:\n");
-            printf("ID do atendimento: %d\n", ate.id_atendimento);
-            printf("CPF: %s\n", ate.cpf);
-            printf("Descrição: %s\n", ate.descricao);
-            printf("Data de saída: %s\n", ate.data_saida);
-            getchar();
-        }
-        else if (ate.status == 2)
-        {
-            printf("\nAtendimento:\n");
-            printf("ID do atendimento: %d\n", ate.id_atendimento);
-            printf("CPF: %s\n", ate.cpf);
-            printf("Descrição: %s\n", ate.descricao);
-            printf("Data de saída: %s\n", ate.data_saida);
-            printf("O aparelho não foi consertado.\n");
-            getchar();
-        }
-    }
-    fclose(fa);
-}
-
-void listar_atendimentos(void)
-{
-    FILE *fa;
-    Atendimentos *ate;
-    ate = (Atendimentos *)malloc(sizeof(Atendimentos));
-    fa = fopen("./Atendimentos.dat", "rb");
-    if (fa == NULL)
-    {
-        printf("Arquivo não existente");
-        return;
-    }
-    while (fread(ate, sizeof(Atendimentos), 1, fa))
-    {
-        exibindo_atendimentos(ate);
-    }
-    fclose(fa);
-    free(ate);
-}
