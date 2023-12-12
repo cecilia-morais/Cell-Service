@@ -76,7 +76,7 @@ char menu_principal()
          "\n");
   printf("*********************************************************************"
          "\n");
-  printf("1 - Cadastro de celular \n");
+  printf("1 - Celulares \n");
   printf("2 - Clientes \n");
   printf("3 - Atendimentos\n");
   printf("4 - Relatórios\n");
