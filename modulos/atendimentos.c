@@ -172,7 +172,7 @@ void novo_atendimento()
     else if (status == 2)
     {
         novo_atendimento.status = 2;
-    }
+    }   
     else
     {
         printf("Opção inválida!\n");
