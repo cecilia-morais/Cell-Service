@@ -267,7 +267,7 @@ void atendimentos_por_data_de_saida()
 
        // Close the file
        fclose(fa);
-       fclose(fc);   
+       fclose(fc);
        fclose(fc_celulares);
 
        if (!found)
@@ -278,7 +278,6 @@ void atendimentos_por_data_de_saida()
        printf("Tecle ENTER para continuar \n");
        getchar();
 }
-
 
 void celulares_por_data_de_entrada()
 {
@@ -446,38 +445,39 @@ void exibindo_celulares(Celulares *celular)
        }
 
        Celulares cel;
-       Atendimentos atendimento;
-       Clientes cli;
        while (fread(&cel, sizeof(Celulares), 1, fc))
        {
               if (cel.status != 0)
               {
-                     printf("CELULAR ENCONTRADO:\n\n");;
+                     printf("CELULAR ENCONTRADO:\n\n");
                      printf("ID DO APARELHO: %d\n", cel.id_celular);
                      printf("MODELO: %s\n", cel.modelo);
                      printf("MARCA: %s\n", cel.marca);
                      printf("PROBLEMA: %s\n", cel.problema);
                      printf("DATA DE ENTRADA: %s\n", cel.data_cadastro);
-                     if (cel.status == 3)
-                     {
-                            printf("Data de saída: %s\n", atendimento.data_saida);
-                            printf("ID do Atendimento: %d\n", atendimento.id_atendimento);
-                            printf("Descrição do Problema: %s\n", atendimento.descricao);
-                            printf("Celular foi atendido!\n");
-                            if (atendimento.status == 1)
-                            {
-                                   printf("O aparelho foi consertado.\n");
-                                   printf("Tecle ENTER para continuar \n");
-                                   getchar();
-                            }
-                            else if (atendimento.status == 2)
-                            {
-                                   printf("O aparelho não foi consertado.\n");
-                                   printf("Tecle ENTER para continuar \n");
-                                   getchar();
-                            }
 
-                            fclose(fa);
+                     Atendimentos atendimento;
+                     if (fread(&atendimento, sizeof(Atendimentos), 1, fa))
+                     {
+                            if (cel.status == 3)
+                            {
+                                   printf("Data de saída: %s\n", atendimento.data_saida);
+                                   printf("ID do Atendimento: %d\n", atendimento.id_atendimento);
+                                   printf("Descrição do Problema: %s\n", atendimento.descricao);
+                                   printf("Celular foi atendido!\n");
+                                   if (cel.status == 1)
+                                   {
+                                          printf("O aparelho foi consertado.\n");
+                                          printf("Tecle ENTER para continuar \n");
+                                          getchar();
+                                   }
+                                   else if (cel.status == 2)
+                                   {
+                                          printf("O aparelho não foi consertado.\n");
+                                          printf("Tecle ENTER para continuar \n");
+                                          getchar();
+                                   }
+                            }
                      }
 
                      // Buscar o nome do cliente no arquivo Clientes.dat
