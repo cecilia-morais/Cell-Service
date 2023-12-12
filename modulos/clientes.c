@@ -5,13 +5,13 @@
 #include "clientes.h"
 #include "validacoes.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // OS CODIGOS DESSE MÓDULO FOI FEITO COM AJUDA DE MAXSUEL GADELHA- GitHub: @Lleusxam //
 // E MATHEUS DINIZ - GitHub: @matheusdnf                                             //
 ///////////////////////////////////////////////////////////////////////////////////////
 
-char cad_clien(){
+char cad_clien()
+{
     system("clear || cls");
     char opcli;
     printf("*********************************************************************\n");
@@ -34,21 +34,23 @@ char cad_clien(){
     return opcli;
 }
 
-void grava_cliente(Clientes* clientes){
-    FILE* fc;
-    fc=fopen("./Clientes.dat","ab");
-    fwrite(clientes,sizeof(Clientes),1,fc);
+void grava_cliente(Clientes *clientes)
+{
+    FILE *fc;
+    fc = fopen("./Clientes.dat", "ab");
+    fwrite(clientes, sizeof(Clientes), 1, fc);
     fclose(fc);
 }
 
- void novo_clien(void){
+void novo_clien(void)
+{
     system("clear || cls");
-    Clientes novo_cliente;   
-    
+    Clientes novo_cliente;
+
     printf("*********************************************************************\n");
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
-    
+
     char cpf[12];
     char nome[70];
     char email[100];
@@ -58,49 +60,84 @@ void grava_cliente(Clientes* clientes){
     printf("Digite o nome do cliente ");
     ler_nome(nome);
     ler_cpf(cpf);
+    if (novo_cliente.cpf == cpf)
+    {
+        printf("CPF já cadastrado\n");
+        getchar();
+        return;
+    }
     ler_email(email);
+    if (novo_cliente.email == email)
+    {
+        printf("Email já cadastrado\n");
+        printf("Deseja cadastrar mesmo assim?");
+        printf("1 - Sim\n");
+        printf("2 - Não\n");
+        int op;
+        scanf("%d", &op);
+        getchar();
+        if (op == 2)
+        {
+            return;
+        }
+    }
     ler_telefone(telefone);
+    if (novo_cliente.telefone == telefone)
+    {
+        printf("Telefone já cadastrado\n");
+        printf("Deseja cadastrar mesmo assim?");
+        printf("1 - Sim\n");
+        printf("2 - Não\n");
+        int op;
+        scanf("%d", &op);
+        getchar();
+        if (op == 2)
+        {
+            return;
+        }
+    }
     status = 1;
- 
+
     strncpy(novo_cliente.cpf, cpf, sizeof(novo_cliente.cpf));
     strncpy(novo_cliente.nome, nome, sizeof(novo_cliente.nome));
     strncpy(novo_cliente.email, email, sizeof(novo_cliente.email));
     strncpy(novo_cliente.telefone, telefone, sizeof(novo_cliente.telefone));
     novo_cliente.status = status;
 
-
     grava_cliente(&novo_cliente);
 
     printf("Cadastro realizado com sucesso!\n");
     getchar();
-    
 }
 
-
-void busca_clien(void) {
+void busca_clien(void)
+{
     char cpf[12];
     int clienteEncontrado = 0;
-    
+
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                           BUSCAR POR CLIENTE                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente:\n");
-    scanf("%s", cpf);
-    getchar();
-
-    FILE* fc = fopen("./Clientes.dat", "rb");
-    if (fc == NULL) {
-        printf("Arquivo de clientes não encontrado.\n");
+    FILE *fc = fopen("./Clientes.dat", "rb");
+    if (fc == NULL)
+    {
+        printf("Não há clientes cadastrados.\n");
         printf("Pressione ENTER para continuar...");
         getchar();
         return;
     }
 
+    printf("Digite o CPF do cliente que deseja buscar: ");
+    scanf("%s", cpf);
+    getchar();
+
     Clientes cli;
 
-    while (fread(&cli, sizeof(Clientes), 1, fc)) {
-        if (strcmp(cli.cpf, cpf) == 0) {
+    while (fread(&cli, sizeof(Clientes), 1, fc))
+    {
+        if (strcmp(cli.cpf, cpf) == 0)
+        {
             system("clear || cls");
             printf("Cliente encontrado!\n");
             printf("***********************************\n");
@@ -109,13 +146,14 @@ void busca_clien(void) {
             printf("Telefone: %s\n", cli.telefone);
             printf("***********************************\n");
             clienteEncontrado = 1;
-            break; 
+            break;
         }
     }
 
     fclose(fc);
 
-    if (!clienteEncontrado) {
+    if (!clienteEncontrado)
+    {
         printf("Cliente com CPF %s não encontrado.\n", cpf);
     }
 
@@ -123,9 +161,8 @@ void busca_clien(void) {
     getchar();
 }
 
-
-
-void atual_clien() {
+void atual_clien()
+{
     char cpf[12];
     int encontrado = 0;
 
@@ -133,22 +170,24 @@ void atual_clien() {
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM CLIENTE                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente que deseja atualizar: ");
-    scanf("%s", cpf);
-    getchar();
-
-    FILE* fc = fopen("./Clientes.dat", "r+b");  
-    if (fc == NULL) {
-        printf("Arquivo de clientes não encontrado.\n");
+    FILE *fc = fopen("./Clientes.dat", "r+b");
+    if (fc == NULL)
+    {
+        printf("Não há clientes cadastrados.\n");
         printf("Tecle ENTER para continuar\n");
         getchar();
         return;
     }
 
+    printf("Digite o CPF do cliente que deseja atualizar: ");
+    scanf("%s", cpf);
+    getchar();
     Clientes cli;
 
-    while (fread(&cli, sizeof(Clientes), 1, fc)) {
-        if (strcmp(cli.cpf, cpf) == 0) {
+    while (fread(&cli, sizeof(Clientes), 1, fc))
+    {
+        if (strcmp(cli.cpf, cpf) == 0)
+        {
             encontrado = 1;
 
             printf("Atualizando as informações do cliente:\n");
@@ -160,26 +199,27 @@ void atual_clien() {
             scanf("%d", &opcao);
             getchar();
 
-            switch (opcao) {
-                case 1:
-                    printf("Digite o novo nome do cliente: ");
-                    ler_nome(cli.nome);
-                    break;
-                case 2:
-                    ler_email(cli.email);
-                    break;
-                case 3:
-                    ler_telefone(cli.telefone);
-                    break;
-                default:
-                    printf("Opção inválida.\n");
-                    break;
+            switch (opcao)
+            {
+            case 1:
+                printf("Digite o novo nome do cliente: ");
+                ler_nome(cli.nome);
+                break;
+            case 2:
+                ler_email(cli.email);
+                break;
+            case 3:
+                ler_telefone(cli.telefone);
+                break;
+            default:
+                printf("Opção inválida.\n");
+                break;
             }
 
             cli.status = 1;
 
-            fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR);
-            fwrite(&cli, sizeof(Clientes), 1, fc);   
+            fseek(fc, -(long int)sizeof(Clientes), SEEK_CUR);
+            fwrite(&cli, sizeof(Clientes), 1, fc);
 
             printf("Cliente atualizado com sucesso.\n");
             break;
@@ -188,7 +228,8 @@ void atual_clien() {
 
     fclose(fc);
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         printf("Cliente com CPF %s não encontrado.\n", cpf);
     }
 
@@ -196,30 +237,33 @@ void atual_clien() {
     getchar();
 }
 
-
-void excl_clien() {
+void excl_clien()
+{
     char cpf[12];
     int encontrado = 0;
     system("clear || cls");
     printf("*********************************************************************\n");
     printf("                        DESATIVAR UM CLIENTE                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente que deseja desativar: ");
-    scanf("%s", cpf);
-    getchar();
-
-    FILE* fc = fopen("./Clientes.dat", "r+b");  
-    if (fc == NULL) {
-        printf("Arquivo de clientes não encontrado.\n");
+    FILE *fc = fopen("./Clientes.dat", "r+b");
+    if (fc == NULL)
+    {
+        printf("Não há clientes cadastrados\n");
         printf("Tecle ENTER para continuar\n");
         getchar();
         return;
     }
 
+    printf("Digite o CPF do cliente que deseja desativar: ");
+    scanf("%s", cpf);
+    getchar();
+
     Clientes cli;
 
-    while (fread(&cli, sizeof(Clientes), 1, fc)) {
-        if (strcmp(cli.cpf, cpf) == 0) {
+    while (fread(&cli, sizeof(Clientes), 1, fc))
+    {
+        if (strcmp(cli.cpf, cpf) == 0)
+        {
             encontrado = 1;
 
             printf("Deseja realmente desativar %s? \n 1- Sim \n 2-Não \n ", cli.nome);
@@ -227,12 +271,15 @@ void excl_clien() {
             scanf(" %c", &resposta);
             getchar();
 
-            if (resposta == 'S' || resposta == 's') {
+            if (resposta == 'S' || resposta == 's')
+            {
                 cli.status = 0;
-                fseek(fc, - (long int)sizeof(Clientes), SEEK_CUR); 
-                fwrite(&cli, sizeof(Clientes), 1, fc);   
+                fseek(fc, -(long int)sizeof(Clientes), SEEK_CUR);
+                fwrite(&cli, sizeof(Clientes), 1, fc);
                 printf("Cliente desativado com sucesso.\n");
-            } else {
+            }
+            else
+            {
                 break;
             }
         }
@@ -240,12 +287,11 @@ void excl_clien() {
 
     fclose(fc);
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         printf("Cliente com CPF %s não encontrado.\n", cpf);
     }
 
     printf("Tecle ENTER para continuar\n");
     getchar();
 }
-
-

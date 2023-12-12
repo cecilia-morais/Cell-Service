@@ -6,13 +6,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-  //Esse módulo está todas as chamadas de funções para que o menu principal dê certo
-char sw_cell() {
+// Esse módulo está todas as chamadas de funções para que o menu principal dê certo
+char sw_cell()
+{
   char op;
-  
-  while (op != '0') {
+
+  while (op != '0')
+  {
     op = cad_cell();
-    switch (op) {
+    switch (op)
+    {
     case '1':
       novo_cell();
       break;
@@ -27,12 +30,17 @@ char sw_cell() {
     case '4':
       excl_cell();
       break;
-       
+
     default:
-      if (op = '0'){
+      if (op = '0')
+      {
         printf("Voltando...\n");
-      }else{
+        getchar();
+      }
+      else
+      {
         printf("Opção inválida\n");
+        getchar();
       }
       break;
     }
@@ -40,11 +48,14 @@ char sw_cell() {
   return op;
 }
 
-char sw_clien() {
+char sw_clien()
+{
   char op;
-  while (op != '0') {
+  while (op != '0')
+  {
     op = cad_clien();
-    switch (op) {
+    switch (op)
+    {
     case '1':
       novo_clien();
       break;
@@ -61,10 +72,15 @@ char sw_clien() {
       break;
 
     default:
-    if (op = '0'){
+      if (op = '0')
+      {
         printf("Voltando...\n");
-      }else{
+        getchar();
+      }
+      else
+      {
         printf("Opção inválida\n");
+        getchar();
       }
       break;
     }
@@ -72,12 +88,15 @@ char sw_clien() {
   return op;
 }
 
-char sw_atendimentos() {
+char sw_atendimentos()
+{
   char op;
-  while (op != '0') {
+  while (op != '0')
+  {
 
     op = area_atendimento();
-    switch (op) {
+    switch (op)
+    {
     case '1':
       novo_atendimento();
       break;
@@ -89,12 +108,17 @@ char sw_atendimentos() {
     case '3':
       atual_atendimento();
       break;
-      
+
     default:
-    if (op = '0'){
+      if (op = '0')
+      {
         printf("Voltando...\n");
-      }else{
+        getchar();
+      }
+      else
+      {
         printf("Opção inválida\n");
+        getchar();
       }
       break;
     }
@@ -102,12 +126,52 @@ char sw_atendimentos() {
   return op;
 }
 
-
-char sw_sobre() {
+char sw_relatorios()
+{
   char op;
-  while (op != '0') {
+  while (op != '0')
+  {
+
+    op = relatorios();
+    switch (op)
+    {
+    case '1':
+      rel_cell();
+      break;
+
+    case '2':
+      rel_clien();
+      break;
+
+    case '3':
+      rel_atend();
+      break;
+
+    default:
+      if (op = '0')
+      {
+        printf("Voltando...\n");
+        getchar();
+      }
+      else
+      {
+        printf("Opção inválida\n");
+        getchar();
+      }
+      break;
+    }
+  }
+  return op;
+}
+
+char sw_sobre()
+{
+  char op;
+  while (op != '0')
+  {
     op = tela_sobre();
-    switch (op) {
+    switch (op)
+    {
     case '1':
       sobre();
       break;
@@ -117,9 +181,12 @@ char sw_sobre() {
       break;
 
     default:
-    if (op = '0'){
+      if (op = '0')
+      {
         printf("Voltando...\n");
-      }else{
+      }
+      else
+      {
         printf("Opção inválida\n");
       }
       break;
@@ -128,8 +195,8 @@ char sw_sobre() {
   return op;
 }
 
-
-void sobre() {
+void sobre()
+{
   system("clear || cls");
   printf("            Universidade Federal do Rio Grande do Norte\n          ");
   printf("                Centro de Ensino Superior do Seridó\n  ");
@@ -139,11 +206,10 @@ void sobre() {
   printf("                uma loja para conserto de celular.\n");
   printf("                 Desenvolvido por: Cecília Morais\n");
   getchar();
-
-
 }
 
-void equipe() {
+void equipe()
+{
   system("clear || cls");
   printf("            Universidade Federal do Rio Grande do Norte\n          ");
   printf("                Centro de Ensino Superior do Seridó\n  ");
@@ -154,10 +220,12 @@ void equipe() {
   getchar();
 }
 
-char tela_sobre() {
+char tela_sobre()
+{
   system("clear || cls");
   char op;
-  printf("*********************************************************************""\n");
+  printf("*********************************************************************"
+         "\n");
   printf("                             SOBRE                                     \n");
   printf("***********************************************************************\n");
   printf("1 - Tela sobre o projeto\n");

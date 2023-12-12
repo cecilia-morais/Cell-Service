@@ -49,6 +49,15 @@ void novo_atendimento()
     printf("*********************************************************************\n");
     printf("                           NOVO ATENDIMENTO                          \n");
     printf("*********************************************************************\n");
+    FILE *fcli = fopen("./Clientes.dat", "rb");
+    if (fcli == NULL)
+    {
+        printf("Nenhum cliente cadastrado.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
+        fclose(fcli);
+        return;
+    }
     Atendimentos novo_atendimento;
     Celulares celular;
 
@@ -63,6 +72,7 @@ void novo_atendimento()
     char descricao[100];
     char data_saida[11];
     int status;
+    int id_atd;
 
     int celular_encontrado = 0;
     while (!celular_encontrado && strcmp(cpf, "0") != 0)
@@ -80,13 +90,15 @@ void novo_atendimento()
         FILE *fc = fopen("./Celulares.dat", "rb");
         if (fc == NULL)
         {
-            printf("Erro ao abrir o arquivo de celulares.\n");
+            printf("Nenhum celular cadastrado.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
             return;
         }
 
-        while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
+        if (fread(&celular, sizeof(Celulares), 1, fc) == 1)
         {
-            while (strcmp(celular.cpf_cliente, cpf) == 0 && celular.status == 1)
+            if (strcmp(celular.cpf_cliente, cpf) == 0 && celular.status == 1)
             {
                 printf("ID do celular disponível para atendimento: %d\n", celular.id_celular);
                 printf("Modelo: %s\n", celular.modelo);
@@ -117,6 +129,8 @@ void novo_atendimento()
     if (fc == NULL)
     {
         printf("Erro ao abrir o arquivo de celulares.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         return;
     }
 
@@ -126,7 +140,7 @@ void novo_atendimento()
         if (celular.id_celular == id_em_cell && celular.status == 1)
         {
             celular_encontrado = 1;
-            celular.status = 3;                                  // Marca o celular como atendido
+            celular.status = 3; // Marca o celular como atendido
             fseek(fc, -((long int)sizeof(Celulares)), SEEK_CUR); // Volta para a posição correta no arquivo
             fwrite(&celular, sizeof(Celulares), 1, fc);          // Atualiza as informações do celular no arquivo
             break;
@@ -142,7 +156,7 @@ void novo_atendimento()
     }
 
     snprintf(data_saida, sizeof(novo_atendimento.data_saida), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
-    id_atendimento = criar_id_a();
+    id_atd = criar_id_a();
     printf("Digite a descrição do atendimento:\n");
     fgets(descricao, sizeof(descricao), stdin);
     printf("O problema foi resolvido?\n");
@@ -166,7 +180,7 @@ void novo_atendimento()
         return;
     }
 
-    novo_atendimento.id_atendimento = id_atendimento;
+    novo_atendimento.id_atendimento = id_atd;
     strncpy(novo_atendimento.cpf, cpf, sizeof(novo_atendimento.cpf));
     strncpy(novo_atendimento.descricao, descricao, sizeof(novo_atendimento.descricao));
     strncpy(novo_atendimento.data_saida, data_saida, sizeof(novo_atendimento.data_saida));
@@ -178,40 +192,29 @@ void novo_atendimento()
 void busca_atendimento()
 {
     char cpf[12];
-    int id;
     system("clear || cls");
     printf("*********************************************************************\n");
-    printf("                 BUSCAR ATENDIMENTOS CADASTRADOS                      \n");
+    printf("                         BUSCAR UM ATENDIMENTO                        \n");
     printf("*********************************************************************\n");
-    printf("Digite o CPF do cliente (ou 0 para sair): ");
-    scanf("%s", cpf);
-    cpf[strcspn(cpf, "\n")] = '\0'; // Remove a quebra de linha do final do CPF
-    if  ((strcmp(cpf, "0") == 0))
-    {
-        return;
-    }
-    
-
-    printf("Digite o ID do atendimento (ou 0 para sair): ");
-    scanf("%d", &id);
-    getchar();
-
-    if (id == 0)
-    {
-        return;
-    }
-
     FILE *fa = fopen("./Atendimentos.dat", "rb");
     if (fa == NULL)
     {
-        printf("Erro ao abrir o arquivo de atendimentos.\n");
+        printf("Nenhum atendimento cadastrado até o momento.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         return;
     }
+    
+    printf("Digite o CPF do cliente: ");
+    fgets(cpf, sizeof(cpf), stdin);
+    cpf[strcspn(cpf, "\n")] = '\0'; // Remove a quebra de linha do final do CPF
 
     FILE *fc = fopen("./Celulares.dat", "rb");
     if (fc == NULL)
     {
         printf("Erro ao abrir o arquivo de celulares.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         return;
     }
@@ -220,6 +223,8 @@ void busca_atendimento()
     if (fcli == NULL)
     {
         printf("Erro ao abrir o arquivo de clientes.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         fclose(fc);
         return;
@@ -242,10 +247,11 @@ void busca_atendimento()
     if (!atendimento_encontrado)
     {
         printf("Não foram encontrados atendimentos para o CPF informado.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         fclose(fc);
         fclose(fcli);
-
         return;
     }
 
@@ -265,6 +271,8 @@ void busca_atendimento()
     if (!celular_encontrado)
     {
         printf("Não foi encontrado um celular cadastrado para o CPF informado no atendimento.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         fclose(fc);
         fclose(fcli);
@@ -284,12 +292,14 @@ void busca_atendimento()
     if (!cliente_encontrado)
     {
         printf("Não foi encontrado um cliente cadastrado para o CPF informado no atendimento.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         fclose(fc);
         fclose(fcli);
         return;
     }
-
+    int id;
     printf("Digite o ID do atendimento ou '0' para voltar: ");
     scanf("%d", &id);
     getchar();
@@ -297,6 +307,8 @@ void busca_atendimento()
     if (atendimento.id_atendimento != id)
     {
         printf("O ID do atendimento informado não corresponde ao CPF informado.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
         fclose(fa);
         fclose(fc);
         fclose(fcli);
@@ -340,21 +352,12 @@ void atual_atendimento()
     printf("*********************************************************************\n");
     printf("                         ATUALIZAR UM ATENDIMENTO                    \n");
     printf("*********************************************************************\n");
-    while (strcmp(cpf, "0") != 0 && id_aparelho != 0)
-    {
-        printf("Digite o CPF do cliente ou '0' para voltar:\n ");
-        fgets(cpf, sizeof(cpf), stdin);
-        printf("Digite o ID do aparelho que deseja atualizar ou '0' para voltar: \n");
-        scanf("%d", &id_aparelho);
-        getchar();
-        printf(" O que deseja atualizar?\n1- Descrição\n2- O aparelho teve o probelma resolvido\n 3- Aparelho atendido é errado\n");
-        scanf("%d", &op);
-        printf("Tecle ENTER para continuar \n");
-        getchar();
-        FILE *fa = fopen("./Atendimentos.dat", "rb");
+    FILE *fa = fopen("./Atendimentos.dat", "rb");
         if (fa == NULL)
         {
             printf("Erro ao abrir o arquivo de atendimentos.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
             return;
         }
 
@@ -362,6 +365,8 @@ void atual_atendimento()
         if (fc == NULL)
         {
             printf("Erro ao abrir o arquivo de celulares.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
             fclose(fa);
             return;
         }
@@ -370,6 +375,8 @@ void atual_atendimento()
         if (fcli == NULL)
         {
             printf("Erro ao abrir o arquivo de clientes.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
             fclose(fa);
             fclose(fc);
             return;
@@ -378,6 +385,68 @@ void atual_atendimento()
         Atendimentos atendimento;
         Celulares celular;
         Clientes cliente;
+
+        printf("Digite o CPF do cliente ou '0' para voltar:\n ");
+        fgets(cpf, sizeof(cpf), stdin);
+        if (strcmp(cpf, "0") == 0)
+        {
+            limpar_buffer();
+            return;
+        }
+
+        if (cpf[strcspn(cpf, "\n")] == '\0')
+        {
+            printf("CPF inválido.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
+            return;
+        }
+
+        if (atendimento.cpf != cpf)
+        {
+            printf("CPF não encontrado.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
+            return;
+        }
+        printf("Digite o ID do aparelho que deseja atualizar ou '0' para voltar: \n");
+        scanf("%d", &id_aparelho);
+        getchar();
+
+        if (id_aparelho == 0)
+        {
+            limpar_buffer();
+            return;
+        }
+
+        if (atendimento.id_atendimento != id_aparelho)
+        {
+            printf("O ID do atendimento informado não corresponde ao CPF informado.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
+            fclose(fa);
+            fclose(fc);
+            fclose(fcli);
+            return;
+        }
+
+        printf(" O que deseja atualizar?\n1- Descrição\n2- O aparelho teve o probelma resolvido\n 3- Aparelho atendido é errado\n 0- Voltar\n");
+        scanf("%d", &op);
+        printf("Tecle ENTER para continuar \n");
+        getchar();
+        if (op == 0)
+        {
+            limpar_buffer();
+            return;
+        }
+
+        if (op != 1 && op != 2 && op != 3)
+        {
+            printf("Opção inválida.\n");
+            printf("Tecle ENTER para continuar \n");
+            getchar();
+            return;
+        }
 
         int atendimento_encontrado = 0;
         while (fread(&atendimento, sizeof(Atendimentos), 1, fa) == 1)
@@ -480,7 +549,6 @@ void atual_atendimento()
 
         printf("Tecle ENTER para continuar \n");
         getchar();
-    }
 }
 // NAO EXISTIRÁ O DELETE UM ATENDIMENTO PARA QUE TODOS OS ATENDIMENTOS, INCLUINDO OS CANCELADOS, FIQUEM REGISTRADOS!!
 
@@ -525,5 +593,3 @@ int criar_id_a(void)
         return id;
     }
 }
-
-

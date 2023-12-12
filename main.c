@@ -13,9 +13,8 @@ void tela_carregamento(void);
 
 int main(void)
 {
-  tela_inicial(); 
+  tela_inicial(); // Função feita com ajuda do ChatGPT e aprimorada por Cecilia Morais
   tela_carregamento();
-
   char op;
   do
   {
@@ -37,11 +36,16 @@ int main(void)
       break;
 
     case '4':
-      relatorios();
+      sw_relatorios();
       break;
 
     case '5':
       sw_sobre();
+      break;
+    
+    case '\n':
+      printf("Opção inválida\n");
+      getchar();
       break;
 
     default:
@@ -52,6 +56,7 @@ int main(void)
       else
       {
         printf("Opção inválida\n");
+        getchar();
       }
       break;
     }
@@ -104,7 +109,7 @@ void tela_inicial()
       printf("%s", cores[i]);
       printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
       printf("        ______________                                                               \n");
-      printf("       |    • ====    |      _______________________________________________________ \n");
+      printf("       |    . ====    |      _______________________________________________________ \n");
       printf("       | ____________ |     |     ,,---.     ,---.                 o                |\n");
       printf("       ||            ||     |    ||          `---. ,---. ,--. .    ,. ,---. ,---.   |\n");
       printf("       ||       //   ||     |    ||              | |---' |     \\ / | |     |---'    |\n");
@@ -113,11 +118,12 @@ void tela_inicial()
       printf("       ||            ||                    A sua loja de conserto de celulares!!     \n");
       printf("       ||   //       ||                                                              \n");
       printf("       ||____________||                                                              \n");
-      printf("       |       ●      |                                                              \n");
+      printf("       |       o      |                                                              \n");
       printf("       |______________|                                                              \n");
       printf("                                                                                     \n");
       printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
       printf("\033[0m"); // Código de escape para restaurar a cor padrão
+      fflush(stdout); // Limpar o buffer de saída para garantir que os caracteres apareçam imediatamente
       // Aguarde um curto período para criar o efeito de piscar
       usleep(500000);
       system("clear || cls"); // Limpar a tela
