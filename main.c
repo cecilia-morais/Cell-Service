@@ -13,6 +13,7 @@ void tela_carregamento(void);
 
 int main(void)
 {
+  
   tela_inicial(); // Função feita com ajuda do ChatGPT e aprimorada por Cecilia Morais
   tela_carregamento();
   char op;
@@ -101,7 +102,7 @@ void tela_inicial()
   int num_cores = sizeof(cores) / sizeof(cores[0]);
 
   int i, j;
-  for (j = 0; j < 3; j++)
+  for (j = 0; j < 1; j++)
   { // Altere o número de iterações conforme necessário
 
     for (i = 0; i < num_cores; i++)

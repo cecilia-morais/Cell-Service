@@ -60,14 +60,14 @@ void novo_clien(void)
     printf("Digite o nome do cliente ");
     ler_nome(nome);
     ler_cpf(cpf);
-    if (novo_cliente.cpf == cpf)
+    if (strcmp(novo_cliente.cpf, cpf) == 0)
     {
         printf("CPF já cadastrado\n");
         getchar();
         return;
     }
     ler_email(email);
-    if (novo_cliente.email == email)
+    if (strcmp(novo_cliente.email, email) == 0)
     {
         printf("Email já cadastrado\n");
         printf("Deseja cadastrar mesmo assim?");
@@ -82,7 +82,7 @@ void novo_clien(void)
         }
     }
     ler_telefone(telefone);
-    if (novo_cliente.telefone == telefone)
+    if (strcmp(novo_cliente.telefone, telefone) == 0)
     {
         printf("Telefone já cadastrado\n");
         printf("Deseja cadastrar mesmo assim?");
@@ -96,6 +96,7 @@ void novo_clien(void)
             return;
         }
     }
+
     status = 1;
 
     strncpy(novo_cliente.cpf, cpf, sizeof(novo_cliente.cpf));

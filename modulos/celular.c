@@ -53,6 +53,7 @@ void novo_cell(void)
     char problema[100];
     char data_cadastro[11];
     int status;
+    int id_cell;
     time_t rawtime;
     struct tm *info;
     time(&rawtime);
@@ -119,8 +120,8 @@ void novo_cell(void)
 
     status = 1;
 
-    id_celular = criar_id_d();
-    novo_celular.id_celular = id_celular;
+    id_cell = criar_id_d();
+    novo_celular.id_celular = id_cell;
     strncpy(novo_celular.cpf_cliente, cpf_cliente, sizeof(novo_celular.cpf_cliente));
     strncpy(novo_celular.modelo, modelo, sizeof(novo_celular.modelo));
     strncpy(novo_celular.marca, marca, sizeof(novo_celular.marca));
@@ -149,91 +150,126 @@ void busca_cell()
     printf("                          BUSCAR UM CELULAR                          \n");
     printf("*********************************************************************\n");
     FILE *fc = fopen("./Celulares.dat", "rb");
-
     if (fc == NULL)
     {
-        printf("Nenhum celular cadastrado.\n");
-        printf("Tecle ENTER para continuar\n");
+        printf("Nenhum celular cadastrado até o momento.\n");
+        printf("Tecle ENTER para continuar \n");
         getchar();
         return;
     }
 
-    printf("Digite o CPF do cliente:\n ");
-    fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
-    limpar_buffer();
-    system("clear || cls");
-
-    FILE *fc_clientes = fopen("./Clientes.dat", "rb");
-
-    if (fc_clientes == NULL)
+    FILE *fcli = fopen("./Clientes.dat", "rb");
+    if (fcli == NULL)
     {
-        printf("Arquivo de clientes não encontrado.\n");
-        printf("Tecle ENTER para continuar\n");
+        printf("Erro ao abrir o arquivo de clientes.\n");
+        printf("Tecle ENTER para continuar \n");
         getchar();
+        fclose(fc);
+        fclose(fcli);
         return;
     }
-    FILE *fa = fopen("./Atendimentos.dat", "rb");
-                Atendimentos atendimento;
-
+    Celulares celular;
     Clientes cliente;
 
-    while (fread(&cliente, sizeof(Clientes), 1, fc_clientes))
+    printf("Digite o CPF do cliente ou '0' para sair: ");
+    fgets(cpf_cliente, sizeof(cpf_cliente), stdin);
+    cpf_cliente[strcspn(cpf_cliente, "\n")] = '\0'; // Remove a quebra de linha do final do CPF
+    if (strcmp(cpf_cliente, "0") == 0)
     {
-        if (strcmp(cliente.cpf, cpf_cliente) == 0)
-        {
-            strncpy(nome, cliente.nome, sizeof(nome));
-            cliente_encontrado = 1;
-            break;
-        }
-    }
-
-    if (!cliente_encontrado)
-    {
-        printf("Cliente não encontrado.\n");
-        printf("Tecle ENTER para continuar\n");
-        getchar();
-        fclose(fc_clientes);
         return;
     }
 
-    fclose(fc_clientes);
-
-    Celulares cel;
-
-    while (fread(&cel, sizeof(Celulares), 1, fc))
+ 
+    
+    while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
     {
-        while (strcmp(cel.cpf_cliente, cpf_cliente) == 0 && cel.status != 0)
+        if (strcmp(celular.cpf_cliente, cpf_cliente) == 0)
         {
-            printf("CELULAR ENCONTRADO:\n\n");
-            printf("NOME DO CLIENTE: %s\n", cliente.nome);
-            printf("ID DO APARELHO: %d\n", cel.id_celular);
-            printf("MODELO: %s\n", cel.modelo);
-            printf("MARCA: %s\n", cel.marca);
-            printf("PROBLEMA: %s\n", cel.problema);
-            printf("DATA DE ENTRADA: %s\n", cel.data_cadastro);
-            if (cel.status == 3)
-            {
-                printf("DATA DE SAÍDA: %s\n", atendimento.data_saida);
-                printf("Celular foi atendido!\n");
-                
-
-            }
-            printf("_____________________________________________________________________\n");
             celular_encontrado = 1;
-            break;
+            printf("Celular encontrado:\n\n");
+            printf("ID do Celular: %d\n", celular.id_celular);
+            printf("Marca: %s\n", celular.marca);
+            printf("Modelo: %s\n", celular.modelo);
+            printf("__________________________________________________\n");
         }
     }
+
+    // fclose(fc);
+
+    getchar();
 
     if (!celular_encontrado)
     {
-        printf("Celular não encontrado.\n");
+        printf("Não foi encontrado um celular cadastrado para o CPF informado.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
+        fclose(fc);
+        fclose(fcli);
+        return;
     }
-    fclose(fa);
-    fclose(fc);
-    fclose(fc_clientes);
-    printf("Tecle ENTER para continuar\n");
-    getchar();
 
+    int id;
+    printf("\nDigite o ID do celular ou '0' para voltar: ");
+    scanf("%d", &id);
+    getchar();
+    
+    if (id == 0)
+    {
+        return;
+    }
+
+    while(fread(&celular, sizeof(Celulares), 1, fc) == 1)
+    {
+        printf("ID do Celular: %d\n", celular.id_celular);
+    }
+
+
+    // while (fread(&celular, sizeof(Celulares), 1, fc) == 1 && fread(&cliente, sizeof(Clientes), 1, fcli) == 1)
+    // {
+    //     system("clear || cls");
+    //     printf("ID do Celular: %d\n", celular.id_celular);
+    //     printf("Cliente: %s\n", cliente.nome);
+    //     printf("CPF do Cliente: %s\n", cliente.cpf);
+    //     printf("Marca: %s\n", celular.marca);
+    //     printf("Modelo: %s\n", celular.modelo);
+    //     printf("Problema: %s\n", celular.problema);
+    //     printf("Data de entrada: %s\n", celular.data_cadastro);
+    //     getchar();
+    //     if (celular.status == 1)
+    //     {
+    //         printf("O aparelho está em manutenção.\n");
+    //         getchar();
+    //     }
+    //     else if (celular.status == 3)
+    //     {
+    //         FILE *fa = fopen("./Atendimentos.dat", "rb");
+    //         Atendimentos atendimento;
+    //         if (fread(&atendimento, sizeof(Atendimentos), 1, fa))
+    //         {
+    //             printf("O aparelho foi consertado.\n");
+    //             printf("Data de Saída: %s\n", atendimento.data_saida);
+    //             getchar();
+    //         }
+    //     }
+    // }
+
+
+    if (celular.id_celular != id)
+    {
+        printf("O ID do atendimento informado não está disponivel.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
+        fclose(fc);
+        fclose(fcli);
+        return;
+    }
+
+    fclose(fc);
+    fclose(fcli);
+    printf("\n");
+    printf("Tecle ENTER para continuar \n");
+    getchar();
+    return;
 }
 
 void atual_cell()

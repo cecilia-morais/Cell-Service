@@ -64,7 +64,7 @@ char rel_clien()
               switch (op)
               {
               case '1':
-                     clientes_por_ordem_alfabética();
+                     clientes_por_ordem_alfabetica();
                      break;
               case '2':
                      todos_clientes();
@@ -106,6 +106,10 @@ char relatorios_celulares()
        printf("Tecle ENTER para continuar \n");
        getchar();
        return opr;
+}
+
+void celulares_atendidos(){
+
 }
 
 char rel_cell()
@@ -150,7 +154,7 @@ char relatorios_atendimentos()
        printf("*********************************************************************"
               "\n");
        printf("Pressione o número desejado para imprimir o relátorio de: \n ");
-       printf("1 - Atendimentos por data ");
+       printf("1 - Atendimentos por data\n ");
        printf("2 - Todos os atendimentos\n");
        printf(" 0 - Sair\n");
        printf("Digite a opção desejada: ");
@@ -344,7 +348,7 @@ void celulares_por_data_de_entrada()
        fclose(fc_celulares);
 }
 
-void clientes_por_ordem_alfabética()
+void clientes_por_ordem_alfabetica()
 {
        // FUNÇÃO FEITA COM AJUDA DO CHATGPT
        system("clear || cls");
@@ -492,7 +496,7 @@ void exibindo_celulares(Celulares *celular)
                                    printf("Telefone do cliente: %s\n", clientes.telefone);
                                    printf("Tecle ENTER para continuar \n");
                                    getchar();
-                                   break;
+                                   return;
                             }
                      }
               }

@@ -13,7 +13,7 @@ void listar_cliente(void);
 void listar_atendimentos(void);
 void todos_atendimentos(void);
 void exibindo_atendimentos(Atendimentos *atendimentos);
-void clientes_por_ordem_alfabética(void);
+void clientes_por_ordem_alfabetica(void);
 void celulares_por_data_de_entrada(void);
 char rel_cell(void);
 char rel_clien(void);
