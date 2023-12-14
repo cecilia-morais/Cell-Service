@@ -126,7 +126,7 @@ void tela_inicial()
       printf("\033[0m"); // Código de escape para restaurar a cor padrão
       fflush(stdout); // Limpar o buffer de saída para garantir que os caracteres apareçam imediatamente
       // Aguarde um curto período para criar o efeito de piscar
-      usleep(500000);
+      sleep(1);
       system("clear || cls"); // Limpar a tela
     }
   }
@@ -144,10 +144,10 @@ void tela_carregamento()
   {
     printf(".");
     fflush(stdout);  // Limpar o buffer de saída para garantir que os pontos apareçam imediatamente
-    usleep(500000);  // Aguardar 500ms entre cada ponto
+    sleep(1);  // Aguardar 500ms entre cada ponto
     printf("\b \b"); // Apagar o ponto anterior usando caracteres de retorno (\b) e espaço em branco
     fflush(stdout);  // Limpar novamente o buffer de saída
-    usleep(500000);  // Aguardar mais 500ms antes do próximo ponto
+    sleep(1);  // Aguardar mais 500ms antes do próximo ponto
   }
   printf("\n");
 }
