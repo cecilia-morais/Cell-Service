@@ -51,7 +51,7 @@ void novo_clien(void)
     printf("                       CADASTRAR UM NOVO CLIENTE                     \n");
     printf("*********************************************************************\n");
 
-    char cpf[12];
+    char cpf[15];
     char nome[70];
     char email[100];
     char telefone[15];
@@ -115,7 +115,7 @@ void novo_clien(void)
 
 void busca_clien(void)
 {
-    char cpf[12];
+    char cpf[15];
     int clienteEncontrado = 0;
 
     system("clear || cls");
@@ -134,6 +134,12 @@ void busca_clien(void)
     printf("Digite o CPF do cliente que deseja buscar: ");
     scanf("%s", cpf);
     getchar();
+    if (cliente_existente_cpf(cpf) == 0)
+    {
+        printf("CPF não cadastrado\n");
+        getchar();
+        return;
+    }
 
     Clientes cli;
 
@@ -166,7 +172,7 @@ void busca_clien(void)
 
 void atual_clien()
 {
-    char cpf[12];
+    char cpf[15];
     int encontrado = 0;
 
     system("clear || cls");
@@ -242,7 +248,7 @@ void atual_clien()
 
 void excl_clien()
 {
-    char cpf[12];
+    char cpf[15];
     int encontrado = 0;
     system("clear || cls");
     printf("*********************************************************************\n");
