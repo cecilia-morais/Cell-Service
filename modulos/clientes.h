@@ -17,4 +17,7 @@ void busca_clien(void);
 void atual_clien(void);
 void excl_clien(void);
 void grava_cliente(Clientes* clientes);
+int cliente_existente_cpf(const char* cpf);
+int cliente_existente_email(const char* email);
+int cliente_existente_telefone(const char* telefone);
 

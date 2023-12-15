@@ -165,6 +165,8 @@ char relatorios_atendimentos()
        return opr;
 }
 
+
+
 char rel_atend()
 {
        char op;
@@ -347,6 +349,62 @@ void celulares_por_data_de_entrada()
        free(celulares);
        fclose(fc_celulares);
 }
+
+// void celulares_atendidos_e_nao_atendidos()
+// {
+//        // FUNÇÃO FEITA COM AJUDA DO CHATGPT
+//        system("clear || cls");
+//        printf("*********************************************************************"
+//                  "\n");
+//        printf("              CELULARES ATENDIDOS E NÃO ATENDIDOS                   "
+//                  "\n");
+//        printf("*********************************************************************"
+//                  "\n");
+
+//        FILE *fc_celulares = fopen("./Celulares.dat", "rb");
+//        if (fc_celulares == NULL)
+//        {
+//               printf("Arquivo Celulares.dat não encontrado.\n");
+//               printf("Tecle ENTER para continuar \n");
+//               getchar();
+//               return;
+//        }
+
+//        // Obter o número total de registros no arquivo
+//        fseek(fc_celulares, 0, SEEK_END);
+//        long int num_registros = ftell(fc_celulares) / sizeof(Celulares);
+//        rewind(fc_celulares);
+
+//        // Contadores para celulares atendidos e não atendidos
+//        int atendidos = 0;
+//        int nao_atendidos = 0;
+
+//        // Ler todos os registros de celulares para um array
+//        Celulares *celulares = (Celulares *)malloc(num_registros * sizeof(Celulares));
+//        fread(celulares, sizeof(Celulares), num_registros, fc_celulares);
+
+//        // Verificar se cada celular foi atendido ou não
+//        for (int i = 0; i < num_registros; i++)
+//        {
+//               if (celulares[i].atendido)
+//               {
+//                      atendidos++;
+//               }
+//               else
+//               {
+//                      nao_atendidos++;
+//               }
+//        }
+
+//        printf("Número de celulares atendidos: %d\n", atendidos);
+//        printf("Número de celulares não atendidos: %d\n", nao_atendidos);
+
+//        printf("Tecle ENTER para continuar \n");
+//        getchar();
+
+//        free(celulares);
+//        fclose(fc_celulares);
+// }
 
 void clientes_por_ordem_alfabetica()
 {
