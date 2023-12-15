@@ -209,8 +209,8 @@ void sobre()
   printf("                      Colaborador: Matheus Diniz\n");
   printf("                      GitHub: @matheusdiniz01         \n");
   printf("                      Colaborador: Maxuel Gadelha\n");
-  printf("                      GitHub: @maxuelgadelha         \n\n")
-      printf("Tecla ENTER para continuar \n");
+  printf("                      GitHub: @maxuelgadelha         \n\n");
+  printf("Tecla ENTER para continuar \n");
   getchar();
 }
 
