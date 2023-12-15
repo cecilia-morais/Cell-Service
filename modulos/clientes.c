@@ -191,6 +191,13 @@ void atual_clien()
     printf("Digite o CPF do cliente que deseja atualizar: ");
     scanf("%s", cpf);
     getchar();
+    if (cliente_existente_cpf(cpf) == 0)
+    {
+        printf("CPF não cadastrado\n");
+        getchar();
+        return;
+    }
+
     Clientes cli;
 
     while (fread(&cli, sizeof(Clientes), 1, fc))
@@ -266,6 +273,12 @@ void excl_clien()
     printf("Digite o CPF do cliente que deseja desativar: ");
     scanf("%s", cpf);
     getchar();
+    if (cliente_existente_cpf(cpf) == 0)
+    {
+        printf("CPF não cadastrado\n");
+        getchar();
+        return;
+    }   
 
     Clientes cli;
 
