@@ -70,7 +70,6 @@ void novo_atendimento()
         printf("Nenhum cliente cadastrado.\n");
         printf("Tecle ENTER para continuar \n");
         getchar();
-        fclose(fcli);
         return;
     }
      FILE *fc = fopen("./Celulares.dat", "rb");
