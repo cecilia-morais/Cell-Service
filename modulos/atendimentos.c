@@ -50,7 +50,6 @@ void novo_atendimento()
     struct tm *info;
     time(&rawtime);
     info = localtime(&rawtime);
-
     char cpf[12];
     int id_em_cell;
     char descricao[100];
@@ -62,15 +61,7 @@ void novo_atendimento()
     printf("*********************************************************************\n");
     printf("                           NOVO ATENDIMENTO                          \n");
     printf("*********************************************************************\n");
-   
-    FILE *fcli = fopen("./Clientes.dat", "rb");
-    if (fcli == NULL)
-    {
-        printf("Nenhum cliente cadastrado.\n");
-        printf("Tecle ENTER para continuar \n");
-        getchar();
-        return;
-    }
+
      FILE *fc = fopen("./Celulares.dat", "rb");
     if (fc == NULL)
     {
@@ -110,13 +101,11 @@ void novo_atendimento()
             printf("Tecle ENTER para continuar \n");
             getchar();
             fclose(fc);
-            fclose(fcli);
             return;
         }
     }
 
     fseek(fc, 0, SEEK_SET);
-    fseek(fcli, 0, SEEK_SET);
     getchar();
 
 
@@ -144,7 +133,6 @@ void novo_atendimento()
         printf("O ID do celular informado não existe ou não está disponível para atendimento.\n");
         printf("Tecle ENTER para continuar \n");
         getchar();
-        fclose(fcli);
         return;
     }
 
