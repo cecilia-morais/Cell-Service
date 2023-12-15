@@ -305,7 +305,6 @@ int cliente_existente_cpf(const char *cpf)
     FILE *fc = fopen("./Clientes.dat", "rb");
     if (fc == NULL)
     {
-        printf("Não há clientes cadastrados\n");
         return 0;
     }
 
@@ -329,7 +328,6 @@ int cliente_existente_email(const char *email)
     FILE *fc = fopen("./Clientes.dat", "rb");
     if (fc == NULL)
     {
-        printf("Não há clientes cadastrados\n");
         return 0;
     }
 
@@ -353,7 +351,6 @@ int cliente_existente_telefone(const char *telefone)
     FILE *fc = fopen("./Clientes.dat", "rb");
     if (fc == NULL)
     {
-        printf("Não há clientes cadastrados\n");
         return 0;
     }
 

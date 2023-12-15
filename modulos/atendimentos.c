@@ -97,7 +97,7 @@ void novo_atendimento()
 
     while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
     {
-        if (strcmp(celular.cpf_cliente, cpf) == 0)
+        if (strcmp(celular.cpf_cliente, cpf) == 0 && celular.status == 1)
         {
             celular_encontrado = 1;
             printf("ID do Celular: %d\n", celular.id_celular);
