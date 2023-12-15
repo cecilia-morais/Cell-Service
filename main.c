@@ -49,18 +49,14 @@ int main(void)
       getchar();
       break;
 
+    case '0':
+      printf("Encerrando...\n");
+      break;
+
     default:
-      if (op = '0')
-      {
-        printf("Encerrando...\n");
-      }
-      else
-      {
         printf("Opção inválida\n");
         getchar();
-      }
-      break;
-    }
+        break;
 
   } while (op != '0');
   printf("FIM DO PROGRAMA!");
