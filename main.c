@@ -13,7 +13,6 @@ void tela_carregamento(void);
 
 int main(void)
 {
-  
   tela_inicial(); // Função feita com ajuda do ChatGPT e aprimorada por Cecilia Morais
   tela_carregamento();
   char op;
@@ -57,11 +56,13 @@ int main(void)
         printf("Opção inválida\n");
         getchar();
         break;
+    }
 
   } while (op != '0');
   printf("FIM DO PROGRAMA!");
   return 0;
 }
+
 
 char menu_principal()
 {
