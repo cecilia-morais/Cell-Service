@@ -51,7 +51,6 @@ void novo_atendimento()
     time(&rawtime);
     info = localtime(&rawtime);
 
-    int id_atendimento;
     char cpf[12];
     int id_em_cell;
     char descricao[100];
@@ -83,7 +82,6 @@ void novo_atendimento()
 
     Atendimentos novo_atendimento;
     Celulares celular;
-    Clientes cliente;
 
     printf("Digite o CPF do cliente ou '0' para sair: ");
     fgets(cpf, sizeof(cpf), stdin);

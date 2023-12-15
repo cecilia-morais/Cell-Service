@@ -205,6 +205,12 @@ void sobre()
   printf("           Esse projeto está sendo desenvolvido para simular \n ");
   printf("                uma loja para conserto de celular.\n");
   printf("                 Desenvolvido por: Cecília Morais\n");
+  printf("                      GitHub: @cecília-morais         \n");
+  printf("                      Colaborador: Matheus Diniz\n");
+  printf("                      GitHub: @matheusdiniz01         \n");
+  printf("                      Colaborador: Maxuel Gadelha\n");
+  printf("                      GitHub: @maxuelgadelha         \n\n")
+      printf("Tecla ENTER para continuar \n");
   getchar();
 }
 
@@ -217,6 +223,11 @@ void equipe()
   printf("                      Projeto Cell Service\n  ");
   printf("                 Desenvolvido por: Cecilia Morais\n");
   printf("                      GitHub: @cecília-morais         \n");
+  printf("                      Colaborador: Matheus Diniz\n");
+  printf("                      GitHub: @matheusdiniz01         \n");
+  printf("                      Colaborador: Maxuel Gadelha\n");
+  printf("                      GitHub: @maxuelgadelha         \n\n");
+  printf("Tecla ENTER para continuar \n");
   getchar();
 }
 
