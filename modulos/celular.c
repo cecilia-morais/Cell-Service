@@ -102,19 +102,14 @@ void novo_cell(void)
     printf("Digite a marca do aparelho: \n ");
     fgets(marca, sizeof(marca), stdin);
     marca[strlen(marca) - 1] = 0;
-    getchar();
 
-    limpar_buffer();
     printf("Digite o modelo do aparelho: \n");
     fgets(modelo, sizeof(modelo), stdin);
     modelo[strlen(modelo) - 1] = 0;
-    getchar();
 
-    limpar_buffer();
     printf("Digite o problema do aparelho: ");
     fgets(problema, sizeof(problema), stdin);
     problema[strlen(problema) - 1] = 0;
-    getchar();
 
     snprintf(data_cadastro, sizeof(novo_celular.data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
 
@@ -182,32 +177,33 @@ void busca_cell()
 
     while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
     {
-        if (strcmp(celular.cpf_cliente, cpf_cliente) == 0)
+        if (strcmp(celular.cpf_cliente, cpf_cliente) == 0 && celular.status != 0)
         {
             celular_encontrado = 1;
-            printf("Celular encontrado:\n\n");
             printf("ID do Celular: %d\n", celular.id_celular);
             printf("Marca: %s\n", celular.marca);
             printf("Modelo: %s\n", celular.modelo);
             printf("__________________________________________________\n");
         }
-        else
-        {
-            printf("Não foi encontrado um celular cadastrado para o CPF informado.\n");
-            printf("Tecle ENTER para continuar \n");
-            getchar();
-            fclose(fc);
-            fclose(fcli);
-            return;
-        }
     }
 
-    fseek(fc, 0, SEEK_SET);
-    fseek(fcli, 0, SEEK_SET);
+    if(celular_encontrado == 0)
+    {
+        printf("Não foi encontrado um celular cadastrado para o CPF informado.\n");
+        printf("Tecle ENTER para continuar \n");
+        getchar();
+        getchar();
+        fclose(fc);
+        fclose(fcli);
+        return;
+    }
+
+    fseek(fc, 0, SEEK_SET); // Volta para o início do arquivo de celulares
+    fseek(fcli, 0, SEEK_SET); // Volta para o início do arquivo de clientes 
     getchar();
 
     int id;
-    printf("\nDigite o ID do celular ou '0' para voltar: ");
+    printf("\nDigite o ID do celular para ver seu atendimento ou '0' para voltar: ");
     scanf("%d", &id);
     getchar();
     if (id == 0)
@@ -216,6 +212,7 @@ void busca_cell()
     }
     FILE *fa = fopen("./Atendimentos.dat", "rb");
     Atendimentos atendimentos;
+
     
     while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
     {
@@ -226,10 +223,22 @@ void busca_cell()
             printf("Marca: %s\n", celular.marca);
             printf("Problema: %s\n", celular.problema);
             printf("Data de entrada: %s\n", celular.data_cadastro);
-            if (celular.status == 3 && fread (&atendimentos, sizeof(Atendimentos), 1, fa) == 1){
-            
-                printf("Data de saída: %s\n", atendimentos.data_saida);
-                printf("O Aparelho foi atendido.\n");
+            if (celular.status == 3){
+                while(fread(&atendimentos, sizeof(Atendimentos), 1, fa) == 1) {
+                    if (atendimentos.id_celular == celular.id_celular) {
+                        printf("Data de saída: %s\n", atendimentos.data_saida);
+                        printf("O Aparelho foi atendido.\n");
+                    }
+                }
+            }
+            if (celular.status == 2){
+                printf("O aparelho ainda não foi atendido.\n");
+            }
+            if (celular.status == 1){
+                printf("O aparelho foi consertado.\n");
+            }
+            if (celular.status == 0){
+                printf("O aparelho foi desativado.\n");
             }
 
             celular_encontrado = 1;
@@ -250,7 +259,9 @@ void busca_cell()
 
     fclose(fc);
     fclose(fcli);
-    fclose(fa);
+    if(fa != NULL) {
+        fclose(fa);
+    }
     printf("\n");
     getchar();
     return;

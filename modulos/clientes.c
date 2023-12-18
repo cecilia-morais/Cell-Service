@@ -66,6 +66,36 @@ void novo_clien(void)
         getchar();
         return;
     }
+    if(cliente_existente_cpf(cpf) == 2)
+    {
+        printf("CPF já cadastrado, mas desativado\n");
+        printf("Deseja reativa-lo? \n");
+        printf("1- Sim \n");
+        printf("2- Não \n");
+        char resposta;
+        scanf(" %c", &resposta);
+        getchar();
+        if (resposta == '1') {
+            FILE *fc = fopen("./Clientes.dat", "r+b");
+            while(fread(&novo_cliente, sizeof(Clientes), 1, fc))
+            {
+                if(strcmp(novo_cliente.cpf, cpf) == 0)
+                {
+                    novo_cliente.status = 1;
+                    fseek(fc, -(long int)sizeof(Clientes), SEEK_CUR);
+                    fwrite(&novo_cliente, sizeof(Clientes), 1, fc);
+                    printf("Cliente reativado com sucesso!\n");
+                    getchar();
+                    fclose(fc);
+                    return;
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
 
     ler_email(email);
     if (cliente_existente_email(email) == 1)
@@ -145,7 +175,7 @@ void busca_clien(void)
 
     while (fread(&cli, sizeof(Clientes), 1, fc))
     {
-        if (strcmp(cli.cpf, cpf) == 0)
+        if (strcmp(cli.cpf, cpf) == 0 && cli.status == 1)
         {
             system("clear || cls");
             printf("Cliente encontrado!\n");
@@ -202,7 +232,7 @@ void atual_clien()
 
     while (fread(&cli, sizeof(Clientes), 1, fc))
     {
-        if (strcmp(cli.cpf, cpf) == 0)
+        if (strcmp(cli.cpf, cpf) == 0 && cli.status == 1)
         {
             encontrado = 1;
 
@@ -223,9 +253,37 @@ void atual_clien()
                 break;
             case 2:
                 ler_email(cli.email);
+                if(cliente_existente_email(cli.email) == 1)
+                {
+                    printf("Email já cadastrado\n");
+                    printf("Deseja cadastrar outro cliente com o mesmo email? \n");
+                    printf("1- Sim \n");
+                    printf("2- Não \n");
+                    char resposta;
+                    scanf(" %c", &resposta);
+                    getchar();
+                    if (resposta == '2')
+                    {
+                        return;
+                    }
+                }
                 break;
             case 3:
                 ler_telefone(cli.telefone);
+                if(cliente_existente_telefone(cli.telefone) == 1)
+                {
+                    printf("Telefone já cadastrado\n");
+                    printf("Deseja cadastrar outro cliente com o mesmo telefone? \n");
+                    printf("1- Sim \n");
+                    printf("2- Não \n");
+                    char resposta;
+                    scanf(" %c", &resposta);
+                    getchar();
+                    if (resposta == '2')
+                    {
+                        return;
+                    }
+                }
                 break;
             default:
                 printf("Opção inválida.\n");
@@ -288,17 +346,18 @@ void excl_clien()
         {
             encontrado = 1;
 
-            printf("Deseja realmente desativar %s? \n 1- Sim \n 2-Não \n ", cli.nome);
+            printf("Deseja realmente desativar %s? \n 1- Sim \n 2- Não \n ", cli.nome);
             char resposta;
             scanf(" %c", &resposta);
             getchar();
 
-            if (resposta == 'S' || resposta == 's')
+            if (resposta == '1')
             {
                 cli.status = 0;
                 fseek(fc, -(long int)sizeof(Clientes), SEEK_CUR);
                 fwrite(&cli, sizeof(Clientes), 1, fc);
                 printf("Cliente desativado com sucesso.\n");
+                break;
             }
             else
             {
@@ -330,10 +389,15 @@ int cliente_existente_cpf(const char *cpf)
     Clientes cli;
     while (fread(&cli, sizeof(Clientes), 1, fc))
     {
-        if (strcmp(cli.cpf, cpf) == 0)
+        if (strcmp(cli.cpf, cpf) == 0 && cli.status == 1)
         {
             fclose(fc);
             return 1; // CPF encontrado
+        }
+        if(strcmp(cli.cpf, cpf) == 0 && cli.status == 0)
+        {
+            fclose(fc);
+            return 2; // CPF encontrado, mas desativado
         }
     }
 
@@ -353,7 +417,7 @@ int cliente_existente_email(const char *email)
     Clientes cli;
     while (fread(&cli, sizeof(Clientes), 1, fc))
     {
-        if (strcmp(cli.email, email) == 0)
+        if (strcmp(cli.email, email) == 0 && cli.status == 1)
         {
             fclose(fc);
             return 1; // E-mail encontrado
@@ -376,7 +440,7 @@ int cliente_existente_telefone(const char *telefone)
     Clientes cli;
     while (fread(&cli, sizeof(Clientes), 1, fc))
     {
-        if (strcmp(cli.telefone, telefone) == 0)
+        if (strcmp(cli.telefone, telefone) == 0 && cli.status == 1)
         {
             fclose(fc);
             return 1; // Telefone encontrado
