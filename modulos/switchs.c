@@ -208,7 +208,7 @@ void sobre()
   printf("                      GitHub: @cecília-morais         \n");
   printf("                      Colaborador: Matheus Diniz\n");
   printf("                      GitHub: @matheusdiniz01         \n");
-  printf("                      Colaborador: Maxuel Gadelha\n");
+  printf("                      Colaborador: Maxsuel Gadelha\n");
   printf("                      GitHub: @maxuelgadelha         \n\n");
   printf("Tecla ENTER para continuar \n");
   getchar();
@@ -225,7 +225,7 @@ void equipe()
   printf("                      GitHub: @cecília-morais         \n");
   printf("                      Colaborador: Matheus Diniz\n");
   printf("                      GitHub: @matheusdiniz01         \n");
-  printf("                      Colaborador: Maxuel Gadelha\n");
+  printf("                      Colaborador: Maxsuel Gadelha\n");
   printf("                      GitHub: @maxuelgadelha         \n\n");
   printf("Tecla ENTER para continuar \n");
   getchar();
