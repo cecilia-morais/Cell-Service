@@ -201,9 +201,9 @@ void atendimentos_por_data_de_saida()
        char data[11];
        system("clear || cls");
        printf("*********************************************************************\n");
-       printf("                       ATENDIMENTOS POR DATA                             \n");
+       printf("                       ATENDIMENTOS POR DATA DE SAIDA                \n");
        printf("*********************************************************************\n");
-       printf("Digite a data desejada em que o aparelho : ");
+       printf("Digite a data desejada em que o aparelho foi atendido: ");
        scanf("%s", data);
        getchar();
        printf("Tecle ENTER para continuar \n");
