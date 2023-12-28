@@ -262,6 +262,19 @@ void atendimentos_por_data_de_saida()
                      fseek(fc_celulares, 0, SEEK_SET);
                      }
 
+                     while (fread(&cliente, sizeof(Clientes), 1, fc) == 1)
+                     {
+                            if (strcmp(cliente.cpf, atendimento.cpf) == 0)
+                            {
+                                   printf("CLIENTE:\n");
+                                   printf("Nome: %s\n", cliente.nome);
+                                   printf("CPF: %s\n", cliente.cpf);
+                                   printf("Email: %s\n", cliente.email);
+                                   printf("Telefone: %s\n", cliente.telefone);
+                                   break;
+                            }
+                     }
+                     fseek(fc, 0, SEEK_SET);
                      if (atendimento.status == 1)
                      {
                             printf("O aparelho foi consertado.\n");
