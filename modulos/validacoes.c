@@ -149,9 +149,9 @@ void ler_nome(char *nome) {
     while (v) {
         printf("-> "); //LINHA DE VALIDAÇÃO ALTERADA POR cecilia-morais PARA ENCAIXAR NO PROGRAMA
         fgets(nome, 100, stdin);
+        nome[strlen(nome) - 1] = '\0';
         n = valida_nome(nome);
         if (n == 1) {
-            printf("\n");
             v=f;
         } else if (n == 0) {
             printf("inválido\n");

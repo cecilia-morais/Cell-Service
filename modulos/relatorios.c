@@ -108,8 +108,8 @@ char relatorios_celulares()
        return opr;
 }
 
-void celulares_atendidos(){
-
+void celulares_atendidos()
+{
 }
 
 char rel_cell()
@@ -164,8 +164,6 @@ char relatorios_atendimentos()
        getchar();
        return opr;
 }
-
-
 
 char rel_atend()
 {
@@ -240,20 +238,30 @@ void atendimentos_por_data_de_saida()
        Clientes cliente;
        Atendimentos atendimento;
        int found = 0;
+
        while (fread(&atendimento, sizeof(Atendimentos), 1, fa) == 1)
        {
-              if (strcmp(atendimento.data_saida, data) == 0)
+              if (strcmp(atendimento.data_saida, data) == 0 && atendimento.status != 0)
               {
-                     // Display the matching record
-                     printf("ID: %d\n", atendimento.id_atendimento);
-                     printf("Nome: %s\n", cliente.nome);
-                     printf("CPF: %s\n", atendimento.cpf);
-                     printf("Modelo: %s\n", celular.modelo);
-                     printf("Marca: %s\n", celular.marca);
-                     printf("Problema: %s\n", celular.problema);
-                     printf("Data de entrada: %s\n", celular.data_cadastro);
+                     printf("ID atendimento: %d\n", atendimento.id_atendimento);
                      printf("Data: %s\n", atendimento.data_saida);
                      printf("Descrição do atendimento: %s\n", atendimento.descricao);
+                     
+
+                     while (fread(&celular, sizeof(Celulares), 1, fc_celulares) == 1)
+                     {
+                            if (strcmp(celular.cpf_cliente, atendimento.cpf) == 0)
+                            {
+                                   printf("ID celular: %d\n", celular.id_celular);
+                                   printf("Modelo: %s\n", celular.modelo);
+                                   printf("Marca: %s\n", celular.marca);
+                                   printf("Problema: %s\n", celular.problema);
+                                   printf("Data de entrada: %s\n", celular.data_cadastro);
+                                   break;
+                            }
+                     fseek(fc_celulares, 0, SEEK_SET);
+                     }
+
                      if (atendimento.status == 1)
                      {
                             printf("O aparelho foi consertado.\n");
@@ -266,6 +274,7 @@ void atendimentos_por_data_de_saida()
                             printf("Tecle ENTER para continuar \n");
                             getchar();
                      }
+
                      printf("***************************************\n");
                      found = 1;
               }
@@ -527,13 +536,13 @@ void exibindo_celulares(Celulares *celular)
                                    printf("ID do Atendimento: %d\n", atendimento.id_atendimento);
                                    printf("Descrição do Problema: %s\n", atendimento.descricao);
                                    printf("Celular foi atendido!\n");
-                                   if (cel.status == 1)
+                                   if (atendimento.status == 1)
                                    {
                                           printf("O aparelho foi consertado.\n");
                                           printf("Tecle ENTER para continuar \n");
                                           getchar();
                                    }
-                                   else if (cel.status == 2)
+                                   else if (atendimento.status == 2)
                                    {
                                           printf("O aparelho não foi consertado.\n");
                                           printf("Tecle ENTER para continuar \n");

@@ -78,7 +78,7 @@ void novo_atendimento()
 
     while (fread(&celular, sizeof(Celulares), 1, fc) == 1)
     {
-        if (strcmp(celular.cpf_cliente, cpf) == 0 && celular.status == 1)
+        if (strcmp(celular.cpf_cliente, cpf) == 0 && celular.status == 1 && celular.status != 3 && celular.status != 0)
         {
             celular_encontrado = 1;
             printf("ID do Celular: %d\n", celular.id_celular);
@@ -94,7 +94,6 @@ void novo_atendimento()
     {
         printf("Não foi encontrado um celular cadastrado para o CPF informado.\n");
         printf("Tecle ENTER para continuar \n");
-        getchar();
         getchar();
         fclose(fc);
         return;
@@ -133,8 +132,16 @@ void novo_atendimento()
 
     snprintf(data_saida, sizeof(novo_atendimento.data_saida), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
     id_atd = criar_id_a();
+
     printf("Digite a descrição do atendimento:\n");
-    fgets(descricao, sizeof(descricao), stdin);
+    while (fgets(descricao, sizeof(descricao), stdin) != NULL)
+    {
+        if (descricao[0] != '\n')
+        {
+            break;
+        }
+        printf("Descrição inválida! Digite novamente:\n");
+    }
     printf("O problema foi resolvido?\n");
     printf("1 - Sim\n");
     printf("2 - Não\n");

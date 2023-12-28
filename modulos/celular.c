@@ -101,15 +101,15 @@ void novo_cell(void)
     limpar_buffer();
     printf("Digite a marca do aparelho: \n ");
     fgets(marca, sizeof(marca), stdin);
-    marca[strlen(marca) - 1] = 0;
+    marca[strlen(marca) - 1] = '\0';
 
     printf("Digite o modelo do aparelho: \n");
     fgets(modelo, sizeof(modelo), stdin);
-    modelo[strlen(modelo) - 1] = 0;
+    modelo[strlen(modelo) - 1] = '\0';
 
     printf("Digite o problema do aparelho: ");
     fgets(problema, sizeof(problema), stdin);
-    problema[strlen(problema) - 1] = 0;
+    problema[strlen(problema) - 1] = '\0';
 
     snprintf(data_cadastro, sizeof(novo_celular.data_cadastro), "%02d/%02d/%04d", info->tm_mday, info->tm_mon + 1, info->tm_year + 1900);
 
